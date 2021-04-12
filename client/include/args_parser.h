@@ -1,0 +1,6 @@
+#ifndef CLIENT_INCLUDE_ARGS_PARSER_H_
+#define CLIENT_INCLUDE_ARGS_PARSER_H_
+
+#define USAGE "USAGE: c <-t nsecs> fifoname"
+
+#endif  // CLIENT_INCLUDE_ARGS_PARSER_H_
