@@ -1,9 +1,0 @@
-name: valgrind
-on: [push, pull_request]
-jobs:
-  valgrind:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v2
-      - run: sudo apt-get install valgrind
-      - run: ./tests/valgrind.sh
