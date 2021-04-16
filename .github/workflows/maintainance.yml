@@ -24,4 +24,5 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - run: sudo apt-get install valgrind
+      - run: make
       - run: ./tests/valgrind.sh
