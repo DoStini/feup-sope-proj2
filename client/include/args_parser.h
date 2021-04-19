@@ -3,9 +3,9 @@
 
 #include <stdint.h>
 
-#define USAGE "USAGE: c <-t nsecs> fifoname"
+#define USAGE "USAGE: c <-t nsecs> <fifoname>"
 
-#define ERROR -1
+#define PARSE_ERROR -1
 
 typedef struct args_data {
     uint64_t duration;
