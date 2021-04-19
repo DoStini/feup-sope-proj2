@@ -20,14 +20,16 @@ uint64_t get_random_ms(uint64_t lower, uint64_t upper) {
     return (rand_r(&seedp) % (upper - lower) + lower) * MS_TO_NS;
 }
 
+int create_task() { return 0; }
+
 void* __tmp__do_nothing() {
     sleep(rand_r(&seedp) % 2);
     printf("%ld says hi and goodbye.\n", pthread_self());
 
+    create_task();
+
     return NULL;
 }
-
-int create_task() { return 0; }
 
 int task_creator(const args_data_t* const data) {
     struct timespec tspec;
