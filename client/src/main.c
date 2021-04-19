@@ -7,9 +7,11 @@
 
 int main(int argc, char* argv[], char* envp[]) {
     args_data_t data;
+
     if (parse_args(argc, argv, &data)) {
         fprintf(stderr, "%s\n", USAGE);
         exit(BAD_ARGS);
     }
+
     printf("Duration: %lu\nFifoname: %s\n", data.duration, data.fifoname);
 }
