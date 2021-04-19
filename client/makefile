@@ -8,7 +8,7 @@ FINAL := ../bin
 SOURCES := $(wildcard $(SRC)/*.c)
 OBJECTS := $(patsubst $(SRC)/%.c, $(OBJ)/%.o, $(SOURCES))
 
-flags = -g -Wall -pthread
+flags = -g -Wall -pthread -lrt
 libs =
 
 c: bin mainbin c_inner move
