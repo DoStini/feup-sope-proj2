@@ -67,28 +67,3 @@ void block_array_delete(block_array_t* const block_array) {
     free(block_array->array);
     free(block_array);
 }
-
-void test() {
-    array_value_t value;
-
-    block_array_t* threads = block_array_create(THREAD_VAL, 10);
-    if (threads == NULL) return;
-
-    value.thread_value = 1;
-    block_array_set(threads, 0, value);
-    value.thread_value = 3;
-    block_array_set(threads, 1, value);
-    value.thread_value = 9;
-    block_array_set(threads, 50, value);
-
-    // int err;
-    // err = block_array_at(threads, 0, &value);
-    // printf("index 0: %ld, ret val: %d\n", value.thread_value, err);
-    // err = block_array_at(threads, 1, &value);
-    // printf("index 1: %ld, ret val: %d\n", value.thread_value, err);
-    // err = block_array_at(threads, 2, &value);
-    // printf("index 2: %ld, ret val: %d\n", value.thread_value, err);
-    // err = block_array_at(threads, 50, &value);
-    // printf("index 10: %ld, ret val: %d\n", value.thread_value, err);
-    // printf("size:: %ld\n", block_array_get_size(threads));
-}
