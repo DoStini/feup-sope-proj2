@@ -1,12 +1,14 @@
 #include "../include/task_creator.h"
-#include <sys/types.h>
 
+#include <sys/types.h>
 #include <stdbool.h>
 #include <pthread.h>
 #include <stdlib.h>
 #include <unistd.h>
 #include <time.h>
 #include <stdio.h>
+
+#include "../include/block_array.h"
 
 #define MS_TO_NS 10e6
 #define MAX_WAIT_MS 100
@@ -31,12 +33,18 @@ int task_creator(const args_data_t* const data) {
 
     int __tmp__tries = 0;
 
+    block_array_t* threads = block_array_create(THREAD_VAL, 10);
+
     while (__tmp__tries < 10) {
         tspec.tv_nsec = get_random_ms(MIN_WAIT_MS, MAX_WAIT_MS);
         nanosleep(&tspec, NULL);
 
+        // if(pthread_create())
+
         __tmp__tries++;
     }
+
+    block_array_delete(threads);
 
     return 0;
 }
