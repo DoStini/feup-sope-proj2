@@ -30,10 +30,10 @@ int create_task() { return 0; }
 int task_creator(const args_data_t* const data) {
     struct timespec tspec;
     tspec.tv_sec = 0;
-
     int __tmp__tries = 0;
 
     block_array_t* threads = block_array_create(THREAD_VAL, 10);
+    if (threads == NULL) return -1;
 
     while (__tmp__tries < 10) {
         tspec.tv_nsec = get_random_ms(MIN_WAIT_MS, MAX_WAIT_MS);
