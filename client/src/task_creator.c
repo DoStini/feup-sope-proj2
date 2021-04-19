@@ -69,7 +69,10 @@ int task_creator(const args_data_t* const data) {
     block_array_t* threads = block_array_create(THREAD_VAL, 10);
     if (threads == NULL) return TASK_CREATOR_ERROR;
 
-    if (start_timer(data->duration)) return TASK_CREATOR_ERROR;
+    if (start_timer(data->duration)) {
+        block_array_delete(threads);
+        return TASK_CREATOR_ERROR;
+    }
 
     while (true) {
         tspec.tv_nsec = get_random_ms(MIN_WAIT_MS, MAX_WAIT_MS);
@@ -79,6 +82,7 @@ int task_creator(const args_data_t* const data) {
 
         if (pthread_create(&thread.thread_value, NULL, create_receive_task,
                            NULL)) {
+            block_array_delete(threads);
             return TASK_CREATOR_THREAD_ERROR;
         }
         block_array_set(threads, threads_size, thread);
@@ -87,7 +91,10 @@ int task_creator(const args_data_t* const data) {
     }
 
     for (size_t i = 0; i < threads_size; i++) {
-        if (block_array_at(threads, i, &thread)) return TASK_CREATOR_ERROR;
+        if (block_array_at(threads, i, &thread)) {
+            block_array_delete(threads);
+            return TASK_CREATOR_ERROR;
+        }
         pthread_join(thread.thread_value, NULL);
     }
 
