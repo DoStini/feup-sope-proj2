@@ -6,14 +6,16 @@
 
 typedef struct message {
     int i;
-    int t;
     pid_t pid;
     pthread_t tid;
+    int t;
     int res;
 } message_t;
 
-int build_message(message_t* msg);
+int build_message(message_t* msg, int id, int res, int t);
 
 int send_message(message_t* msg);
+
+int recv_message(message_t* msg);
 
 #endif  // CLIENT_INCLUDE_COMMUNICATION_H_

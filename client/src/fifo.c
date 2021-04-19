@@ -27,6 +27,12 @@ int create_private_fifo() {
     return 0;
 }
 
+int remove_private_fifo() {
+    char fifo[MAX_FIFO_NAME] = "";
+    get_fifo_name(fifo);
+    return unlink(fifo);
+}
+
 int open_private_fifo() {
     char fifo[MAX_FIFO_NAME] = "";
     get_fifo_name(fifo);
