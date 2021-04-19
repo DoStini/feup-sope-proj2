@@ -3,7 +3,9 @@
 #include <stdlib.h>
 
 #include "../include/args_parser.h"
+#include "../include/communication.h"
 #include "../include/error/exit_codes.h"
+#include "../include/fifo.h"
 
 int main(int argc, char* argv[], char* envp[]) {
     args_data_t data;
@@ -12,4 +14,8 @@ int main(int argc, char* argv[], char* envp[]) {
         exit(BAD_ARGS);
     }
     printf("Duration: %lu\nFifoname: %s\n", data.duration, data.fifoname);
+    if (create_private_fifo()) {
+        return CANT_CREATE_FIFO;
+    }
+    send_message(NULL);
 }
