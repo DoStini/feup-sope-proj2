@@ -22,13 +22,12 @@ uint64_t get_random_ms(uint64_t lower, uint64_t upper) {
     return (rand_r(&seedp) % (upper - lower) + lower) * MS_TO_NS;
 }
 
-int create_task() { return 0; }
-
-void* __tmp__do_nothing() {
+void* create_receive_task() {
     sleep(rand_r(&seedp) % 2);
     printf("%ld says hi and goodbye.\n", pthread_self());
 
-    create_task();
+    // create random task, private fifos, send message through public fifo,
+    // receive msg, be happy.
 
     return NULL;
 }
@@ -78,7 +77,7 @@ int task_creator(const args_data_t* const data) {
 
         if (is_timeout()) break;
 
-        if (pthread_create(&thread.thread_value, NULL, __tmp__do_nothing,
+        if (pthread_create(&thread.thread_value, NULL, create_receive_task,
                            NULL)) {
             return TASK_CREATOR_THREAD_ERROR;
         }
