@@ -8,6 +8,10 @@
         "stat.h": "c",
         "fcntl.h": "c",
         "string.h": "c",
-        "stdlib.h": "c"
+        "stdlib.h": "c",
+        "aux.h": "c",
+        "stdarg.h": "c",
+        "exit_codes.h": "c",
+        "fifo.h": "c"
     }
 }

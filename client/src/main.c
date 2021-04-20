@@ -3,7 +3,9 @@
 #include <stdlib.h>
 
 #include "../include/args_parser.h"
+#include "../include/communication.h"
 #include "../include/error/exit_codes.h"
+#include "../include/fifo.h"
 #include "../include/logger.h"
 
 int main(int argc, char* argv[], char* envp[]) {
@@ -16,6 +18,9 @@ int main(int argc, char* argv[], char* envp[]) {
 
     printf("Duration: %lu\nFifoname: %s\n", data.duration, data.fifoname);
     open_log();
-    info_t info = {1, 1};
-    write_log(IWANT, &info);
+    printf("Duration: %lu\nFifoname: %s\n", data.duration, data.fifoname);
+    if (create_private_fifo()) {
+        return CANT_CREATE_FIFO;
+    }
+    return remove_private_fifo();
 }
