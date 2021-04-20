@@ -1,10 +1,12 @@
 #include "../include/args_parser.h"
 
 #include <errno.h>
+#include <stdbool.h>
 #include <stdint.h>
 #include <stdlib.h>
 #include <string.h>
-#include <stdbool.h>
+
+static char* fifoname;
 
 int parse_args(int argc, char* const argv[], args_data_t* const data) {
     if (argc != 4) {
@@ -32,5 +34,11 @@ int parse_args(int argc, char* const argv[], args_data_t* const data) {
         }
     }
 
+    fifoname = data->fifoname;
+
     return 0;
+}
+
+char* get_fifoname() {
+    return fifoname;
 }

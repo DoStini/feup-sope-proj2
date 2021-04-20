@@ -7,6 +7,7 @@
 #include <sys/types.h>
 #include <unistd.h>
 
+#include "../include/args_parser.h"
 #include "../include/error/exit_codes.h"
 
 int get_fifo_name(char* res) {
@@ -39,12 +40,20 @@ int open_private_fifo() {
     get_fifo_name(fifo);
 
     int fd;
-    while ((fd = open(fifo, O_RDWR)) < 0) {
+    while ((fd = open(fifo, O_RDONLY)) < 0) {
     }
 
     return fd;
 }
 
-int close_private_fifo(int fd) {
+int open_public_fifo() {
+    int fd;
+    while ((fd = open(get_fifoname(), O_WRONLY)) < 0) {
+    }
+
+    return fd;
+}
+
+int close_fifo(int fd) {
     return close(fd);
 }

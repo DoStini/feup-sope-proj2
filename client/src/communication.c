@@ -14,12 +14,8 @@ int build_message(message_t* msg, int id, int res, int t) {
     return 0;
 }
 
-int send_private_message(message_t* msg) {
-    int fd = open_private_fifo();
-    return send_message(fd, msg);
-}
-
-int send_message(int fd, message_t* msg) {
+int send_message(message_t* msg) {
+    int fd = open_public_fifo();
     if (fd < 0) {
         return CANT_OPEN_FIFO;
     }
@@ -27,19 +23,15 @@ int send_message(int fd, message_t* msg) {
     while (write(fd, msg, sizeof(message_t)) < 0) {
     }
 
-    return close_private_fifo(fd);
+    return close_fifo(fd);
 }
 
-int recv_private_message(message_t* msg) {
+int recv_message(message_t* msg) {
     int fd = open_private_fifo();
-    return recv_message(fd, msg);
-}
-
-int recv_message(int fd, message_t* msg) {
     if (fd < 0) {
         return CANT_OPEN_FIFO;
     }
 
     read(fd, msg, sizeof(message_t));
-    return close_private_fifo(fd);
+    return close_fifo(fd);
 }

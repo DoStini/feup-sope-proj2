@@ -25,15 +25,18 @@ int main(int argc, char* argv[], char* envp[]) {
         return CANT_CREATE_FIFO;
     }
 
-    message_t new_message, rcv;
+    message_t rcv;
 
-    build_message(&new_message, 1, 2, 5);
+    build_message(&rcv, 1, 2, 5);
 
-    send_private_message(&new_message);
+    send_message(&rcv);
 
-    recv_private_message(&rcv);
+    printf("id = %d, pid = %d, res = %d, t = %d, tid = %ld\n",
+           rcv.i, rcv.pid, rcv.res, rcv.t, rcv.tid);
 
-    printf("hey\n");
+    sleep(1);
+
+    recv_message(&rcv);
 
     printf("id = %d, pid = %d, res = %d, t = %d, tid = %ld\n",
            rcv.i, rcv.pid, rcv.res, rcv.t, rcv.tid);

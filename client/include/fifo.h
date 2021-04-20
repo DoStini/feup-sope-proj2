@@ -11,6 +11,8 @@ int remove_private_fifo();
 
 int open_private_fifo();
 
-int close_private_fifo(int fd);
+int open_public_fifo();
+
+int close_fifo(int fd);
 
 #endif  // CLIENT_INCLUDE_FIFO_H_
