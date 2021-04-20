@@ -29,7 +29,7 @@ static const char* const event_to_string[] = {
     "GAVUP",
     "FAILD"};
 
-int write_log(enum Event event, info_t* info) {
+int write_log(enum Event event, message_t* info) {
     pid_t pid = getpid();
     pthread_t tid = pthread_self();
 
@@ -37,7 +37,7 @@ int write_log(enum Event event, info_t* info) {
 
     char out[128] = "";
     snprintf(out, sizeof(out), "%lu ; %d ; %d ; %d ; %lu ; %d ; %s\n",
-             instant, info->id, info->t, pid, tid, info->res,
+             instant, info->i, info->t, pid, tid, info->res,
              event_to_string[event]);
 
     int err;
