@@ -19,6 +19,7 @@ int get_fifo_name(char* res) {
 int create_private_fifo() {
     char fifo[MAX_FIFO_NAME] = "";
     get_fifo_name(fifo);
+
     if (mkfifo(fifo, 0777) && errno != EEXIST) {
         perror("create fifo");
         return CANT_CREATE_FIFO;

@@ -1,6 +1,7 @@
 #include <stdint.h>
 #include <stdio.h>
 #include <stdlib.h>
+#include <unistd.h>
 
 #include "../include/args_parser.h"
 #include "../include/communication.h"
@@ -19,8 +20,23 @@ int main(int argc, char* argv[], char* envp[]) {
     printf("Duration: %lu\nFifoname: %s\n", data.duration, data.fifoname);
     open_log();
     printf("Duration: %lu\nFifoname: %s\n", data.duration, data.fifoname);
+
     if (create_private_fifo()) {
         return CANT_CREATE_FIFO;
     }
+
+    message_t new_message, rcv;
+
+    build_message(&new_message, 1, 2, 5);
+
+    send_private_message(&new_message);
+
+    recv_private_message(&rcv);
+
+    printf("hey\n");
+
+    printf("id = %d, pid = %d, res = %d, t = %d, tid = %ld\n",
+           rcv.i, rcv.pid, rcv.res, rcv.t, rcv.tid);
+
     return remove_private_fifo();
 }
