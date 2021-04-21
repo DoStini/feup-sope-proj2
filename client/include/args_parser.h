@@ -14,4 +14,6 @@ typedef struct args_data {
 
 int parse_args(int argc, char* const argv[], args_data_t* const data);
 
+char* get_fifoname();
+
 #endif  // CLIENT_INCLUDE_ARGS_PARSER_H_

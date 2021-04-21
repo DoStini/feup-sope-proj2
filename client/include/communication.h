@@ -14,8 +14,8 @@ typedef struct message {
 
 int build_message(message_t* msg, int id, int res, int t);
 
-int send_message(message_t* msg);
+int send_public_message(message_t* msg);
 
-int recv_message(message_t* msg);
+int recv_private_message(message_t* msg);
 
 #endif  // CLIENT_INCLUDE_COMMUNICATION_H_
