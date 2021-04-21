@@ -4,6 +4,7 @@
 #include <stdio.h>
 
 #define MAX_FIFO_NAME FILENAME_MAX
+#define TIMEOUT 5
 
 int create_private_fifo();
 

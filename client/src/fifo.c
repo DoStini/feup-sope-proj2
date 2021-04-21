@@ -5,6 +5,7 @@
 #include <pthread.h>
 #include <sys/stat.h>
 #include <sys/types.h>
+#include <time.h>
 #include <unistd.h>
 
 #include "../include/args_parser.h"
@@ -38,9 +39,9 @@ int remove_private_fifo() {
 int open_private_fifo() {
     char fifo[MAX_FIFO_NAME] = "";
     get_fifo_name(fifo);
-
     int fd;
-    while ((fd = open(fifo, O_RDONLY)) < 0) {
+
+    while ((fd = open(fifo, O_RDWR)) < 0) {
     }
 
     return fd;
@@ -48,7 +49,16 @@ int open_private_fifo() {
 
 int open_public_fifo() {
     int fd;
+
+    clock_t start, end;
+    double time_elapsed = 0;
+
+    start = clock();
+
     while ((fd = open(get_fifoname(), O_WRONLY)) < 0) {
+        end = clock();
+        time_elapsed = ((double)(end - start)) / CLOCKS_PER_SEC;
+        if (time_elapsed > TIMEOUT) return -1;
     }
 
     return fd;

@@ -29,14 +29,12 @@ int main(int argc, char* argv[], char* envp[]) {
 
     build_message(&rcv, 1, 2, 5);
 
-    send_message(&rcv);
+    int val = send_message(&rcv);
 
     printf("id = %d, pid = %d, res = %d, t = %d, tid = %ld\n",
            rcv.i, rcv.pid, rcv.res, rcv.t, rcv.tid);
 
-    sleep(1);
-
-    recv_message(&rcv);
+    if (val != CANT_OPEN_FIFO) recv_message(&rcv);
 
     printf("id = %d, pid = %d, res = %d, t = %d, tid = %ld\n",
            rcv.i, rcv.pid, rcv.res, rcv.t, rcv.tid);
