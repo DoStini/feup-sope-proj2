@@ -20,9 +20,10 @@ int main(int argc, char* argv[], char* envp[]) {
         exit(BAD_ARGS);
     }
 
-    printf("Duration: %lu\nFifoname: %s\n", data.duration, data.fifoname);
-
     open_log();
+    int err;
+    if ((err = task_creator(&data)) != 0)
+        return err;
 
     return 0;
 }

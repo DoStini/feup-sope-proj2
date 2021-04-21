@@ -4,6 +4,8 @@
 #define TASK_CREATOR_ERROR -1
 #define TASK_CREATOR_THREAD_ERROR -1
 
+#include <stdbool.h>
+
 #include "../include/args_parser.h"
 
 /**
@@ -16,5 +18,12 @@
  * @return an error value.
  **/
 int task_creator(const args_data_t* const data);
+
+/**
+ * @brief Indicates if the client has passed the timeout
+ *
+ * @return true if timed out, false otherwise
+ */
+bool is_timeout();
 
 #endif  // CLIENT_INCLUDE_TASK_CREATOR_H_
