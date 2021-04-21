@@ -8,16 +8,16 @@ FINAL := ../bin
 SOURCES := $(wildcard $(SRC)/*.c)
 OBJECTS := $(patsubst $(SRC)/%.c, $(OBJ)/%.o, $(SOURCES))
 
-flags = -g -Wall -pthread
-libs =
+flags = -g -Wall 
+libs = -pthread -lrt
 
 c: bin mainbin c_inner move
 
 c_inner: $(OBJECTS)
-	$(CC) $(flags)  $^ -o c
+	$(CC) $(flags)  $^ -o c $(libs)
 
 $(OBJ)/%.o: $(SRC)/%.c
-	$(CC) -I$(SRC) $(flags)  -c $< -o $@
+	$(CC) -I$(SRC) $(flags)  -c $< -o $@ $(libs)
 
 bin: 
 	mkdir bin

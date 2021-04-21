@@ -41,7 +41,7 @@ int open_read_private_fifo() {
     get_fifo_name(fifo);
     int fd;
 
-    while ((fd = open(fifo, O_RDWR)) < 0) {
+    while ((fd = open(fifo, O_RDONLY)) < 0) {
     }
 
     return fd;
