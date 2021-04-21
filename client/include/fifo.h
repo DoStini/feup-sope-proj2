@@ -10,9 +10,9 @@ int create_private_fifo();
 
 int remove_private_fifo();
 
-int open_private_fifo();
+int open_read_private_fifo();
 
-int open_public_fifo();
+int open_write_public_fifo();
 
 int close_fifo(int fd);
 

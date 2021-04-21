@@ -36,7 +36,7 @@ int remove_private_fifo() {
     return unlink(fifo);
 }
 
-int open_private_fifo() {
+int open_read_private_fifo() {
     char fifo[MAX_FIFO_NAME] = "";
     get_fifo_name(fifo);
     int fd;
@@ -47,7 +47,7 @@ int open_private_fifo() {
     return fd;
 }
 
-int open_public_fifo() {
+int open_write_public_fifo() {
     int fd;
 
     clock_t start, end;
