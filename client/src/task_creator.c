@@ -10,12 +10,13 @@
 
 #include "../include/block_array.h"
 #include "../include/communication.h"
+#include "../include/error/exit_codes.h"
 #include "../include/fifo.h"
 #include "../include/logger.h"
 
 #define MS_TO_NS 10e6
-#define MAX_WAIT_MS 100
-#define MIN_WAIT_MS 10
+#define MAX_WAIT_MS 10
+#define MIN_WAIT_MS 1
 
 static unsigned int seedp;
 static timer_t timer;
@@ -30,28 +31,38 @@ int get_random_task() {
 }
 
 void* create_receive_task() {
-    sleep(rand_r(&seedp) % 2);
     message_t msg;
 
     if (create_private_fifo() != 0) {
         build_message(&msg, -1, -1, -1);
         write_log(FAILD, &msg);
+        return NULL;
     }
 
     build_message(&msg, counter, -1, get_random_task());
 
-    if (send_public_message(&msg) != 0)
+    if (send_public_message(&msg) != 0) {
+        remove_private_fifo();
         return NULL;
+    }
 
     write_log(IWANT, &msg);
 
+    sleep(1);
+
     if (recv_private_message(&msg) != 0) {
         write_log(GAVUP, &msg);
+        remove_private_fifo();
+        return NULL;
+    }
+
+    if (msg.res == -1) {
+        write_log(CLOSD, &msg);
         return NULL;
     }
 
     write_log(RECVD, &msg);
-
+    remove_private_fifo();
     // create random task, private fifos, send message through public fifo,
     // receive msg, be happy.
 
@@ -121,7 +132,6 @@ int task_creator(const args_data_t* const data) {
             block_array_delete(threads);
             return TASK_CREATOR_ERROR;
         }
-        printf("Cleanup result: %d\n", cleanup_private_fifo(thread.thread_value));
         pthread_join(thread.thread_value, NULL);
     }
 
