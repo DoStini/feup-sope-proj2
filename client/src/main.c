@@ -18,7 +18,7 @@ int main(int argc, char* argv[], char* envp[]) {
         exit(BAD_ARGS);
     }
 
-    if (start_timer(data.duration)) {
+    if (timer_start(data.duration)) {
         return ERROR;
     }
 

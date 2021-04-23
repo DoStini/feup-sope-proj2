@@ -9,14 +9,14 @@
 #include "../include/block_array.h"
 #include "../include/timer.h"
 
-#define MS_TO_NS 10e6
-#define MAX_WAIT_MS 100
-#define MIN_WAIT_MS 10
+#define MSEC_TO_NSEC(x) ((x)*10e6)
+#define MAX_WAIT_MSEC 100
+#define MIN_WAIT_MSEC 10
 
 static unsigned int seedp;
 
 uint64_t get_random_ms(uint64_t lower, uint64_t upper) {
-    return (rand_r(&seedp) % (upper - lower) + lower) * MS_TO_NS;
+    return MSEC_TO_NSEC(rand_r(&seedp) % (upper - lower) + lower);
 }
 
 void* create_receive_task() {
@@ -39,7 +39,7 @@ int task_creator() {
     if (threads == NULL) return TASK_CREATOR_ERROR;
 
     while (true) {
-        tspec.tv_nsec = get_random_ms(MIN_WAIT_MS, MAX_WAIT_MS);
+        tspec.tv_nsec = get_random_ms(MIN_WAIT_MSEC, MAX_WAIT_MSEC);
         nanosleep(&tspec, NULL);
 
         if (is_timeout()) break;

@@ -1,12 +1,14 @@
 #include "../include/timer.h"
 
-#include <time.h>
 #include <signal.h>
 #include <string.h>
+#include <stdio.h>
+
+#define NSEC_TO_USEC(x) ((x)/(1000))
 
 static timer_t timer;
 
-int start_timer(uint64_t seconds) {
+int timer_start(uint64_t seconds) {
     struct sigevent sevp;
     struct itimerspec spec;
     struct timespec timer_interval;
@@ -32,4 +34,21 @@ bool is_timeout() {
 
     return timer_value.it_value.tv_nsec == 0 &&
            timer_value.it_value.tv_sec == 0;
+}
+
+void timer_get_remaining(struct timespec* time) {
+    struct itimerspec timer_value;
+    timer_gettime(timer, &timer_value);
+
+    *time = timer_value.it_value;
+}
+
+void timer_get_remaining_timeval(struct timeval* time) {
+    struct itimerspec timer_value;
+    timer_gettime(timer, &timer_value);
+
+    time->tv_sec = timer_value.it_value.tv_sec;
+    printf("before: %ld\n ", timer_value.it_value.tv_nsec);
+    time->tv_usec = NSEC_TO_USEC(timer_value.it_value.tv_nsec);
+    printf("after: %ld\n ", time->tv_usec);
 }
