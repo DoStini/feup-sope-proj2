@@ -35,17 +35,23 @@ bool is_timeout() {
            timer_value.it_value.tv_sec == 0;
 }
 
-void timer_get_remaining(struct timespec* time) {
+int timer_get_remaining(struct timespec* time) {
     struct itimerspec timer_value;
-    timer_gettime(timer, &timer_value);
+    int err = timer_gettime(timer, &timer_value);
+    if (err) return err;
 
     *time = timer_value.it_value;
+
+    return 0;
 }
 
-void timer_get_remaining_timeval(struct timeval* time) {
+int timer_get_remaining_timeval(struct timeval* time) {
     struct itimerspec timer_value;
-    timer_gettime(timer, &timer_value);
+    int err = timer_gettime(timer, &timer_value);
+    if (err) return err;
 
     time->tv_sec = timer_value.it_value.tv_sec;
     time->tv_usec = NSEC_TO_USEC(timer_value.it_value.tv_nsec);
+
+    return 0;
 }
