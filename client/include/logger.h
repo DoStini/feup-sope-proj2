@@ -3,6 +3,8 @@
 
 #include <stdbool.h>
 
+#include "../include/communication.h"
+
 #define LOG_PATH "client.log"
 
 enum Event { IWANT = 0,
@@ -35,6 +37,6 @@ int open_log();
  *
  * @return an error value.
  **/
-int write_log(enum Event event, info_t* info);
+int write_log(enum Event event, message_t* info);
 
 #endif  // CLIENT_INCLUDE_LOGGER_H_
