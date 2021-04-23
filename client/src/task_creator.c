@@ -29,7 +29,7 @@ void* create_receive_task() {
     return NULL;
 }
 
-int task_creator(const args_data_t* const data) {
+int task_creator() {
     struct timespec tspec;
     array_value_t thread;
     tspec.tv_sec = 0;
@@ -37,11 +37,6 @@ int task_creator(const args_data_t* const data) {
 
     block_array_t* threads = block_array_create(THREAD_VAL, 10);
     if (threads == NULL) return TASK_CREATOR_ERROR;
-
-    if (start_timer(data->duration)) {
-        block_array_delete(threads);
-        return TASK_CREATOR_ERROR;
-    }
 
     while (true) {
         tspec.tv_nsec = get_random_ms(MIN_WAIT_MS, MAX_WAIT_MS);
