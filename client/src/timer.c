@@ -2,9 +2,8 @@
 
 #include <signal.h>
 #include <string.h>
-#include <stdio.h>
 
-#define NSEC_TO_USEC(x) ((x)/(1000))
+#define NSEC_TO_USEC(x) ((x) / (1000))
 
 static timer_t timer;
 
@@ -48,7 +47,5 @@ void timer_get_remaining_timeval(struct timeval* time) {
     timer_gettime(timer, &timer_value);
 
     time->tv_sec = timer_value.it_value.tv_sec;
-    printf("before: %ld\n ", timer_value.it_value.tv_nsec);
     time->tv_usec = NSEC_TO_USEC(timer_value.it_value.tv_nsec);
-    printf("after: %ld\n ", time->tv_usec);
 }

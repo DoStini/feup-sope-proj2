@@ -9,9 +9,9 @@
 #include "../include/block_array.h"
 #include "../include/timer.h"
 
-#define MSEC_TO_NSEC(x) ((x)*10e6)
-#define MAX_WAIT_MSEC 100
-#define MIN_WAIT_MSEC 10
+#define MSEC_TO_NSEC(x) ((x) * (1e6))
+#define MAX_WAIT_MSEC 250
+#define MIN_WAIT_MSEC 50
 
 static unsigned int seedp;
 
