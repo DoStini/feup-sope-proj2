@@ -11,6 +11,7 @@
 #include "../include/args_parser.h"
 #include "../include/error/exit_codes.h"
 #include "../include/task_creator.h"
+#include "../include/timer.h"
 
 int get_fifo_name(char* res) {
     pid_t pid = getpid();
@@ -63,16 +64,27 @@ int remove_private_fifo() {
 int open_read_private_fifo() {
     char fifo[MAX_FIFO_NAME] = "";
     get_fifo_name(fifo);
-    int fd;
+    int fd = open(fifo, O_RDWR);
 
-    while ((fd = open(get_public_fifoname(), O_RDONLY | O_NONBLOCK)) < 0 &&
-           errno == ENXIO) {
-        if (is_timeout()) {
-            return ERROR;
-        }
+    fd_set fds;
+    struct timeval timer;
+    timer_get_remaining_timeval(&timer);
+
+    FD_ZERO(&fds);
+    FD_SET(fd, &fds);
+
+    int err;
+    err = select(fd + 1, &fds, NULL, NULL, &timer);
+
+    if (err == -1) {
+        return ERROR;
+        perror("select()");
+    } else if (err) {
+        printf("has data\n");
+        return fd;
     }
-
-    return fd;
+    printf("timeout private\n");
+    return ERROR;
 }
 
 int open_write_public_fifo() {

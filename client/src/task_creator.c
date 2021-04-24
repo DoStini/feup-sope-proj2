@@ -60,7 +60,7 @@ void* create_receive_task() {
         return NULL;
     }
 
-    write_log(RECVD, &msg);
+    write_log(GOTRS, &msg);
     remove_private_fifo();
     // create random task, private fifos, send message through public fifo,
     // receive msg, be happy.

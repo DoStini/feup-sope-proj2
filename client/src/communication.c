@@ -37,7 +37,10 @@ int recv_private_message(message_t* msg) {
         return CANT_OPEN_FIFO;
     }
 
-    while (read(fd, msg, sizeof(message_t)) > 0) {
-    }
-    return close_fifo(fd);
+    size_t data_size = read(fd, msg, sizeof(message_t));
+    int err;
+    if ((err = close_fifo(fd)) != 0)
+        return err;
+
+    return sizeof(message_t) == data_size ? 0 : ERROR;
 }
