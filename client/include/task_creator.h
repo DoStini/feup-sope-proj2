@@ -11,10 +11,8 @@
  *the server and wait for the server's response, before the time limit is
  *reached.
  *
- * @param[in] data the arguments given to the client.
- *
  * @return an error value.
  **/
-int task_creator(const args_data_t* const data);
+int task_creator();
 
 #endif  // CLIENT_INCLUDE_TASK_CREATOR_H_
