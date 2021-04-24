@@ -13,17 +13,17 @@
 #include "../include/error/exit_codes.h"
 #include "../include/fifo.h"
 #include "../include/logger.h"
+#include "../include/timer.h"
 
-#define MS_TO_NS 10e6
-#define MAX_WAIT_MS 10
-#define MIN_WAIT_MS 1
+#define MSEC_TO_NSEC(x) ((x) * (1e6))
+#define MAX_WAIT_MSEC 250
+#define MIN_WAIT_MSEC 50
 
 static unsigned int seedp;
-static timer_t timer;
 static int counter = 0;
 
 uint64_t get_random_ms(uint64_t lower, uint64_t upper) {
-    return (rand_r(&seedp) % (upper - lower) + lower) * MS_TO_NS;
+    return MSEC_TO_NSEC(rand_r(&seedp) % (upper - lower) + lower);
 }
 
 int get_random_task() {
@@ -48,8 +48,6 @@ void* create_receive_task() {
 
     write_log(IWANT, &msg);
 
-    sleep(1);
-
     if (recv_private_message(&msg) != 0) {
         write_log(GAVUP, &msg);
         remove_private_fifo();
@@ -58,6 +56,7 @@ void* create_receive_task() {
 
     if (msg.res == -1) {
         write_log(CLOSD, &msg);
+        remove_private_fifo();
         return NULL;
     }
 
@@ -69,35 +68,7 @@ void* create_receive_task() {
     return NULL;
 }
 
-int start_timer(uint64_t seconds) {
-    struct sigevent sevp;
-    struct itimerspec spec;
-    struct timespec timer_interval;
-    struct timespec timer_value;
-
-    timer_value.tv_nsec = 0;
-    timer_value.tv_sec = seconds;
-    timer_interval.tv_sec = timer_interval.tv_nsec = 0;
-
-    memset(&sevp, 0, sizeof(sevp));
-    sevp.sigev_notify = SIGEV_NONE;
-
-    spec.it_interval = timer_interval;
-    spec.it_value = timer_value;
-
-    if (timer_create(CLOCK_REALTIME, &sevp, &timer)) return -1;
-    return timer_settime(timer, 0, &spec, NULL);
-}
-
-bool is_timeout() {
-    struct itimerspec timer_value;
-    timer_gettime(timer, &timer_value);
-
-    return timer_value.it_value.tv_nsec == 0 &&
-           timer_value.it_value.tv_sec == 0;
-}
-
-int task_creator(const args_data_t* const data) {
+int task_creator() {
     struct timespec tspec;
     array_value_t thread;
     tspec.tv_sec = 0;
@@ -106,13 +77,14 @@ int task_creator(const args_data_t* const data) {
     block_array_t* threads = block_array_create(THREAD_VAL, 10);
     if (threads == NULL) return TASK_CREATOR_ERROR;
 
-    if (start_timer(data->duration)) {
-        block_array_delete(threads);
-        return TASK_CREATOR_ERROR;
+    if (wait_public_fifo() != 0) {
+        printf("Timeout on searching for file %lu\n", pthread_self());
+        return ERROR;
     }
+    printf("Found file %lu\n", pthread_self());
 
     while (true) {
-        tspec.tv_nsec = get_random_ms(MIN_WAIT_MS, MAX_WAIT_MS);
+        tspec.tv_nsec = get_random_ms(MIN_WAIT_MSEC, MAX_WAIT_MSEC);
         nanosleep(&tspec, NULL);
 
         if (is_timeout()) break;

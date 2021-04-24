@@ -17,6 +17,8 @@ int open_read_private_fifo();
 
 int open_write_public_fifo();
 
+int wait_public_fifo();
+
 int close_fifo(int fd);
 
 #endif  // CLIENT_INCLUDE_FIFO_H_

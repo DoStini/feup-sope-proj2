@@ -31,11 +31,13 @@ int send_public_message(message_t* msg) {
 
 int recv_private_message(message_t* msg) {
     printf("trying to receive\n");
+    memset(msg, 0, sizeof(message_t));
     int fd = open_read_private_fifo();
     if (fd < 0) {
         return CANT_OPEN_FIFO;
     }
 
-    read(fd, msg, sizeof(message_t));
+    while (read(fd, msg, sizeof(message_t)) > 0) {
+    }
     return close_fifo(fd);
 }

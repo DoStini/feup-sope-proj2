@@ -9,6 +9,7 @@
 #include "../include/fifo.h"
 #include "../include/logger.h"
 #include "../include/task_creator.h"
+#include "../include/timer.h"
 
 int main(int argc, char* argv[], char* envp[]) {
     args_data_t data;
@@ -20,9 +21,15 @@ int main(int argc, char* argv[], char* envp[]) {
         exit(BAD_ARGS);
     }
 
+    if (timer_start(data.duration)) {
+        return ERROR;
+    }
+
+    printf("Duration: %lu\nFifoname: %s\n", data.duration, data.fifoname);
+
     open_log();
     int err;
-    if ((err = task_creator(&data)) != 0)
+    if ((err = task_creator()) != 0)
         return err;
 
     return 0;

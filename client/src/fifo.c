@@ -19,6 +19,17 @@ int get_fifo_name(char* res) {
     return snprintf(res, MAX_FIFO_NAME, "/tmp/%d.%lu", pid, tid);
 }
 
+int wait_public_fifo() {
+    int fd;
+    while ((fd = open(get_public_fifoname(), O_RDWR)) < 0) {
+        if (is_timeout()) {
+            return ERROR;
+        }
+    }
+    close(fd);
+    return 0;
+}
+
 int get_fifo_name_by_thread(char* res, pthread_t thrd) {
     pid_t pid = getpid();
 
@@ -54,7 +65,11 @@ int open_read_private_fifo() {
     get_fifo_name(fifo);
     int fd;
 
-    while ((fd = open(fifo, O_RDONLY)) < 0 && !is_timeout()) {
+    while ((fd = open(get_public_fifoname(), O_RDONLY | O_NONBLOCK)) < 0 &&
+           errno == ENXIO) {
+        if (is_timeout()) {
+            return ERROR;
+        }
     }
 
     return fd;
@@ -63,17 +78,12 @@ int open_read_private_fifo() {
 int open_write_public_fifo() {
     int fd;
 
-    // clock_t start, end;
-    // double time_elapsed = 0;
-
-    // start = clock();
-
-    while ((fd = open(get_fifoname(), O_WRONLY)) < 0 && !is_timeout()) {
-        // end = clock();
-        // time_elapsed = ((double)(end - start)) / CLOCKS_PER_SEC;
-        // if (time_elapsed > TIMEOUT) return -1;
+    while ((fd = open(get_public_fifoname(), O_WRONLY | O_NONBLOCK)) < 0 &&
+           errno == ENXIO) {
+        if (is_timeout()) {
+            return ERROR;
+        }
     }
-
     return fd;
 }
 
