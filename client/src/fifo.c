@@ -9,9 +9,21 @@
 #include <unistd.h>
 
 #include "../include/args_parser.h"
+#include "../include/communication.h"
 #include "../include/error/exit_codes.h"
 #include "../include/task_creator.h"
 #include "../include/timer.h"
+
+static int public_fifo;
+
+int set_public_fifo(int fd) {
+    public_fifo = fd;
+    return 0;
+}
+
+int get_public_fifo() {
+    return public_fifo;
+}
 
 int get_fifo_name(char* res) {
     pid_t pid = getpid();
@@ -27,7 +39,9 @@ int wait_public_fifo() {
             return ERROR;
         }
     }
-    close(fd);
+
+    set_public_fifo(fd);
+    set_server_open(true);
     return 0;
 }
 
@@ -77,13 +91,13 @@ int open_read_private_fifo() {
     err = select(fd + 1, &fds, NULL, NULL, &timer);
 
     if (err == -1) {
+        close(fd);
         return ERROR;
         perror("select()");
     } else if (err) {
-        printf("has data\n");
         return fd;
     }
-    printf("timeout private\n");
+    close(fd);
     return ERROR;
 }
 
