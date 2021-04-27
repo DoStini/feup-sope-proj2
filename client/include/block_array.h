@@ -9,14 +9,6 @@
 
 typedef struct block_array block_array_t;
 
-typedef union array_value {
-    pthread_t thread_value;
-    int32_t int32_value;
-    char char_value;
-} array_value_t;
-
-typedef enum array_type { THREAD_VAL = 0, INT32_VAL, CHAR_VAL } array_type_t;
-
 /**
  * @brief Frees up resources used by given block array.
  *
@@ -27,14 +19,12 @@ void block_array_delete(block_array_t* const block_array);
 /**
  * @brief Creates a block array.
  *
- * @param type an enum specifying the type of elements stored in the array.
  * @param block_size size, in number of elements, of the blocks of memory added
  *to the array if more space is needed.
  *
  * @return the pointer of the created block array or NULL if an error ocurred.
  **/
-block_array_t* block_array_create(const array_type_t type,
-                                  const size_t block_size);
+block_array_t* block_array_create(const size_t block_size);
 
 /**
  * @brief Sets a value to an element of the array given its index.
@@ -46,16 +36,7 @@ block_array_t* block_array_create(const array_type_t type,
  * @return an error value.
  **/
 int block_array_set(block_array_t* const block_array, const size_t index,
-                    const array_value_t value);
-
-/**
- * @brief Gets the type of values stored in array.
- *
- * @param[in] block_array pointer to the block array.
- *
- * @return an enum specifying the type of values.
- **/
-array_type_t block_array_get_type(const block_array_t* const block_array);
+                    const pthread_t value);
 
 /**
  * @brief Gets the size allocated to the array.
@@ -76,6 +57,6 @@ size_t block_array_get_size(const block_array_t* const block_array);
  * @return an error value.
  **/
 int block_array_at(const block_array_t* const block_array, const size_t index,
-                   array_value_t* const value);
+                   pthread_t* const value);
 
 #endif  // CLIENT_INCLUDE_BLOCK_ARRAY_H_
