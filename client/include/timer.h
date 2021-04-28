@@ -20,7 +20,7 @@ int timer_start(uint64_t seconds);
  *
  * @return an error value.
  **/
-bool is_timeout();
+bool is_timeout(void);
 
 /**
  * @brief Gets the remaing time on the set timer as a timespec structure.

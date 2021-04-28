@@ -27,7 +27,7 @@ typedef struct info {
  * @brief Opens the log file, if one is given, and gets its file descriptor
  *number.
  **/
-int open_log();
+int open_log(void);
 
 /**
  * @brief Writes into the log with the predefined format.

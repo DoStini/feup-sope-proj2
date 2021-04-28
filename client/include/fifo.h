@@ -7,15 +7,13 @@
 #define MAX_FIFO_NAME FILENAME_MAX
 #define TIMEOUT 5
 
-int create_private_fifo();
+int create_private_fifo(void);
 
-int remove_private_fifo();
+int remove_private_fifo(void);
 
-int cleanup_private_fifo(pthread_t thread);
+int open_read_private_fifo(void);
 
-int open_read_private_fifo();
-
-int open_write_public_fifo();
+int open_write_public_fifo(void);
 
 int set_public_fifo(int fd);
 

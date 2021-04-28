@@ -70,11 +70,11 @@ void* create_receive_task() {
 
 int task_creator() {
     struct timespec tspec;
-    array_value_t thread;
+    pthread_t thread;
     tspec.tv_sec = 0;
     size_t threads_size = 0;
 
-    block_array_t* threads = block_array_create(THREAD_VAL, 10);
+    block_array_t* threads = block_array_create(10);
     if (threads == NULL) return TASK_CREATOR_ERROR;
 
     if (wait_public_fifo() != 0) {
@@ -89,8 +89,7 @@ int task_creator() {
 
         if (is_timeout()) break;
 
-        if (pthread_create(&thread.thread_value, NULL, create_receive_task,
-                           NULL)) {
+        if (pthread_create(&thread, NULL, create_receive_task, NULL)) {
             block_array_delete(threads);
             return TASK_CREATOR_THREAD_ERROR;
         }
@@ -104,7 +103,8 @@ int task_creator() {
             block_array_delete(threads);
             return TASK_CREATOR_ERROR;
         }
-        pthread_join(thread.thread_value, NULL);
+        
+        pthread_join(thread, NULL);
     }
 
     close_fifo(get_public_fifo());

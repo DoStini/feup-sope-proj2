@@ -15,7 +15,7 @@
  *
  * @return an error value.
  **/
-int task_creator();
+int task_creator(void);
 
 /**
  * @brief Indicates if the client has passed the timeout
