@@ -91,7 +91,7 @@ int task_creator() {
         if (is_timeout()) break;
 
         int* thread_id = malloc(sizeof(int));
-        if(thread_id == NULL) return TASK_CREATOR_ERROR;
+        if (thread_id == NULL) return TASK_CREATOR_ERROR;
 
         *thread_id = id++;
 

@@ -7,15 +7,17 @@
 
 #define LOG_PATH "client.log"
 
-enum Event { IWANT = 0,
-             RECVD,
-             TSKEX,
-             TSKDN,
-             GOTRS,
-             TLATE,
-             CLOSD,
-             GAVUP,
-             FAILD };
+enum Event {
+    IWANT = 0,
+    RECVD,
+    TSKEX,
+    TSKDN,
+    GOTRS,
+    TLATE,
+    CLOSD,
+    GAVUP,
+    FAILD
+};
 
 typedef struct info {
     int id;

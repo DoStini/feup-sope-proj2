@@ -18,16 +18,9 @@ typedef struct log_info {
 
 static log_info_t log_info = {0};
 
-static const char* const event_to_string[] = {
-    "IWANT",
-    "RECVD",
-    "TSKEX",
-    "TSKDN",
-    "GOTRS",
-    "2LATE",
-    "CLOSD",
-    "GAVUP",
-    "FAILD"};
+static const char* const event_to_string[] = {"IWANT", "RECVD", "TSKEX",
+                                              "TSKDN", "GOTRS", "2LATE",
+                                              "CLOSD", "GAVUP", "FAILD"};
 
 int write_log(enum Event event, message_t* info) {
     pid_t pid = getpid();
@@ -36,9 +29,8 @@ int write_log(enum Event event, message_t* info) {
     time_t instant = time(NULL);
 
     char out[128] = "";
-    snprintf(out, sizeof(out), "%lu ; %d ; %d ; %d ; %lu ; %d ; %s\n",
-             instant, info->i, info->t, pid, tid, info->res,
-             event_to_string[event]);
+    snprintf(out, sizeof(out), "%lu ; %d ; %d ; %d ; %lu ; %d ; %s\n", instant,
+             info->i, info->t, pid, tid, info->res, event_to_string[event]);
 
     int err;
     while ((err = write(log_info.file_descriptor, out, strlen(out))) == -1 &&

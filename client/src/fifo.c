@@ -21,9 +21,7 @@ int set_public_fifo(int fd) {
     return 0;
 }
 
-int get_public_fifo() {
-    return public_fifo;
-}
+int get_public_fifo() { return public_fifo; }
 
 int get_fifo_name(char* res) {
     pid_t pid = getpid();
@@ -113,6 +111,4 @@ int open_write_public_fifo() {
     return fd;
 }
 
-int close_fifo(int fd) {
-    return close(fd);
-}
+int close_fifo(int fd) { return close(fd); }
