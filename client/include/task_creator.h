@@ -13,6 +13,6 @@
  *
  * @return an error value.
  **/
-int task_creator();
+int task_creator(void);
 
 #endif  // CLIENT_INCLUDE_TASK_CREATOR_H_
