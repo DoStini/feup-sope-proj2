@@ -19,17 +19,17 @@
 #define MIN_WAIT_MSEC 1
 
 static unsigned int seedp;
-static int counter = 0;
 
 uint64_t get_random_ms(uint64_t lower, uint64_t upper) {
     return MSEC_TO_NSEC(rand_r(&seedp) % (upper - lower) + lower);
 }
 
-int get_random_task() {
-    return rand_r(&seedp) % 9 + 1;
-}
+int get_random_task() { return rand_r(&seedp) % 9 + 1; }
 
-void* create_receive_task() {
+void* create_receive_task(void* thread_id) {
+    int id = *(int*)thread_id;
+    free(thread_id);
+
     message_t msg;
 
     if (create_private_fifo() != 0) {
@@ -37,7 +37,7 @@ void* create_receive_task() {
         return NULL;
     }
 
-    build_message(&msg, counter, -1, get_random_task());
+    build_message(&msg, id, -1, get_random_task());
 
     if (send_public_message(&msg) != 0) {
         remove_private_fifo();
@@ -67,9 +67,7 @@ void* create_receive_task() {
     return NULL;
 }
 
-void cleanup(void) {
-    close_fifo(get_public_fifo());
-}
+void cleanup(void) { close_fifo(get_public_fifo()); }
 
 int task_creator() {
     struct timespec tspec;
@@ -84,13 +82,20 @@ int task_creator() {
     printf("Found file %lu\n", pthread_self());
     atexit(cleanup);
 
+    int id = 1;
+
     while (is_server_open()) {
         tspec.tv_nsec = get_random_ms(MIN_WAIT_MSEC, MAX_WAIT_MSEC);
         nanosleep(&tspec, NULL);
 
         if (is_timeout()) break;
 
-        if (pthread_create(&thread, NULL, create_receive_task, NULL)) {
+        int* thread_id = malloc(sizeof(int));
+
+        *thread_id = id++;
+
+        if (pthread_create(&thread, NULL, create_receive_task,
+                           (void*)thread_id)) {
             return TASK_CREATOR_THREAD_ERROR;
         }
         pthread_detach(thread);
