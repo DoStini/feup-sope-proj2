@@ -15,8 +15,8 @@
 #include "../include/timer.h"
 
 #define MSEC_TO_NSEC(x) ((x) * (1e6))
-#define MAX_WAIT_MSEC 5
-#define MIN_WAIT_MSEC 1
+#define MAX_WAIT_MSEC 50
+#define MIN_WAIT_MSEC 10
 
 static unsigned int seedp;
 
@@ -61,8 +61,6 @@ void* create_receive_task(void* thread_id) {
 
     write_log(GOTRS, &msg);
     remove_private_fifo();
-    // create random task, private fifos, send message through public fifo,
-    // receive msg, be happy.
 
     return NULL;
 }
@@ -76,10 +74,8 @@ int task_creator() {
     size_t threads_size = 0;
 
     if (wait_public_fifo() != 0) {
-        printf("Timeout on searching for file %lu\n", pthread_self());
         return ERROR;
     }
-    printf("Found file %lu\n", pthread_self());
     atexit(cleanup);
 
     int id = 1;

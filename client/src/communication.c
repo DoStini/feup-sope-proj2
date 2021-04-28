@@ -27,8 +27,6 @@ int build_message(message_t* msg, int id, int res, int t) {
 }
 
 int send_public_message(message_t* msg) {
-    // int fd = open_write_public_fifo();
-
     int fd = get_public_fifo();
 
     if (fd < 0) {
@@ -42,7 +40,6 @@ int send_public_message(message_t* msg) {
 }
 
 int recv_private_message(message_t* msg) {
-    // memset(msg, 0, sizeof(message_t));
     int fd = open_read_private_fifo();
     if (fd < 0) {
         return CANT_OPEN_FIFO;
