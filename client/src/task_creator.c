@@ -8,7 +8,6 @@
 #include <time.h>
 #include <unistd.h>
 
-#include "../include/block_array.h"
 #include "../include/communication.h"
 #include "../include/error/exit_codes.h"
 #include "../include/fifo.h"
@@ -69,7 +68,6 @@ void* create_receive_task() {
 }
 
 void cleanup(void) {
-    printf("closing fifo %d\n", is_server_open());
     close_fifo(get_public_fifo());
 }
 
