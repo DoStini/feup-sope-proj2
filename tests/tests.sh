@@ -5,7 +5,7 @@
 echo ":::::::: SOPE 2020/2021 MT2 ::::::::"
 echo ":::::::: VALIDATION SCRIPT ::::::::"
 
-cp ../server/mock/s .
+cp ../bin/s .
 cp ../bin/c .
 
 main() {

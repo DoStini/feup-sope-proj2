@@ -10,8 +10,6 @@
 #include <time.h>
 #include <unistd.h>
 
-#include "../include/aux.h"
-
 typedef struct log_info {
     int file_descriptor;
 } log_info_t;

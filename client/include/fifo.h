@@ -29,13 +29,6 @@ int remove_private_fifo(void);
 int open_read_private_fifo(void);
 
 /**
- * @brief Opens the public fifo for writing
- * 
- * @return int 0 when closed, other when open (file descriptor)
- */
-int open_write_public_fifo(void);
-
-/**
  * @brief Set the public fifo file descriptor
  * 
  * @param[in] fd the public fifo fd

@@ -14,6 +14,8 @@
 #include "../include/task_creator.h"
 #include "../include/timer.h"
 
+#define BUSY_WAIT_US 10
+
 static int public_fifo;
 
 int set_public_fifo(int fd) {
@@ -34,7 +36,8 @@ int get_fifo_name(char* res) {
 
 int wait_public_fifo() {
     int fd;
-    while ((fd = open(get_public_fifoname(), O_RDWR)) < 0) {
+    while ((fd = open(get_public_fifoname(), O_WRONLY | O_NONBLOCK)) < 0) {
+        usleep(BUSY_WAIT_US);
         if (is_timeout()) {
             return ERROR;
         }
@@ -43,12 +46,6 @@ int wait_public_fifo() {
     set_public_fifo(fd);
     set_server_open(true);
     return 0;
-}
-
-int get_fifo_name_by_thread(char* res, pthread_t thrd) {
-    pid_t pid = getpid();
-
-    return snprintf(res, MAX_FIFO_NAME, "/tmp/%d.%lu", pid, thrd);
 }
 
 int create_private_fifo() {
@@ -61,12 +58,6 @@ int create_private_fifo() {
     }
 
     return 0;
-}
-
-int cleanup_private_fifo(pthread_t thread) {
-    char fifo[MAX_FIFO_NAME] = "";
-    get_fifo_name_by_thread(fifo, thread);
-    return unlink(fifo);
 }
 
 int remove_private_fifo() {
@@ -99,18 +90,6 @@ int open_read_private_fifo() {
     }
     close(fd);
     return ERROR;
-}
-
-int open_write_public_fifo() {
-    int fd;
-
-    while ((fd = open(get_public_fifoname(), O_WRONLY | O_NONBLOCK)) < 0 &&
-           errno == ENXIO) {
-        if (is_timeout()) {
-            return ERROR;
-        }
-    }
-    return fd;
 }
 
 int close_fifo(int fd) {

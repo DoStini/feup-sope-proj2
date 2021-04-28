@@ -1,0 +1,1522 @@
+[server] initial time: 1619641441, expected final time: 1619641461
+[server] buffer size: 10
+[server] got: nsecs=20, bufsize=10, fifoname=/tmp/fifo_biromiro
+[server] opened server fifo /tmp/fifo_biromiro
+[lib] a 6 task is starting (with 100 delay)
+[lib] a 7 task is starting (with 100 delay)
+[lib] a 6 task has finished
+[server] before sem_wait(&writer_sem)
+[server] after sem_wait(&writer_sem)
+[server] opened client fifo /tmp/40184.140253314295360
+[lib] a 9 task is starting (with 100 delay)
+[lib] a 3 task is starting (with 100 delay)
+[lib] a 7 task has finished
+[server] before sem_wait(&writer_sem)
+[server] after sem_wait(&writer_sem)
+[server] opened client fifo /tmp/40184.140253230790208
+[lib] a 3 task has finished
+[server] before sem_wait(&writer_sem)
+[server] after sem_wait(&writer_sem)
+[server] opened client fifo /tmp/40184.140253214004800
+[lib] a 2 task is starting (with 100 delay)
+[lib] a 9 task has finished
+[server] before sem_wait(&writer_sem)
+[server] after sem_wait(&writer_sem)
+[server] opened client fifo /tmp/40184.140253222397504
+[lib] a 2 task has finished
+[server] before sem_wait(&writer_sem)
+[server] after sem_wait(&writer_sem)
+[server] opened client fifo /tmp/40184.140253205612096
+[lib] a 9 task is starting (with 100 delay)
+[lib] a 4 task is starting (with 100 delay)
+[lib] a 2 task is starting (with 100 delay)
+[lib] a 4 task has finished
+[server] before sem_wait(&writer_sem)
+[server] after sem_wait(&writer_sem)
+[server] opened client fifo /tmp/40184.140253197219392
+[lib] a 2 task has finished
+[server] before sem_wait(&writer_sem)
+[server] after sem_wait(&writer_sem)
+[server] opened client fifo /tmp/40184.140253188826688
+[lib] a 4 task is starting (with 100 delay)
+[lib] a 2 task is starting (with 100 delay)
+[lib] a 9 task has finished
+[server] before sem_wait(&writer_sem)
+[server] after sem_wait(&writer_sem)
+[server] opened client fifo /tmp/40184.140253314295360
+[lib] a 2 task has finished
+[server] before sem_wait(&writer_sem)
+[server] after sem_wait(&writer_sem)
+[server] opened client fifo /tmp/40184.140253230790208
+[lib] a 4 task has finished
+[server] before sem_wait(&writer_sem)
+[server] after sem_wait(&writer_sem)
+[server] opened client fifo /tmp/40184.140253214004800
+[lib] a 1 task is starting (with 100 delay)
+[lib] a 1 task has finished
+[server] before sem_wait(&writer_sem)
+[server] after sem_wait(&writer_sem)
+[server] opened client fifo /tmp/40184.140253205612096
+[lib] a 6 task is starting (with 100 delay)
+[lib] a 5 task is starting (with 100 delay)
+[lib] a 5 task is starting (with 100 delay)
+[lib] a 6 task has finished
+[server] before sem_wait(&writer_sem)
+[server] after sem_wait(&writer_sem)
+[server] opened client fifo /tmp/40184.140253222397504
+[lib] a 7 task is starting (with 100 delay)
+[lib] a 5 task has finished
+[server] before sem_wait(&writer_sem)
+[server] after sem_wait(&writer_sem)
+[server] opened client fifo /tmp/40184.140253188826688
+[lib] a 5 task has finished
+[server] before sem_wait(&writer_sem)
+[server] after sem_wait(&writer_sem)
+[server] opened client fifo /tmp/40184.140253197219392
+[lib] a 3 task is starting (with 100 delay)
+[lib] a 3 task has finished
+[server] before sem_wait(&writer_sem)
+[server] after sem_wait(&writer_sem)
+[server] opened client fifo /tmp/40184.140253214004800
+[lib] a 6 task is starting (with 100 delay)
+[lib] a 7 task has finished
+[server] before sem_wait(&writer_sem)
+[server] after sem_wait(&writer_sem)
+[server] opened client fifo /tmp/40184.140253230790208
+[lib] a 2 task is starting (with 100 delay)
+[lib] a 6 task has finished
+[server] before sem_wait(&writer_sem)
+[server] after sem_wait(&writer_sem)
+[server] opened client fifo /tmp/40184.140253205612096
+[lib] a 2 task has finished
+[server] before sem_wait(&writer_sem)
+[server] after sem_wait(&writer_sem)
+[server] opened client fifo /tmp/40184.140253188826688
+[lib] a 2 task is starting (with 100 delay)
+[lib] a 2 task has finished
+[server] before sem_wait(&writer_sem)
+[server] after sem_wait(&writer_sem)
+[server] opened client fifo /tmp/40184.140253214004800
+[lib] a 2 task is starting (with 100 delay)
+[lib] a 2 task has finished
+[server] before sem_wait(&writer_sem)
+[server] after sem_wait(&writer_sem)
+[server] opened client fifo /tmp/40184.140253230790208
+[lib] a 7 task is starting (with 100 delay)
+[lib] a 7 task is starting (with 100 delay)
+[lib] a 7 task has finished
+[server] before sem_wait(&writer_sem)
+[server] after sem_wait(&writer_sem)
+[server] opened client fifo /tmp/40184.140253188826688
+[lib] a 6 task is starting (with 100 delay)
+[lib] a 2 task is starting (with 100 delay)
+[lib] a 7 task has finished
+[server] before sem_wait(&writer_sem)
+[server] after sem_wait(&writer_sem)
+[server] opened client fifo /tmp/40184.140253214004800
+[lib] a 2 task has finished
+[server] before sem_wait(&writer_sem)
+[server] after sem_wait(&writer_sem)
+[server] opened client fifo /tmp/40184.140253230790208
+[lib] a 4 task is starting (with 100 delay)
+[lib] a 6 task has finished
+[server] before sem_wait(&writer_sem)
+[server] after sem_wait(&writer_sem)
+[server] opened client fifo /tmp/40184.140253205612096
+[lib] a 4 task has finished
+[server] before sem_wait(&writer_sem)
+[server] after sem_wait(&writer_sem)
+[server] opened client fifo /tmp/40184.140253197219392
+[lib] a 6 task is starting (with 100 delay)
+[lib] a 8 task is starting (with 100 delay)
+[lib] a 6 task has finished
+[server] before sem_wait(&writer_sem)
+[server] after sem_wait(&writer_sem)
+[server] opened client fifo /tmp/40184.140253188826688
+[lib] a 2 task is starting (with 100 delay)
+[lib] a 2 task has finished
+[server] before sem_wait(&writer_sem)
+[server] after sem_wait(&writer_sem)
+[server] opened client fifo /tmp/40184.140253205612096
+[lib] a 8 task has finished
+[server] before sem_wait(&writer_sem)
+[server] after sem_wait(&writer_sem)
+[server] opened client fifo /tmp/40184.140253222397504
+[lib] a 8 task is starting (with 100 delay)
+[lib] a 1 task is starting (with 100 delay)
+[lib] a 1 task has finished
+[server] before sem_wait(&writer_sem)
+[server] after sem_wait(&writer_sem)
+[server] opened client fifo /tmp/40184.140253230790208
+[lib] a 4 task is starting (with 100 delay)
+[lib] a 8 task has finished
+[server] before sem_wait(&writer_sem)
+[server] after sem_wait(&writer_sem)
+[server] opened client fifo /tmp/40184.140253197219392
+[lib] a 9 task is starting (with 100 delay)
+[lib] a 4 task has finished
+[server] before sem_wait(&writer_sem)
+[server] after sem_wait(&writer_sem)
+[server] opened client fifo /tmp/40184.140253188826688
+[lib] a 2 task is starting (with 100 delay)
+[lib] a 2 task has finished
+[server] before sem_wait(&writer_sem)
+[server] after sem_wait(&writer_sem)
+[server] opened client fifo /tmp/40184.140253205612096
+[lib] a 3 task is starting (with 100 delay)
+[lib] a 9 task has finished
+[server] before sem_wait(&writer_sem)
+[server] after sem_wait(&writer_sem)
+[lib] a 3 task is starting (with 100 delay)
+[server] opened client fifo /tmp/40184.140253222397504
+[lib] a 3 task has finished
+[server] before sem_wait(&writer_sem)
+[server] after sem_wait(&writer_sem)
+[server] opened client fifo /tmp/40184.140253230790208
+[lib] a 3 task has finished
+[server] before sem_wait(&writer_sem)
+[server] after sem_wait(&writer_sem)
+[server] opened client fifo /tmp/40184.140253197219392
+[lib] a 5 task is starting (with 100 delay)
+[lib] a 1 task is starting (with 100 delay)
+[lib] a 7 task is starting (with 100 delay)
+[lib] a 1 task has finished
+[server] before sem_wait(&writer_sem)
+[server] after sem_wait(&writer_sem)
+[server] opened client fifo /tmp/40184.140253205612096
+[lib] a 5 task has finished
+[server] before sem_wait(&writer_sem)
+[server] after sem_wait(&writer_sem)
+[server] opened client fifo /tmp/40184.140253188826688
+[lib] a 9 task is starting (with 100 delay)
+[lib] a 8 task is starting (with 100 delay)
+[lib] a 5 task is starting (with 100 delay)
+[lib] a 7 task has finished
+[server] before sem_wait(&writer_sem)
+[server] after sem_wait(&writer_sem)
+[server] opened client fifo /tmp/40184.140253214004800
+[lib] a 6 task is starting (with 100 delay)
+[lib] a 5 task has finished
+[server] before sem_wait(&writer_sem)
+[server] after sem_wait(&writer_sem)
+[server] opened client fifo /tmp/40184.140253222397504
+[lib] a 9 task has finished
+[server] before sem_wait(&writer_sem)
+[server] after sem_wait(&writer_sem)
+[server] opened client fifo /tmp/40184.140253314295360
+[lib] a 8 task has finished
+[server] before sem_wait(&writer_sem)
+[server] after sem_wait(&writer_sem)
+[server] opened client fifo /tmp/40184.140253230790208
+[lib] a 3 task is starting (with 100 delay)
+[lib] a 6 task has finished
+[server] before sem_wait(&writer_sem)
+[server] after sem_wait(&writer_sem)
+[server] opened client fifo /tmp/40184.140253197219392
+[lib] a 3 task has finished
+[server] before sem_wait(&writer_sem)
+[server] after sem_wait(&writer_sem)
+[server] opened client fifo /tmp/40184.140253188826688
+[lib] a 9 task is starting (with 100 delay)
+[lib] a 2 task is starting (with 100 delay)
+[lib] a 2 task has finished
+[server] before sem_wait(&writer_sem)
+[server] after sem_wait(&writer_sem)
+[server] opened client fifo /tmp/40184.140253222397504
+[lib] a 7 task is starting (with 100 delay)
+[lib] a 9 task has finished
+[server] before sem_wait(&writer_sem)
+[server] after sem_wait(&writer_sem)
+[server] opened client fifo /tmp/40184.140253214004800
+[lib] a 9 task is starting (with 100 delay)
+[lib] a 4 task is starting (with 100 delay)
+[lib] a 7 task has finished
+[server] before sem_wait(&writer_sem)
+[server] after sem_wait(&writer_sem)
+[server] opened client fifo /tmp/40184.140253230790208
+[lib] a 5 task is starting (with 100 delay)
+[lib] a 1 task is starting (with 100 delay)
+[lib] a 1 task has finished
+[server] before sem_wait(&writer_sem)
+[server] after sem_wait(&writer_sem)
+[server] opened client fifo /tmp/40184.140253222397504
+[lib] a 4 task has finished
+[server] before sem_wait(&writer_sem)
+[server] after sem_wait(&writer_sem)
+[server] opened client fifo /tmp/40184.140253197219392
+[lib] a 9 task has finished
+[server] before sem_wait(&writer_sem)
+[server] after sem_wait(&writer_sem)
+[server] opened client fifo /tmp/40184.140253188826688
+[lib] a 5 task has finished
+[server] before sem_wait(&writer_sem)
+[server] after sem_wait(&writer_sem)
+[server] opened client fifo /tmp/40184.140253314295360
+[lib] a 7 task is starting (with 100 delay)
+[lib] a 3 task is starting (with 100 delay)
+[lib] a 8 task is starting (with 100 delay)
+[lib] a 3 task has finished
+[server] before sem_wait(&writer_sem)
+[server] after sem_wait(&writer_sem)
+[server] opened client fifo /tmp/40184.140253205612096
+[lib] a 8 task is starting (with 100 delay)
+[lib] a 7 task has finished
+[server] before sem_wait(&writer_sem)
+[server] after sem_wait(&writer_sem)
+[server] opened client fifo /tmp/40184.140253214004800
+[lib] a 8 task is starting (with 100 delay)
+[lib] a 8 task is starting (with 100 delay)
+[lib] a 8 task has finished
+[server] before sem_wait(&writer_sem)
+[server] after sem_wait(&writer_sem)
+[server] opened client fifo /tmp/40184.140253230790208
+[lib] a 6 task is starting (with 100 delay)
+[lib] a 8 task has finished
+[server] before sem_wait(&writer_sem)
+[server] after sem_wait(&writer_sem)
+[server] opened client fifo /tmp/40184.140253180433984
+[lib] a 8 task has finished
+[server] before sem_wait(&writer_sem)
+[server] after sem_wait(&writer_sem)
+[server] opened client fifo /tmp/40184.140253197219392
+[lib] a 4 task is starting (with 100 delay)
+[lib] a 6 task has finished
+[server] before sem_wait(&writer_sem)
+[server] after sem_wait(&writer_sem)
+[server] opened client fifo /tmp/40184.140253188826688
+[lib] a 8 task has finished
+[server] before sem_wait(&writer_sem)
+[server] after sem_wait(&writer_sem)
+[server] opened client fifo /tmp/40184.140253314295360
+[lib] a 4 task has finished
+[server] before sem_wait(&writer_sem)
+[server] after sem_wait(&writer_sem)
+[server] opened client fifo /tmp/40184.140253214004800
+[lib] a 9 task is starting (with 100 delay)
+[lib] a 5 task is starting (with 100 delay)
+[lib] a 4 task is starting (with 100 delay)
+[lib] a 5 task has finished
+[server] before sem_wait(&writer_sem)
+[server] after sem_wait(&writer_sem)
+[server] opened client fifo /tmp/40184.140253180433984
+[lib] a 6 task is starting (with 100 delay)
+[lib] a 9 task has finished
+[server] before sem_wait(&writer_sem)
+[server] after sem_wait(&writer_sem)
+[server] opened client fifo /tmp/40184.140253205612096
+[lib] a 4 task has finished
+[server] before sem_wait(&writer_sem)
+[server] after sem_wait(&writer_sem)
+[server] opened client fifo /tmp/40184.140253197219392
+[lib] a 4 task is starting (with 100 delay)
+[lib] a 6 task has finished
+[server] before sem_wait(&writer_sem)
+[server] after sem_wait(&writer_sem)
+[server] opened client fifo /tmp/40184.140253314295360
+[lib] a 4 task has finished
+[server] before sem_wait(&writer_sem)
+[server] after sem_wait(&writer_sem)
+[server] opened client fifo /tmp/40184.140253214004800
+[lib] a 6 task is starting (with 100 delay)
+[lib] a 9 task is starting (with 100 delay)
+[lib] a 6 task has finished
+[server] before sem_wait(&writer_sem)
+[server] after sem_wait(&writer_sem)
+[server] opened client fifo /tmp/40184.140253188826688
+[lib] a 2 task is starting (with 100 delay)
+[lib] a 2 task has finished
+[server] before sem_wait(&writer_sem)
+[server] after sem_wait(&writer_sem)
+[server] opened client fifo /tmp/40184.140253314295360
+[lib] a 3 task is starting (with 100 delay)
+[lib] a 9 task has finished
+[server] before sem_wait(&writer_sem)
+[server] after sem_wait(&writer_sem)
+[server] opened client fifo /tmp/40184.140253197219392
+[lib] a 7 task is starting (with 100 delay)
+[lib] a 3 task has finished
+[server] before sem_wait(&writer_sem)
+[server] after sem_wait(&writer_sem)
+[server] opened client fifo /tmp/40184.140253214004800
+[lib] a 5 task is starting (with 100 delay)
+[lib] a 7 task has finished
+[server] before sem_wait(&writer_sem)
+[server] after sem_wait(&writer_sem)
+[server] opened client fifo /tmp/40184.140253205612096
+[lib] a 1 task is starting (with 100 delay)
+[lib] a 5 task has finished
+[server] before sem_wait(&writer_sem)
+[server] after sem_wait(&writer_sem)
+[server] opened client fifo /tmp/40184.140253188826688
+[lib] a 1 task has finished
+[server] before sem_wait(&writer_sem)
+[server] after sem_wait(&writer_sem)
+[server] opened client fifo /tmp/40184.140253314295360
+[lib] a 6 task is starting (with 100 delay)
+[lib] a 7 task is starting (with 100 delay)
+[lib] a 6 task has finished
+[server] before sem_wait(&writer_sem)
+[server] after sem_wait(&writer_sem)
+[server] opened client fifo /tmp/40184.140253214004800
+[lib] a 5 task is starting (with 100 delay)
+[lib] a 1 task is starting (with 100 delay)
+[lib] a 1 task has finished
+[server] before sem_wait(&writer_sem)
+[server] after sem_wait(&writer_sem)
+[server] opened client fifo /tmp/40184.140253314295360
+[lib] a 7 task has finished
+[server] before sem_wait(&writer_sem)
+[server] after sem_wait(&writer_sem)
+[server] opened client fifo /tmp/40184.140253197219392
+[lib] a 9 task is starting (with 100 delay)
+[lib] a 5 task has finished
+[server] before sem_wait(&writer_sem)
+[server] after sem_wait(&writer_sem)
+[server] opened client fifo /tmp/40184.140253188826688
+[lib] a 2 task is starting (with 100 delay)
+[lib] a 2 task has finished
+[server] before sem_wait(&writer_sem)
+[server] after sem_wait(&writer_sem)
+[server] opened client fifo /tmp/40184.140253180433984
+[lib] a 3 task is starting (with 100 delay)
+[lib] a 3 task has finished
+[server] before sem_wait(&writer_sem)
+[server] after sem_wait(&writer_sem)
+[server] opened client fifo /tmp/40184.140253214004800
+[lib] a 9 task has finished
+[server] before sem_wait(&writer_sem)
+[server] after sem_wait(&writer_sem)
+[server] opened client fifo /tmp/40184.140253205612096
+[lib] a 1 task is starting (with 100 delay)
+[lib] a 1 task has finished
+[server] before sem_wait(&writer_sem)
+[server] after sem_wait(&writer_sem)
+[server] opened client fifo /tmp/40184.140253197219392
+[lib] a 6 task is starting (with 100 delay)
+[lib] a 2 task is starting (with 100 delay)
+[lib] a 2 task has finished
+[server] before sem_wait(&writer_sem)
+[server] after sem_wait(&writer_sem)
+[server] opened client fifo /tmp/40184.140253180433984
+[lib] a 6 task has finished
+[server] before sem_wait(&writer_sem)
+[server] after sem_wait(&writer_sem)
+[server] opened client fifo /tmp/40184.140253188826688
+[lib] a 8 task is starting (with 100 delay)
+[lib] a 3 task is starting (with 100 delay)
+[lib] a 3 task has finished
+[server] before sem_wait(&writer_sem)
+[server] after sem_wait(&writer_sem)
+[server] opened client fifo /tmp/40184.140253214004800
+[lib] a 4 task is starting (with 100 delay)
+[lib] a 7 task is starting (with 100 delay)
+[lib] a 8 task has finished
+[server] before sem_wait(&writer_sem)
+[server] after sem_wait(&writer_sem)
+[server] opened client fifo /tmp/40184.140253205612096
+[lib] a 4 task has finished
+[server] before sem_wait(&writer_sem)
+[server] after sem_wait(&writer_sem)
+[server] opened client fifo /tmp/40184.140253197219392
+[lib] a 7 task is starting (with 100 delay)
+[lib] a 8 task is starting (with 100 delay)
+[lib] a 7 task has finished
+[server] before sem_wait(&writer_sem)
+[server] after sem_wait(&writer_sem)
+[server] opened client fifo /tmp/40184.140253180433984
+[lib] a 1 task is starting (with 100 delay)
+[lib] a 1 task has finished
+[server] before sem_wait(&writer_sem)
+[server] after sem_wait(&writer_sem)
+[server] opened client fifo /tmp/40184.140253214004800
+[lib] a 7 task has finished
+[server] before sem_wait(&writer_sem)
+[server] after sem_wait(&writer_sem)
+[server] opened client fifo /tmp/40184.140253188826688
+[lib] a 3 task is starting (with 100 delay)
+[lib] a 1 task is starting (with 100 delay)
+[lib] a 8 task has finished
+[server] before sem_wait(&writer_sem)
+[server] after sem_wait(&writer_sem)
+[server] opened client fifo /tmp/40184.140253314295360
+[lib] a 3 task has finished
+[server] before sem_wait(&writer_sem)
+[server] after sem_wait(&writer_sem)
+[server] opened client fifo /tmp/40184.140253205612096
+[lib] a 1 task has finished
+[server] before sem_wait(&writer_sem)
+[server] after sem_wait(&writer_sem)
+[server] opened client fifo /tmp/40184.140253197219392
+[lib] a 1 task is starting (with 100 delay)
+[lib] a 1 task has finished
+[server] before sem_wait(&writer_sem)
+[server] after sem_wait(&writer_sem)
+[server] opened client fifo /tmp/40184.140253230790208
+[lib] a 8 task is starting (with 100 delay)
+[lib] a 1 task is starting (with 100 delay)
+[lib] a 1 task has finished
+[server] before sem_wait(&writer_sem)
+[server] after sem_wait(&writer_sem)
+[server] opened client fifo /tmp/40184.140253188826688
+[lib] a 5 task is starting (with 100 delay)
+[lib] a 4 task is starting (with 100 delay)
+[lib] a 8 task has finished
+[server] before sem_wait(&writer_sem)
+[server] after sem_wait(&writer_sem)
+[server] opened client fifo /tmp/40184.140253214004800
+[lib] a 8 task is starting (with 100 delay)
+[lib] a 5 task has finished
+[server] before sem_wait(&writer_sem)
+[server] after sem_wait(&writer_sem)
+[server] opened client fifo /tmp/40184.140253197219392
+[lib] a 7 task is starting (with 100 delay)
+[lib] a 4 task has finished
+[server] before sem_wait(&writer_sem)
+[server] after sem_wait(&writer_sem)
+[server] opened client fifo /tmp/40184.140253230790208
+[lib] a 2 task is starting (with 100 delay)
+[lib] a 8 task has finished
+[server] before sem_wait(&writer_sem)
+[server] after sem_wait(&writer_sem)
+[server] opened client fifo /tmp/40184.140253205612096
+[lib] a 2 task has finished
+[server] before sem_wait(&writer_sem)
+[server] after sem_wait(&writer_sem)
+[server] opened client fifo /tmp/40184.140253188826688
+[lib] a 7 task has finished
+[server] before sem_wait(&writer_sem)
+[server] after sem_wait(&writer_sem)
+[server] opened client fifo /tmp/40184.140253314295360
+[lib] a 2 task is starting (with 100 delay)
+[lib] a 2 task has finished
+[server] before sem_wait(&writer_sem)
+[server] after sem_wait(&writer_sem)
+[server] opened client fifo /tmp/40184.140253214004800
+[lib] a 6 task is starting (with 100 delay)
+[lib] a 6 task is starting (with 100 delay)
+[lib] a 8 task is starting (with 100 delay)
+[lib] a 6 task has finished
+[server] before sem_wait(&writer_sem)
+[server] after sem_wait(&writer_sem)
+[server] opened client fifo /tmp/40184.140253230790208
+[lib] a 4 task is starting (with 100 delay)
+[lib] a 6 task has finished
+[server] before sem_wait(&writer_sem)
+[server] after sem_wait(&writer_sem)
+[server] opened client fifo /tmp/40184.140253197219392
+[lib] a 4 task has finished
+[server] before sem_wait(&writer_sem)
+[server] after sem_wait(&writer_sem)
+[server] opened client fifo /tmp/40184.140253314295360
+[lib] a 3 task is starting (with 100 delay)
+[lib] a 4 task is starting (with 100 delay)
+[lib] a 8 task has finished
+[server] before sem_wait(&writer_sem)
+[server] after sem_wait(&writer_sem)
+[server] opened client fifo /tmp/40184.140253205612096
+[lib] a 3 task has finished
+[server] before sem_wait(&writer_sem)
+[server] after sem_wait(&writer_sem)
+[server] opened client fifo /tmp/40184.140253214004800
+[lib] a 7 task is starting (with 100 delay)
+[lib] a 4 task has finished
+[server] before sem_wait(&writer_sem)
+[server] after sem_wait(&writer_sem)
+[server] opened client fifo /tmp/40184.140253188826688
+[lib] a 4 task is starting (with 100 delay)
+[lib] a 7 task has finished
+[server] before sem_wait(&writer_sem)
+[server] after sem_wait(&writer_sem)
+[server] opened client fifo /tmp/40184.140253180433984
+[lib] a 5 task is starting (with 100 delay)
+[lib] a 4 task has finished
+[server] before sem_wait(&writer_sem)
+[server] after sem_wait(&writer_sem)
+[server] opened client fifo /tmp/40184.140253197219392
+[lib] a 5 task is starting (with 100 delay)
+[lib] a 5 task has finished
+[server] before sem_wait(&writer_sem)
+[server] after sem_wait(&writer_sem)
+[server] opened client fifo /tmp/40184.140253205612096
+[lib] a 9 task is starting (with 100 delay)
+[lib] a 5 task has finished
+[server] before sem_wait(&writer_sem)
+[server] after sem_wait(&writer_sem)
+[server] opened client fifo /tmp/40184.140253214004800
+[lib] a 3 task is starting (with 100 delay)
+[lib] a 3 task has finished
+[server] before sem_wait(&writer_sem)
+[server] after sem_wait(&writer_sem)
+[server] opened client fifo /tmp/40184.140253314295360
+[lib] a 8 task is starting (with 100 delay)
+[lib] a 9 task has finished
+[server] before sem_wait(&writer_sem)
+[server] after sem_wait(&writer_sem)
+[server] opened client fifo /tmp/40184.140253188826688
+[lib] a 3 task is starting (with 100 delay)
+[lib] a 3 task has finished
+[server] before sem_wait(&writer_sem)
+[server] after sem_wait(&writer_sem)
+[server] opened client fifo /tmp/40184.140253205612096
+[lib] a 6 task is starting (with 100 delay)
+[lib] a 8 task has finished
+[server] before sem_wait(&writer_sem)
+[server] after sem_wait(&writer_sem)
+[server] opened client fifo /tmp/40184.140253197219392
+[lib] a 1 task is starting (with 100 delay)
+[lib] a 1 task has finished
+[server] before sem_wait(&writer_sem)
+[server] after sem_wait(&writer_sem)
+[server] opened client fifo /tmp/40184.140253314295360
+[lib] a 6 task has finished
+[server] before sem_wait(&writer_sem)
+[server] after sem_wait(&writer_sem)
+[server] opened client fifo /tmp/40184.140253214004800
+[lib] a 1 task is starting (with 100 delay)
+[lib] a 1 task has finished
+[server] before sem_wait(&writer_sem)
+[server] after sem_wait(&writer_sem)
+[server] opened client fifo /tmp/40184.140253188826688
+[lib] a 2 task is starting (with 100 delay)
+[lib] a 8 task is starting (with 100 delay)
+[lib] a 2 task has finished
+[server] before sem_wait(&writer_sem)
+[server] after sem_wait(&writer_sem)
+[server] opened client fifo /tmp/40184.140253197219392
+[lib] a 6 task is starting (with 100 delay)
+[lib] a 8 task is starting (with 100 delay)
+[lib] a 9 task is starting (with 100 delay)
+[lib] a 6 task has finished
+[server] before sem_wait(&writer_sem)
+[server] after sem_wait(&writer_sem)
+[server] opened client fifo /tmp/40184.140253180433984
+[lib] a 8 task has finished
+[server] before sem_wait(&writer_sem)
+[server] after sem_wait(&writer_sem)
+[server] opened client fifo /tmp/40184.140253205612096
+[lib] a 2 task is starting (with 100 delay)
+[lib] a 2 task has finished
+[server] before sem_wait(&writer_sem)
+[server] after sem_wait(&writer_sem)
+[server] opened client fifo /tmp/40184.140253188826688
+[lib] a 8 task has finished
+[server] before sem_wait(&writer_sem)
+[server] after sem_wait(&writer_sem)
+[server] opened client fifo /tmp/40184.140253214004800
+[lib] a 2 task is starting (with 100 delay)
+[lib] a 2 task has finished
+[server] before sem_wait(&writer_sem)
+[server] after sem_wait(&writer_sem)
+[server] opened client fifo /tmp/40184.140253197219392
+[lib] a 9 task has finished
+[server] before sem_wait(&writer_sem)
+[server] after sem_wait(&writer_sem)
+[server] opened client fifo /tmp/40184.140253314295360
+[lib] a 3 task is starting (with 100 delay)
+[lib] a 7 task is starting (with 100 delay)
+[lib] a 3 task has finished
+[server] before sem_wait(&writer_sem)
+[server] after sem_wait(&writer_sem)
+[server] opened client fifo /tmp/40184.140253230790208
+[lib] a 1 task is starting (with 100 delay)
+[lib] a 1 task has finished
+[server] before sem_wait(&writer_sem)
+[server] after sem_wait(&writer_sem)
+[server] opened client fifo /tmp/40184.140253188826688
+[lib] a 2 task is starting (with 100 delay)
+[lib] a 7 task has finished
+[server] before sem_wait(&writer_sem)
+[server] after sem_wait(&writer_sem)
+[server] opened client fifo /tmp/40184.140253180433984
+[lib] a 1 task is starting (with 100 delay)
+[lib] a 2 task has finished
+[server] before sem_wait(&writer_sem)
+[server] after sem_wait(&writer_sem)
+[server] opened client fifo /tmp/40184.140253214004800
+[lib] a 1 task has finished
+[server] before sem_wait(&writer_sem)
+[server] after sem_wait(&writer_sem)
+[server] opened client fifo /tmp/40184.140253314295360
+[lib] a 2 task is starting (with 100 delay)
+[lib] a 2 task has finished
+[server] before sem_wait(&writer_sem)
+[server] after sem_wait(&writer_sem)
+[server] opened client fifo /tmp/40184.140253230790208
+[lib] a 3 task is starting (with 100 delay)
+[lib] a 4 task is starting (with 100 delay)
+[lib] a 3 task has finished
+[server] before sem_wait(&writer_sem)
+[server] after sem_wait(&writer_sem)
+[server] opened client fifo /tmp/40184.140253197219392
+[lib] a 7 task is starting (with 100 delay)
+[lib] a 4 task has finished
+[server] before sem_wait(&writer_sem)
+[server] after sem_wait(&writer_sem)
+[server] opened client fifo /tmp/40184.140253180433984
+[lib] a 8 task is starting (with 100 delay)
+[lib] a 9 task is starting (with 100 delay)
+[lib] a 7 task has finished
+[server] before sem_wait(&writer_sem)
+[server] after sem_wait(&writer_sem)
+[server] opened client fifo /tmp/40184.140253314295360
+[lib] a 7 task is starting (with 100 delay)
+[lib] a 8 task has finished
+[server] before sem_wait(&writer_sem)
+[server] after sem_wait(&writer_sem)
+[server] opened client fifo /tmp/40184.140253214004800
+[lib] a 6 task is starting (with 100 delay)
+[lib] a 9 task has finished
+[server] before sem_wait(&writer_sem)
+[server] after sem_wait(&writer_sem)
+[server] opened client fifo /tmp/40184.140253230790208
+[lib] a 7 task has finished
+[server] before sem_wait(&writer_sem)
+[server] after sem_wait(&writer_sem)
+[server] opened client fifo /tmp/40184.140253197219392
+[lib] a 3 task is starting (with 100 delay)
+[lib] a 6 task has finished
+[server] before sem_wait(&writer_sem)
+[server] after sem_wait(&writer_sem)
+[server] opened client fifo /tmp/40184.140253180433984
+[lib] a 3 task has finished
+[server] before sem_wait(&writer_sem)
+[server] after sem_wait(&writer_sem)
+[server] opened client fifo /tmp/40184.140253314295360
+[lib] a 5 task is starting (with 100 delay)
+[lib] a 1 task is starting (with 100 delay)
+[lib] a 5 task has finished
+[server] before sem_wait(&writer_sem)
+[server] after sem_wait(&writer_sem)
+[server] opened client fifo /tmp/40184.140253188826688
+[lib] a 1 task has finished
+[server] before sem_wait(&writer_sem)
+[server] after sem_wait(&writer_sem)
+[server] opened client fifo /tmp/40184.140253214004800
+[lib] a 3 task is starting (with 100 delay)
+[lib] a 2 task is starting (with 100 delay)
+[lib] a 3 task has finished
+[server] before sem_wait(&writer_sem)
+[server] after sem_wait(&writer_sem)
+[server] opened client fifo /tmp/40184.140253197219392
+[lib] a 2 task is starting (with 100 delay)
+[lib] a 2 task has finished
+[server] before sem_wait(&writer_sem)
+[server] after sem_wait(&writer_sem)
+[server] opened client fifo /tmp/40184.140253314295360
+[lib] a 2 task has finished
+[server] before sem_wait(&writer_sem)
+[server] after sem_wait(&writer_sem)
+[server] opened client fifo /tmp/40184.140253180433984
+[lib] a 6 task is starting (with 100 delay)
+[lib] a 3 task is starting (with 100 delay)
+[lib] a 5 task is starting (with 100 delay)
+[lib] a 3 task has finished
+[server] before sem_wait(&writer_sem)
+[server] after sem_wait(&writer_sem)
+[server] opened client fifo /tmp/40184.140253188826688
+[lib] a 6 task has finished
+[server] before sem_wait(&writer_sem)
+[server] after sem_wait(&writer_sem)
+[server] opened client fifo /tmp/40184.140253230790208
+[lib] a 8 task is starting (with 100 delay)
+[lib] a 5 task has finished
+[server] before sem_wait(&writer_sem)
+[server] after sem_wait(&writer_sem)
+[server] opened client fifo /tmp/40184.140253214004800
+[lib] a 9 task is starting (with 100 delay)
+[lib] a 8 task has finished
+[server] before sem_wait(&writer_sem)
+[server] after sem_wait(&writer_sem)
+[server] opened client fifo /tmp/40184.140253197219392
+[lib] a 9 task is starting (with 100 delay)
+[lib] a 9 task is starting (with 100 delay)
+[lib] a 9 task has finished
+[server] before sem_wait(&writer_sem)
+[server] after sem_wait(&writer_sem)
+[server] opened client fifo /tmp/40184.140253180433984
+[lib] a 6 task is starting (with 100 delay)
+[lib] a 9 task has finished
+[server] before sem_wait(&writer_sem)
+[server] after sem_wait(&writer_sem)
+[server] opened client fifo /tmp/40184.140253188826688
+[lib] a 9 task has finished
+[server] before sem_wait(&writer_sem)
+[server] after sem_wait(&writer_sem)
+[server] opened client fifo /tmp/40184.140253230790208
+[lib] a 8 task is starting (with 100 delay)
+[lib] a 6 task has finished
+[server] before sem_wait(&writer_sem)
+[server] after sem_wait(&writer_sem)
+[server] opened client fifo /tmp/40184.140253214004800
+[lib] a 5 task is starting (with 100 delay)
+[lib] a 6 task is starting (with 100 delay)
+[lib] a 5 task is starting (with 100 delay)
+[lib] a 8 task has finished
+[server] before sem_wait(&writer_sem)
+[server] after sem_wait(&writer_sem)
+[server] opened client fifo /tmp/40184.140253197219392
+[lib] a 5 task has finished
+[server] before sem_wait(&writer_sem)
+[server] after sem_wait(&writer_sem)
+[server] opened client fifo /tmp/40184.140253180433984
+[lib] a 6 task has finished
+[server] before sem_wait(&writer_sem)
+[server] after sem_wait(&writer_sem)
+[server] opened client fifo /tmp/40184.140253314295360
+[lib] a 1 task is starting (with 100 delay)
+[lib] a 5 task has finished
+[server] before sem_wait(&writer_sem)
+[server] after sem_wait(&writer_sem)
+[server] opened client fifo /tmp/40184.140253205612096
+[lib] a 1 task has finished
+[server] before sem_wait(&writer_sem)
+[server] after sem_wait(&writer_sem)
+[server] opened client fifo /tmp/40184.140253230790208
+[lib] a 8 task is starting (with 100 delay)
+[lib] a 8 task is starting (with 100 delay)
+[lib] a 6 task is starting (with 100 delay)
+[lib] a 8 task has finished
+[server] before sem_wait(&writer_sem)
+[server] after sem_wait(&writer_sem)
+[server] opened client fifo /tmp/40184.140253214004800
+[lib] a 3 task is starting (with 100 delay)
+[lib] a 8 task has finished
+[server] before sem_wait(&writer_sem)
+[server] after sem_wait(&writer_sem)
+[server] opened client fifo /tmp/40184.140253180433984
+[lib] a 6 task has finished
+[server] before sem_wait(&writer_sem)
+[server] after sem_wait(&writer_sem)
+[lib] a 8 task is starting (with 100 delay)
+[server] opened client fifo /tmp/40184.140253205612096
+[lib] a 3 task has finished
+[server] before sem_wait(&writer_sem)
+[server] after sem_wait(&writer_sem)
+[server] opened client fifo /tmp/40184.140253230790208
+[lib] a 7 task is starting (with 100 delay)
+[lib] a 1 task is starting (with 100 delay)
+[lib] a 1 task has finished
+[server] before sem_wait(&writer_sem)
+[server] after sem_wait(&writer_sem)
+[server] opened client fifo /tmp/40184.140253214004800
+[lib] a 8 task has finished
+[server] before sem_wait(&writer_sem)
+[server] after sem_wait(&writer_sem)
+[server] opened client fifo /tmp/40184.140253314295360
+[lib] a 1 task is starting (with 100 delay)
+[lib] a 1 task has finished
+[server] before sem_wait(&writer_sem)
+[server] after sem_wait(&writer_sem)
+[server] opened client fifo /tmp/40184.140253180433984
+[lib] a 7 task has finished
+[server] before sem_wait(&writer_sem)
+[server] after sem_wait(&writer_sem)
+[server] opened client fifo /tmp/40184.140253197219392
+[lib] a 2 task is starting (with 100 delay)
+[lib] a 2 task has finished
+[server] before sem_wait(&writer_sem)
+[server] after sem_wait(&writer_sem)
+[server] opened client fifo /tmp/40184.140253230790208
+[lib] a 4 task is starting (with 100 delay)
+[lib] a 4 task is starting (with 100 delay)
+[lib] a 4 task has finished
+[server] before sem_wait(&writer_sem)
+[server] after sem_wait(&writer_sem)
+[server] opened client fifo /tmp/40184.140253205612096
+[lib] a 4 task has finished
+[server] before sem_wait(&writer_sem)
+[server] after sem_wait(&writer_sem)
+[server] opened client fifo /tmp/40184.140253314295360
+[lib] a 4 task is starting (with 100 delay)
+[lib] a 9 task is starting (with 100 delay)
+[lib] a 4 task has finished
+[server] before sem_wait(&writer_sem)
+[server] after sem_wait(&writer_sem)
+[server] opened client fifo /tmp/40184.140253197219392
+[lib] a 3 task is starting (with 100 delay)
+[lib] a 8 task is starting (with 100 delay)
+[lib] a 9 task is starting (with 100 delay)
+[lib] a 3 task has finished
+[server] before sem_wait(&writer_sem)
+[server] after sem_wait(&writer_sem)
+[server] opened client fifo /tmp/40184.140253180433984
+[lib] a 9 task has finished
+[server] before sem_wait(&writer_sem)
+[server] after sem_wait(&writer_sem)
+[server] opened client fifo /tmp/40184.140253230790208
+[lib] a 2 task is starting (with 100 delay)
+[lib] a 8 task has finished
+[server] before sem_wait(&writer_sem)
+[server] after sem_wait(&writer_sem)
+[server] opened client fifo /tmp/40184.140253214004800
+[lib] a 2 task has finished
+[server] before sem_wait(&writer_sem)
+[server] after sem_wait(&writer_sem)
+[server] opened client fifo /tmp/40184.140253314295360
+[lib] a 6 task is starting (with 100 delay)
+[lib] a 7 task is starting (with 100 delay)
+[lib] a 9 task has finished
+[server] before sem_wait(&writer_sem)
+[server] after sem_wait(&writer_sem)
+[server] opened client fifo /tmp/40184.140253188826688
+[lib] a 1 task is starting (with 100 delay)
+[lib] a 1 task has finished
+[server] before sem_wait(&writer_sem)
+[server] after sem_wait(&writer_sem)
+[server] opened client fifo /tmp/40184.140253180433984
+[lib] a 6 task has finished
+[server] before sem_wait(&writer_sem)
+[server] after sem_wait(&writer_sem)
+[server] opened client fifo /tmp/40184.140253197219392
+[lib] a 7 task has finished
+[server] before sem_wait(&writer_sem)
+[server] after sem_wait(&writer_sem)
+[server] opened client fifo /tmp/40184.140253205612096
+[lib] a 8 task is starting (with 100 delay)
+[lib] a 5 task is starting (with 100 delay)
+[lib] a 2 task is starting (with 100 delay)
+[lib] a 8 task has finished
+[server] before sem_wait(&writer_sem)
+[server] after sem_wait(&writer_sem)
+[server] opened client fifo /tmp/40184.140253230790208
+[lib] a 5 task has finished
+[server] before sem_wait(&writer_sem)
+[server] after sem_wait(&writer_sem)
+[server] opened client fifo /tmp/40184.140253188826688
+[lib] a 2 task has finished
+[server] before sem_wait(&writer_sem)
+[server] after sem_wait(&writer_sem)
+[server] opened client fifo /tmp/40184.140253180433984
+[lib] a 6 task is starting (with 100 delay)
+[lib] a 9 task is starting (with 100 delay)
+[lib] a 2 task is starting (with 100 delay)
+[lib] a 2 task has finished
+[server] before sem_wait(&writer_sem)
+[server] after sem_wait(&writer_sem)
+[server] opened client fifo /tmp/40184.140253314295360
+[lib] a 6 task has finished
+[server] before sem_wait(&writer_sem)
+[server] after sem_wait(&writer_sem)
+[server] opened client fifo /tmp/40184.140253205612096
+[lib] a 7 task is starting (with 100 delay)
+[lib] a 9 task is starting (with 100 delay)
+[lib] a 9 task has finished
+[server] before sem_wait(&writer_sem)
+[server] after sem_wait(&writer_sem)
+[server] opened client fifo /tmp/40184.140253197219392
+[lib] a 1 task is starting (with 100 delay)
+[lib] a 1 task has finished
+[server] before sem_wait(&writer_sem)
+[server] after sem_wait(&writer_sem)
+[server] opened client fifo /tmp/40184.140253188826688
+[lib] a 7 task has finished
+[server] before sem_wait(&writer_sem)
+[server] after sem_wait(&writer_sem)
+[server] opened client fifo /tmp/40184.140253214004800
+[lib] a 7 task is starting (with 100 delay)
+[lib] a 8 task is starting (with 100 delay)
+[lib] a 9 task has finished
+[server] before sem_wait(&writer_sem)
+[server] after sem_wait(&writer_sem)
+[server] opened client fifo /tmp/40184.140253180433984
+[lib] a 7 task has finished
+[server] before sem_wait(&writer_sem)
+[server] after sem_wait(&writer_sem)
+[server] opened client fifo /tmp/40184.140253230790208
+[lib] a 5 task is starting (with 100 delay)
+[lib] a 8 task has finished
+[lib] a 5 task is starting (with 100 delay)
+[server] before sem_wait(&writer_sem)
+[server] after sem_wait(&writer_sem)
+[server] opened client fifo /tmp/40184.140253205612096
+[lib] a 5 task has finished
+[server] before sem_wait(&writer_sem)
+[server] after sem_wait(&writer_sem)
+[server] opened client fifo /tmp/40184.140253197219392
+[lib] a 3 task is starting (with 100 delay)
+[lib] a 5 task has finished
+[server] before sem_wait(&writer_sem)
+[server] after sem_wait(&writer_sem)
+[server] opened client fifo /tmp/40184.140253214004800
+[lib] a 3 task has finished
+[server] before sem_wait(&writer_sem)
+[server] after sem_wait(&writer_sem)
+[server] opened client fifo /tmp/40184.140253180433984
+[lib] a 8 task is starting (with 100 delay)
+[lib] a 2 task is starting (with 100 delay)
+[lib] a 5 task is starting (with 100 delay)
+[lib] a 2 task has finished
+[server] before sem_wait(&writer_sem)
+[server] after sem_wait(&writer_sem)
+[server] opened client fifo /tmp/40184.140253197219392
+[lib] a 8 task has finished
+[server] before sem_wait(&writer_sem)
+[server] after sem_wait(&writer_sem)
+[server] opened client fifo /tmp/40184.140253230790208
+[lib] a 3 task is starting (with 100 delay)
+[lib] a 5 task has finished
+[server] before sem_wait(&writer_sem)
+[server] after sem_wait(&writer_sem)
+[server] opened client fifo /tmp/40184.140253205612096
+[lib] a 4 task is starting (with 100 delay)
+[lib] a 3 task has finished
+[server] before sem_wait(&writer_sem)
+[server] after sem_wait(&writer_sem)
+[server] opened client fifo /tmp/40184.140253180433984
+[lib] a 2 task is starting (with 100 delay)
+[lib] a 7 task is starting (with 100 delay)
+[lib] a 2 task has finished
+[server] before sem_wait(&writer_sem)
+[server] after sem_wait(&writer_sem)
+[server] opened client fifo /tmp/40184.140253188826688
+[lib] a 4 task has finished
+[server] before sem_wait(&writer_sem)
+[server] after sem_wait(&writer_sem)
+[server] opened client fifo /tmp/40184.140253214004800
+[lib] a 7 task is starting (with 100 delay)
+[lib] a 2 task is starting (with 100 delay)
+[lib] a 9 task is starting (with 100 delay)
+[lib] a 2 task has finished
+[server] before sem_wait(&writer_sem)
+[server] after sem_wait(&writer_sem)
+[server] opened client fifo /tmp/40184.140253230790208
+[lib] a 7 task has finished
+[server] before sem_wait(&writer_sem)
+[server] after sem_wait(&writer_sem)
+[server] opened client fifo /tmp/40184.140253314295360
+[lib] a 7 task is starting (with 100 delay)
+[lib] a 7 task has finished
+[server] before sem_wait(&writer_sem)
+[server] after sem_wait(&writer_sem)
+[server] opened client fifo /tmp/40184.140253197219392
+[lib] a 4 task is starting (with 100 delay)
+[lib] a 9 task has finished
+[server] before sem_wait(&writer_sem)
+[server] after sem_wait(&writer_sem)
+[server] opened client fifo /tmp/40184.140253222397504
+[lib] a 4 task has finished
+[server] before sem_wait(&writer_sem)
+[server] after sem_wait(&writer_sem)
+[server] opened client fifo /tmp/40184.140253205612096
+[lib] a 3 task is starting (with 100 delay)
+[lib] a 7 task has finished
+[server] before sem_wait(&writer_sem)
+[server] after sem_wait(&writer_sem)
+[server] opened client fifo /tmp/40184.140253180433984
+[lib] a 4 task is starting (with 100 delay)
+[lib] a 3 task has finished
+[server] before sem_wait(&writer_sem)
+[server] after sem_wait(&writer_sem)
+[server] opened client fifo /tmp/40184.140253214004800
+[lib] a 7 task is starting (with 100 delay)
+[lib] a 4 task has finished
+[server] before sem_wait(&writer_sem)
+[server] after sem_wait(&writer_sem)
+[server] opened client fifo /tmp/40184.140253230790208
+[lib] a 9 task is starting (with 100 delay)
+[lib] a 7 task has finished
+[server] before sem_wait(&writer_sem)
+[server] after sem_wait(&writer_sem)
+[server] opened client fifo /tmp/40184.140253314295360
+[lib] a 4 task is starting (with 100 delay)
+[lib] a 4 task has finished
+[server] before sem_wait(&writer_sem)
+[server] after sem_wait(&writer_sem)
+[server] opened client fifo /tmp/40184.140253180433984
+[lib] a 7 task is starting (with 100 delay)
+[lib] a 9 task has finished
+[server] before sem_wait(&writer_sem)
+[server] after sem_wait(&writer_sem)
+[server] opened client fifo /tmp/40184.140253197219392
+[lib] a 2 task is starting (with 100 delay)
+[lib] a 2 task has finished
+[server] before sem_wait(&writer_sem)
+[server] after sem_wait(&writer_sem)
+[server] opened client fifo /tmp/40184.140253214004800
+[lib] a 7 task has finished
+[server] before sem_wait(&writer_sem)
+[server] after sem_wait(&writer_sem)
+[server] opened client fifo /tmp/40184.140253230790208
+[lib] a 5 task is starting (with 100 delay)
+[lib] a 3 task is starting (with 100 delay)
+[lib] a 5 task has finished
+[server] before sem_wait(&writer_sem)
+[server] after sem_wait(&writer_sem)
+[server] opened client fifo /tmp/40184.140253314295360
+[lib] a 9 task is starting (with 100 delay)
+[lib] a 3 task has finished
+[server] before sem_wait(&writer_sem)
+[server] after sem_wait(&writer_sem)
+[server] opened client fifo /tmp/40184.140253197219392
+[lib] a 3 task is starting (with 100 delay)
+[lib] a 8 task is starting (with 100 delay)
+[lib] a 3 task has finished
+[server] before sem_wait(&writer_sem)
+[server] after sem_wait(&writer_sem)
+[server] opened client fifo /tmp/40184.140253214004800
+[lib] a 9 task has finished
+[server] before sem_wait(&writer_sem)
+[server] after sem_wait(&writer_sem)
+[server] opened client fifo /tmp/40184.140253180433984
+[lib] a 1 task is starting (with 100 delay)
+[lib] a 1 task has finished
+[server] before sem_wait(&writer_sem)
+[server] after sem_wait(&writer_sem)
+[server] opened client fifo /tmp/40184.140253314295360
+[lib] a 8 task has finished
+[server] before sem_wait(&writer_sem)
+[server] after sem_wait(&writer_sem)
+[server] opened client fifo /tmp/40184.140253230790208
+[lib] a 4 task is starting (with 100 delay)
+[lib] a 6 task is starting (with 100 delay)
+[lib] a 4 task has finished
+[server] before sem_wait(&writer_sem)
+[server] after sem_wait(&writer_sem)
+[server] opened client fifo /tmp/40184.140253197219392
+[lib] a 8 task is starting (with 100 delay)
+[lib] a 6 task has finished
+[server] before sem_wait(&writer_sem)
+[server] after sem_wait(&writer_sem)
+[server] opened client fifo /tmp/40184.140253214004800
+[lib] a 2 task is starting (with 100 delay)
+[lib] a 2 task has finished
+[server] before sem_wait(&writer_sem)
+[server] after sem_wait(&writer_sem)
+[server] opened client fifo /tmp/40184.140253314295360
+[lib] a 4 task is starting (with 100 delay)
+[lib] a 8 task has finished
+[server] before sem_wait(&writer_sem)
+[server] after sem_wait(&writer_sem)
+[server] opened client fifo /tmp/40184.140253180433984
+[lib] a 7 task is starting (with 100 delay)
+[lib] a 5 task is starting (with 100 delay)
+[lib] a 4 task has finished
+[server] before sem_wait(&writer_sem)
+[server] after sem_wait(&writer_sem)
+[server] opened client fifo /tmp/40184.140253230790208
+[lib] a 1 task is starting (with 100 delay)
+[lib] a 1 task has finished
+[server] before sem_wait(&writer_sem)
+[server] after sem_wait(&writer_sem)
+[server] opened client fifo /tmp/40184.140253214004800
+[lib] a 5 task has finished
+[server] before sem_wait(&writer_sem)
+[server] after sem_wait(&writer_sem)
+[server] opened client fifo /tmp/40184.140253205612096
+[lib] a 7 task has finished
+[server] before sem_wait(&writer_sem)
+[server] after sem_wait(&writer_sem)
+[server] opened client fifo /tmp/40184.140253197219392
+[lib] a 4 task is starting (with 100 delay)
+[lib] a 6 task is starting (with 100 delay)
+[lib] a 4 task has finished
+[server] before sem_wait(&writer_sem)
+[server] after sem_wait(&writer_sem)
+[server] opened client fifo /tmp/40184.140253314295360
+[lib] a 6 task is starting (with 100 delay)
+[lib] a 6 task has finished
+[server] before sem_wait(&writer_sem)
+[server] after sem_wait(&writer_sem)
+[server] opened client fifo /tmp/40184.140253180433984
+[lib] a 2 task is starting (with 100 delay)
+[lib] a 6 task has finished
+[server] before sem_wait(&writer_sem)
+[server] after sem_wait(&writer_sem)
+[server] opened client fifo /tmp/40184.140253230790208
+[lib] a 2 task has finished
+[server] before sem_wait(&writer_sem)
+[server] after sem_wait(&writer_sem)
+[server] opened client fifo /tmp/40184.140253205612096
+[lib] a 3 task is starting (with 100 delay)
+[lib] a 2 task is starting (with 100 delay)
+[lib] a 8 task is starting (with 100 delay)
+[lib] a 3 task has finished
+[server] before sem_wait(&writer_sem)
+[server] after sem_wait(&writer_sem)
+[server] opened client fifo /tmp/40184.140253197219392
+[lib] a 2 task has finished
+[server] before sem_wait(&writer_sem)
+[server] after sem_wait(&writer_sem)
+[server] opened client fifo /tmp/40184.140253314295360
+[lib] a 6 task is starting (with 100 delay)
+[lib] a 8 task is starting (with 100 delay)
+[lib] a 8 task has finished
+[server] before sem_wait(&writer_sem)
+[server] after sem_wait(&writer_sem)
+[lib] a 6 task has finished
+[server] before sem_wait(&writer_sem)
+[server] after sem_wait(&writer_sem)
+[server] opened client fifo /tmp/40184.140253214004800
+[server] opened client fifo /tmp/40184.140253180433984
+[lib] a 4 task is starting (with 100 delay)
+[lib] a 7 task is starting (with 100 delay)
+[lib] a 8 task has finished
+[server] before sem_wait(&writer_sem)
+[server] after sem_wait(&writer_sem)
+[server] opened client fifo /tmp/40184.140253222397504
+[lib] a 4 task has finished
+[server] before sem_wait(&writer_sem)
+[server] after sem_wait(&writer_sem)
+[server] opened client fifo /tmp/40184.140253205612096
+[lib] a 2 task is starting (with 100 delay)
+[lib] a 2 task has finished
+[server] before sem_wait(&writer_sem)
+[server] after sem_wait(&writer_sem)
+[server] opened client fifo /tmp/40184.140253197219392
+[lib] a 7 task has finished
+[server] before sem_wait(&writer_sem)
+[server] after sem_wait(&writer_sem)
+[server] opened client fifo /tmp/40184.140253314295360
+[lib] a 5 task is starting (with 100 delay)
+[lib] a 1 task is starting (with 100 delay)
+[lib] a 5 task has finished
+[server] before sem_wait(&writer_sem)
+[server] after sem_wait(&writer_sem)
+[lib] a 1 task has finished
+[server] before sem_wait(&writer_sem)
+[server] after sem_wait(&writer_sem)
+[server] opened client fifo /tmp/40184.140253180433984
+[server] opened client fifo /tmp/40184.140253205612096
+[lib] a 6 task is starting (with 100 delay)
+[lib] a 1 task is starting (with 100 delay)
+[lib] a 1 task has finished
+[server] before sem_wait(&writer_sem)
+[server] after sem_wait(&writer_sem)
+[server] opened client fifo /tmp/40184.140253314295360
+[lib] a 6 task has finished
+[server] before sem_wait(&writer_sem)
+[server] after sem_wait(&writer_sem)
+[lib] a 2 task is starting (with 100 delay)
+[server] opened client fifo /tmp/40184.140253197219392
+[lib] a 6 task is starting (with 100 delay)
+[lib] a 2 task has finished
+[server] before sem_wait(&writer_sem)
+[server] after sem_wait(&writer_sem)
+[server] opened client fifo /tmp/40184.140253222397504
+[lib] a 8 task is starting (with 100 delay)
+[lib] a 2 task is starting (with 100 delay)
+[lib] a 6 task has finished
+[server] before sem_wait(&writer_sem)
+[server] after sem_wait(&writer_sem)
+[server] opened client fifo /tmp/40184.140253205612096
+[lib] a 2 task is starting (with 100 delay)
+[lib] a 2 task has finished
+[server] before sem_wait(&writer_sem)
+[server] after sem_wait(&writer_sem)
+[server] opened client fifo /tmp/40184.140253214004800
+[lib] a 2 task has finished
+[server] before sem_wait(&writer_sem)
+[server] after sem_wait(&writer_sem)
+[server] opened client fifo /tmp/40184.140253314295360
+[lib] a 8 task has finished
+[server] before sem_wait(&writer_sem)
+[server] after sem_wait(&writer_sem)
+[server] opened client fifo /tmp/40184.140253180433984
+[lib] a 3 task is starting (with 100 delay)
+[lib] a 3 task has finished
+[server] before sem_wait(&writer_sem)
+[server] after sem_wait(&writer_sem)
+[server] opened client fifo /tmp/40184.140253222397504
+[lib] a 1 task is starting (with 100 delay)
+[lib] a 1 task has finished
+[server] before sem_wait(&writer_sem)
+[server] after sem_wait(&writer_sem)
+[server] opened client fifo /tmp/40184.140253197219392
+[lib] a 8 task is starting (with 100 delay)
+[lib] a 2 task is starting (with 100 delay)
+[lib] a 8 task is starting (with 100 delay)
+[lib] a 2 task has finished
+[server] before sem_wait(&writer_sem)
+[server] after sem_wait(&writer_sem)
+[server] opened client fifo /tmp/40184.140253314295360
+[lib] a 8 task has finished
+[server] before sem_wait(&writer_sem)
+[server] after sem_wait(&writer_sem)
+[server] opened client fifo /tmp/40184.140253180433984
+[lib] a 9 task is starting (with 100 delay)
+[lib] a 6 task is starting (with 100 delay)
+[lib] a 8 task has finished
+[server] before sem_wait(&writer_sem)
+[server] after sem_wait(&writer_sem)
+[server] opened client fifo /tmp/40184.140253222397504
+[lib] a 6 task is starting (with 100 delay)
+[lib] a 6 task has finished
+[server] before sem_wait(&writer_sem)
+[server] after sem_wait(&writer_sem)
+[server] opened client fifo /tmp/40184.140253214004800
+[lib] a 9 task has finished
+[server] before sem_wait(&writer_sem)
+[server] after sem_wait(&writer_sem)
+[server] opened client fifo /tmp/40184.140253197219392
+[lib] a 9 task is starting (with 100 delay)
+[lib] a 8 task is starting (with 100 delay)
+[lib] a 6 task has finished
+[server] before sem_wait(&writer_sem)
+[server] after sem_wait(&writer_sem)
+[server] opened client fifo /tmp/40184.140253205612096
+[lib] a 8 task is starting (with 100 delay)
+[lib] a 1 task is starting (with 100 delay)
+[lib] a 1 task has finished
+[server] before sem_wait(&writer_sem)
+[server] after sem_wait(&writer_sem)
+[server] opened client fifo /tmp/40184.140253222397504
+[lib] a 9 task has finished
+[server] before sem_wait(&writer_sem)
+[server] after sem_wait(&writer_sem)
+[server] opened client fifo /tmp/40184.140253314295360
+[lib] a 8 task has finished
+[server] before sem_wait(&writer_sem)
+[server] after sem_wait(&writer_sem)
+[server] opened client fifo /tmp/40184.140253180433984
+[lib] a 9 task is starting (with 100 delay)
+[lib] a 8 task has finished
+[server] before sem_wait(&writer_sem)
+[server] after sem_wait(&writer_sem)
+[server] opened client fifo /tmp/40184.140253230790208
+[lib] a 5 task is starting (with 100 delay)
+[lib] a 8 task is starting (with 100 delay)
+[lib] a 9 task has finished
+[server] before sem_wait(&writer_sem)
+[server] after sem_wait(&writer_sem)
+[server] opened client fifo /tmp/40184.140253197219392
+[lib] a 5 task has finished
+[server] before sem_wait(&writer_sem)
+[server] after sem_wait(&writer_sem)
+[server] opened client fifo /tmp/40184.140253205612096
+[lib] a 7 task is starting (with 100 delay)
+[lib] a 9 task is starting (with 100 delay)
+[lib] a 5 task is starting (with 100 delay)
+[lib] a 8 task has finished
+[server] before sem_wait(&writer_sem)
+[server] after sem_wait(&writer_sem)
+[server] opened client fifo /tmp/40184.140253180433984
+[lib] a 7 task has finished
+[server] before sem_wait(&writer_sem)
+[server] after sem_wait(&writer_sem)
+[server] opened client fifo /tmp/40184.140253314295360
+[lib] a 6 task is starting (with 100 delay)
+[lib] a 5 task has finished
+[server] before sem_wait(&writer_sem)
+[server] after sem_wait(&writer_sem)
+[server] opened client fifo /tmp/40184.140253222397504
+[lib] a 9 task has finished
+[server] before sem_wait(&writer_sem)
+[server] after sem_wait(&writer_sem)
+[server] opened client fifo /tmp/40184.140253230790208
+[lib] a 9 task is starting (with 100 delay)
+[lib] a 1 task is starting (with 100 delay)
+[lib] a 1 task has finished
+[server] before sem_wait(&writer_sem)
+[server] after sem_wait(&writer_sem)
+[server] opened client fifo /tmp/40184.140253214004800
+[lib] a 6 task has finished
+[server] before sem_wait(&writer_sem)
+[server] after sem_wait(&writer_sem)
+[server] opened client fifo /tmp/40184.140253205612096
+[lib] a 6 task is starting (with 100 delay)
+[lib] a 4 task is starting (with 100 delay)
+[lib] a 9 task has finished
+[server] before sem_wait(&writer_sem)
+[server] after sem_wait(&writer_sem)
+[server] opened client fifo /tmp/40184.140253197219392
+[lib] a 6 task has finished
+[server] before sem_wait(&writer_sem)
+[server] after sem_wait(&writer_sem)
+[server] opened client fifo /tmp/40184.140253314295360
+[lib] a 2 task is starting (with 100 delay)
+[lib] a 4 task has finished
+[server] before sem_wait(&writer_sem)
+[server] after sem_wait(&writer_sem)
+[server] opened client fifo /tmp/40184.140253180433984
+[lib] a 2 task has finished
+[server] before sem_wait(&writer_sem)
+[server] after sem_wait(&writer_sem)
+[server] opened client fifo /tmp/40184.140253230790208
+[lib] a 4 task is starting (with 100 delay)
+[lib] a 5 task is starting (with 100 delay)
+[lib] a 4 task has finished
+[server] before sem_wait(&writer_sem)
+[server] after sem_wait(&writer_sem)
+[server] opened client fifo /tmp/40184.140253205612096
+[lib] a 9 task is starting (with 100 delay)
+[lib] a 2 task is starting (with 100 delay)
+[lib] a 5 task has finished
+[server] before sem_wait(&writer_sem)
+[server] after sem_wait(&writer_sem)
+[server] opened client fifo /tmp/40184.140253214004800
+[lib] a 7 task is starting (with 100 delay)
+[lib] a 2 task has finished
+[server] before sem_wait(&writer_sem)
+[server] after sem_wait(&writer_sem)
+[server] opened client fifo /tmp/40184.140253222397504
+[lib] a 7 task is starting (with 100 delay)
+[lib] a 7 task is starting (with 100 delay)
+[lib] a 9 task has finished
+[server] before sem_wait(&writer_sem)
+[server] after sem_wait(&writer_sem)
+[server] opened client fifo /tmp/40184.140253197219392
+[lib] a 2 task is starting (with 100 delay)
+[lib] a 7 task has finished
+[server] before sem_wait(&writer_sem)
+[server] after sem_wait(&writer_sem)
+[server] opened client fifo /tmp/40184.140253180433984
+[lib] a 2 task has finished
+[server] before sem_wait(&writer_sem)
+[server] after sem_wait(&writer_sem)
+[server] opened client fifo /tmp/40184.140253188826688
+[lib] a 9 task is starting (with 100 delay)
+[lib] a 7 task has finished
+[server] before sem_wait(&writer_sem)
+[server] after sem_wait(&writer_sem)
+[server] opened client fifo /tmp/40184.140253230790208
+[lib] a 9 task is starting (with 100 delay)
+[lib] a 7 task has finished
+[server] before sem_wait(&writer_sem)
+[server] after sem_wait(&writer_sem)
+[server] opened client fifo /tmp/40184.140253314295360
+[lib] a 9 task is starting (with 100 delay)
+[lib] a 2 task is starting (with 100 delay)
+[lib] a 9 task has finished
+[server] before sem_wait(&writer_sem)
+[server] after sem_wait(&writer_sem)
+[server] opened client fifo /tmp/40184.140253205612096
+[lib] a 2 task has finished
+[server] before sem_wait(&writer_sem)
+[server] after sem_wait(&writer_sem)
+[server] opened client fifo /tmp/40184.140253197219392
+[lib] a 3 task is starting (with 100 delay)
+[lib] a 9 task has finished
+[server] before sem_wait(&writer_sem)
+[server] after sem_wait(&writer_sem)
+[server] opened client fifo /tmp/40184.140253222397504
+[lib] a 5 task is starting (with 100 delay)
+[lib] a 3 task has finished
+[server] before sem_wait(&writer_sem)
+[server] after sem_wait(&writer_sem)
+[server] opened client fifo /tmp/40184.140253188826688
+[lib] a 9 task has finished
+[server] before sem_wait(&writer_sem)
+[server] after sem_wait(&writer_sem)
+[server] opened client fifo /tmp/40184.140253214004800
+[lib] a 5 task is starting (with 100 delay)
+[lib] a 9 task is starting (with 100 delay)
+[lib] a 3 task is starting (with 100 delay)
+[lib] a 5 task has finished
+[server] before sem_wait(&writer_sem)
+[server] after sem_wait(&writer_sem)
+[server] opened client fifo /tmp/40184.140253314295360
+[lib] a 3 task is starting (with 100 delay)
+[lib] a 5 task has finished
+[server] before sem_wait(&writer_sem)
+[server] after sem_wait(&writer_sem)
+[server] opened client fifo /tmp/40184.140253230790208
+[lib] a 3 task is starting (with 100 delay)
+[lib] a 3 task has finished
+[server] before sem_wait(&writer_sem)
+[server] after sem_wait(&writer_sem)
+[server] opened client fifo /tmp/40184.140252693919296
+[lib] a 3 task has finished
+[server] before sem_wait(&writer_sem)
+[server] after sem_wait(&writer_sem)
+[server] opened client fifo /tmp/40184.140253197219392
+[lib] a 3 task has finished
+[server] before sem_wait(&writer_sem)
+[server] after sem_wait(&writer_sem)
+[server] opened client fifo /tmp/40184.140253205612096
+[lib] a 1 task is starting (with 100 delay)
+[lib] a 1 task has finished
+[server] before sem_wait(&writer_sem)
+[server] after sem_wait(&writer_sem)
+[server] opened client fifo /tmp/40184.140253214004800
+[lib] a 9 task has finished
+[server] before sem_wait(&writer_sem)
+[server] after sem_wait(&writer_sem)
+[server] opened client fifo /tmp/40184.140253180433984
+[lib] a 9 task is starting (with 100 delay)
+[lib] a 7 task is starting (with 100 delay)
+[lib] a 7 task is starting (with 100 delay)
+[lib] a 7 task has finished
+[server] before sem_wait(&writer_sem)
+[server] after sem_wait(&writer_sem)
+[server] opened client fifo /tmp/40184.140253314295360
+[lib] a 9 task has finished
+[server] before sem_wait(&writer_sem)
+[server] after sem_wait(&writer_sem)
+[server] opened client fifo /tmp/40184.140253188826688
+[lib] a 9 task is starting (with 100 delay)
+[lib] a 7 task has finished
+[server] before sem_wait(&writer_sem)
+[server] after sem_wait(&writer_sem)
+[server] opened client fifo /tmp/40184.140253197219392
+[lib] a 6 task is starting (with 100 delay)
+[lib] a 7 task is starting (with 100 delay)
+[lib] a 5 task is starting (with 100 delay)
+[lib] a 9 task has finished
+[server] before sem_wait(&writer_sem)
+[server] after sem_wait(&writer_sem)
+[server] opened client fifo /tmp/40184.140253180433984
+[lib] a 2 task is starting (with 100 delay)
+[lib] a 6 task has finished
+[server] before sem_wait(&writer_sem)
+[server] after sem_wait(&writer_sem)
+[server] opened client fifo /tmp/40184.140253214004800
+[lib] a 2 task has finished
+[server] before sem_wait(&writer_sem)
+[server] after sem_wait(&writer_sem)
+[lib] a 4 task is starting (with 100 delay)
+[server] opened client fifo /tmp/40184.140253188826688
+[lib] a 5 task has finished
+[server] before sem_wait(&writer_sem)
+[server] after sem_wait(&writer_sem)
+[server] opened client fifo /tmp/40184.140252693919296
+[lib] a 7 task has finished
+[server] before sem_wait(&writer_sem)
+[server] after sem_wait(&writer_sem)
+[server] opened client fifo /tmp/40184.140253205612096
+[lib] a 4 task has finished
+[server] before sem_wait(&writer_sem)
+[server] after sem_wait(&writer_sem)
+[server] opened client fifo /tmp/40184.140253314295360
+[lib] a 2 task is starting (with 100 delay)
+[lib] a 2 task has finished
+[server] before sem_wait(&writer_sem)
+[server] after sem_wait(&writer_sem)
+[server] opened client fifo /tmp/40184.140253197219392
+[lib] a 6 task is starting (with 100 delay)
+[lib] a 2 task is starting (with 100 delay)
+[server] all clients closed, will wait for new ones
+[lib] a 2 task has finished
+[server] before sem_wait(&writer_sem)
+[server] after sem_wait(&writer_sem)
+open client fifo: No such file or directory
+[lib] a 4 task is starting (with 100 delay)
+[lib] a 6 task has finished
+[server] before sem_wait(&writer_sem)
+[server] after sem_wait(&writer_sem)
+[lib] a 4 task has finished
+[server] before sem_wait(&writer_sem)
+[lib] a 7 task is starting (with 100 delay)
+open client fifo: No such file or directory
+[lib] a 7 task has finished
+[server] before sem_wait(&writer_sem)
+open client fifo: No such file or directory
+open client fifo: No such file or directory
+open client fifo: No such file or directory
+[server] after sem_wait(&writer_sem)
+open client fifo: No such file or directory
+open client fifo: No such file or directory
+open client fifo: No such file or directory
+open client fifo: No such file or directory
+[server] after sem_wait(&writer_sem)
+open client fifo: No such file or directory
+open client fifo: No such file or directory
+open client fifo: No such file or directory
+open client fifo: No such file or directory
+open client fifo: No such file or directory
+open client fifo: No such file or directory
+open client fifo: No such file or directory
+[server] timeout reached: 1619641461
+[server] server, open serverfifo: Interrupted system call
+[server] unlinked server fifo
+[server] no longer accepting requests
+[server] no. running: 0
