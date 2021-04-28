@@ -39,6 +39,6 @@ int parse_args(int argc, char* const argv[], args_data_t* const data) {
     return 0;
 }
 
-char* get_fifoname() {
+char* get_public_fifoname() {
     return fifoname;
 }

@@ -1,28 +1,67 @@
 #include "../include/task_creator.h"
 
-#include <stdbool.h>
 #include <pthread.h>
-#include <stdlib.h>
-#include <unistd.h>
+#include <signal.h>
 #include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <time.h>
+#include <unistd.h>
 
 #include "../include/block_array.h"
+#include "../include/communication.h"
+#include "../include/error/exit_codes.h"
+#include "../include/fifo.h"
+#include "../include/logger.h"
 #include "../include/timer.h"
 
 #define MSEC_TO_NSEC(x) ((x) * (1e6))
-#define MAX_WAIT_MSEC 25
-#define MIN_WAIT_MSEC 5
+#define MAX_WAIT_MSEC 5
+#define MIN_WAIT_MSEC 1
 
 static unsigned int seedp;
+static int counter = 0;
 
 uint64_t get_random_ms(uint64_t lower, uint64_t upper) {
     return MSEC_TO_NSEC(rand_r(&seedp) % (upper - lower) + lower);
 }
 
-void* create_receive_task() {
-    sleep(rand_r(&seedp) % 8);
-    printf("%ld says hi and goodbye.\n", pthread_self());
+int get_random_task() {
+    return rand_r(&seedp) % 9 + 1;
+}
 
+void* create_receive_task() {
+    message_t msg;
+
+    if (create_private_fifo() != 0) {
+        build_message(&msg, -1, -1, -1);
+        return NULL;
+    }
+
+    build_message(&msg, counter, -1, get_random_task());
+
+    if (send_public_message(&msg) != 0) {
+        remove_private_fifo();
+        return NULL;
+    }
+
+    write_log(IWANT, &msg);
+
+    if (recv_private_message(&msg) != 0) {
+        write_log(GAVUP, &msg);
+        remove_private_fifo();
+        return NULL;
+    }
+
+    if (msg.res == -1) {
+        write_log(CLOSD, &msg);
+        set_server_open(false);
+        remove_private_fifo();
+        return NULL;
+    }
+
+    write_log(GOTRS, &msg);
+    remove_private_fifo();
     // create random task, private fifos, send message through public fifo,
     // receive msg, be happy.
 
@@ -35,7 +74,13 @@ int task_creator() {
     tspec.tv_sec = 0;
     size_t threads_size = 0;
 
-    while (true) {
+    if (wait_public_fifo() != 0) {
+        printf("Timeout on searching for file %lu\n", pthread_self());
+        return ERROR;
+    }
+    printf("Found file %lu\n", pthread_self());
+
+    while (is_server_open()) {
         tspec.tv_nsec = get_random_ms(MIN_WAIT_MSEC, MAX_WAIT_MSEC);
         nanosleep(&tspec, NULL);
 
@@ -48,6 +93,8 @@ int task_creator() {
 
         threads_size++;
     }
+
+    close_fifo(get_public_fifo());
 
     return 0;
 }

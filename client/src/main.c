@@ -9,8 +9,8 @@
 #include "../include/error/exit_codes.h"
 #include "../include/fifo.h"
 #include "../include/logger.h"
-#include "../include/timer.h"
 #include "../include/task_creator.h"
+#include "../include/timer.h"
 
 void cleanup(void) {
     printf("exited after threads?\n");

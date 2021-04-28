@@ -14,6 +14,10 @@ typedef struct message {
 
 int build_message(message_t* msg, int id, int res, int t);
 
+int is_server_open();
+
+int set_server_open(int open);
+
 int send_public_message(message_t* msg);
 
 int recv_private_message(message_t* msg);
