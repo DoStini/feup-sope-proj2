@@ -68,6 +68,11 @@ void* create_receive_task() {
     return NULL;
 }
 
+void cleanup(void) {
+    printf("closing fifo %d\n", is_server_open());
+    close_fifo(get_public_fifo());
+}
+
 int task_creator() {
     struct timespec tspec;
     pthread_t thread;
@@ -79,6 +84,7 @@ int task_creator() {
         return ERROR;
     }
     printf("Found file %lu\n", pthread_self());
+    atexit(cleanup);
 
     while (is_server_open()) {
         tspec.tv_nsec = get_random_ms(MIN_WAIT_MSEC, MAX_WAIT_MSEC);
@@ -93,8 +99,6 @@ int task_creator() {
 
         threads_size++;
     }
-
-    close_fifo(get_public_fifo());
 
     return 0;
 }

@@ -12,13 +12,8 @@
 #include "../include/task_creator.h"
 #include "../include/timer.h"
 
-void cleanup(void) {
-    printf("exited after threads?\n");
-}
-
 int main(int argc, char* argv[], char* envp[]) {
     args_data_t data;
-    atexit(cleanup);
 
     srand((unsigned)time(NULL));
 
