@@ -1,6 +1,6 @@
 TOPTARGETS := all clean
 
-SUBDIRS := client server/mock
+SUBDIRS := client server/sample
 
 $(TOPTARGETS): $(SUBDIRS)
 $(SUBDIRS):
