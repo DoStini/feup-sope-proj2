@@ -1,3 +1,4 @@
+#include <pthread.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
@@ -11,8 +12,13 @@
 #include "../include/timer.h"
 #include "../include/task_creator.h"
 
+void cleanup(void) {
+    printf("exited after threads?\n");
+}
+
 int main(int argc, char* argv[], char* envp[]) {
     args_data_t data;
+    atexit(cleanup);
 
     srand((unsigned)time(NULL));
 
@@ -28,6 +34,7 @@ int main(int argc, char* argv[], char* envp[]) {
     printf("Duration: %lu\nFifoname: %s\n", data.duration, data.fifoname);
 
     open_log();
+    int err = task_creator();
 
-    return task_creator();
+    pthread_exit(&err);
 }
