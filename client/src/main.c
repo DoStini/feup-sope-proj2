@@ -1,3 +1,4 @@
+#include <pthread.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
@@ -28,9 +29,7 @@ int main(int argc, char* argv[], char* envp[]) {
     printf("Duration: %lu\nFifoname: %s\n", data.duration, data.fifoname);
 
     open_log();
-    int err;
-    if ((err = task_creator()) != 0)
-        return err;
+    int err = task_creator();
 
-    return 0;
+    pthread_exit(&err);
 }
