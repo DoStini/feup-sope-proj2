@@ -8,7 +8,6 @@
 #include <time.h>
 #include <unistd.h>
 
-#include "../include/block_array.h"
 #include "../include/communication.h"
 #include "../include/error/exit_codes.h"
 #include "../include/fifo.h"
@@ -25,9 +24,7 @@ uint64_t get_random_ms(uint64_t lower, uint64_t upper) {
     return MSEC_TO_NSEC(rand_r(&seedp) % (upper - lower) + lower);
 }
 
-int get_random_task() {
-    return rand_r(&seedp) % 9 + 1;
-}
+int get_random_task() { return rand_r(&seedp) % 9 + 1; }
 
 void* create_receive_task(void* thread_id) {
     int id = *(int*)thread_id;
@@ -70,20 +67,20 @@ void* create_receive_task(void* thread_id) {
     return NULL;
 }
 
+void cleanup(void) { close_fifo(get_public_fifo()); }
+
 int task_creator() {
     struct timespec tspec;
     pthread_t thread;
     tspec.tv_sec = 0;
     size_t threads_size = 0;
 
-    block_array_t* threads = block_array_create(10);
-    if (threads == NULL) return TASK_CREATOR_ERROR;
-
     if (wait_public_fifo() != 0) {
         printf("Timeout on searching for file %lu\n", pthread_self());
         return ERROR;
     }
     printf("Found file %lu\n", pthread_self());
+    atexit(cleanup);
 
     int id = 1;
 
@@ -94,32 +91,18 @@ int task_creator() {
         if (is_timeout()) break;
 
         int* thread_id = malloc(sizeof(int));
+        if(thread_id == NULL) return TASK_CREATOR_ERROR;
 
         *thread_id = id++;
 
-        if (pthread_create(&thread, NULL,
-                           create_receive_task, (void*)thread_id)) {
-            block_array_delete(threads);
+        if (pthread_create(&thread, NULL, create_receive_task,
+                           (void*)thread_id)) {
             return TASK_CREATOR_THREAD_ERROR;
         }
-
-        block_array_set(threads, threads_size, thread);
+        pthread_detach(thread);
 
         threads_size++;
     }
-
-    for (size_t i = 0; i < threads_size; i++) {
-        if (block_array_at(threads, i, &thread)) {
-            block_array_delete(threads);
-            return TASK_CREATOR_ERROR;
-        }
-
-        pthread_join(thread, NULL);
-    }
-
-    close_fifo(get_public_fifo());
-
-    block_array_delete(threads);
 
     return 0;
 }

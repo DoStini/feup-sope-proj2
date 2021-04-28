@@ -2,7 +2,7 @@
 #define CLIENT_INCLUDE_TASK_CREATOR_H_
 
 #define TASK_CREATOR_ERROR -1
-#define TASK_CREATOR_THREAD_ERROR -1
+#define TASK_CREATOR_THREAD_ERROR -2
 
 #include <stdbool.h>
 
