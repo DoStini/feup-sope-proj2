@@ -16,8 +16,8 @@
 #include "../include/timer.h"
 
 #define MSEC_TO_NSEC(x) ((x) * (1e6))
-#define MAX_WAIT_MSEC 5
-#define MIN_WAIT_MSEC 1
+#define MAX_WAIT_MSEC 50
+#define MIN_WAIT_MSEC 10
 
 static unsigned int seedp;
 static int counter = 0;
@@ -62,8 +62,6 @@ void* create_receive_task() {
 
     write_log(GOTRS, &msg);
     remove_private_fifo();
-    // create random task, private fifos, send message through public fifo,
-    // receive msg, be happy.
 
     return NULL;
 }
@@ -78,10 +76,8 @@ int task_creator() {
     if (threads == NULL) return TASK_CREATOR_ERROR;
 
     if (wait_public_fifo() != 0) {
-        printf("Timeout on searching for file %lu\n", pthread_self());
         return ERROR;
     }
-    printf("Found file %lu\n", pthread_self());
 
     while (is_server_open()) {
         tspec.tv_nsec = get_random_ms(MIN_WAIT_MSEC, MAX_WAIT_MSEC);
@@ -103,7 +99,7 @@ int task_creator() {
             block_array_delete(threads);
             return TASK_CREATOR_ERROR;
         }
-        
+
         pthread_join(thread, NULL);
     }
 
