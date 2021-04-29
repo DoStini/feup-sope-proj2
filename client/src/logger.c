@@ -28,7 +28,8 @@ int write_log(enum Event event, message_t* info) {
 
     char out[128] = "";
     snprintf(out, sizeof(out), "%lu ; %d ; %d ; %d ; %lu ; %d ; %s\n", instant,
-             info->i, info->t, pid, tid, info->res, event_to_string[event]);
+             info->rid, info->tskload, pid, tid, info->tskres,
+             event_to_string[event]);
 
     int err;
     while ((err = write(log_info.file_descriptor, out, strlen(out))) == -1 &&

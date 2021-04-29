@@ -2,6 +2,7 @@ CC = gcc
 
 prog = c
 SRC := src
+COMMON := ../common
 OBJ := bin
 FINAL := ../bin
 

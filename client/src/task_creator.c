@@ -55,7 +55,7 @@ void* create_receive_task(void* thread_id) {
         cleanup_thread();
     }
 
-    if (msg.res == -1) {
+    if (msg.tskres == -1) {
         write_log(CLOSD, &msg);
         set_server_open(false);
         cleanup_thread();

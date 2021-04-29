@@ -18,10 +18,10 @@ int set_server_open(int open) {
 int build_message(message_t* msg, int id, int res, int t) {
     memset(msg, 0, sizeof(message_t));
 
-    msg->i = id;
+    msg->rid = id;
     msg->pid = getpid();
-    msg->res = res;
-    msg->t = t;
+    msg->tskres = res;
+    msg->tskload = t;
     msg->tid = pthread_self();
     return 0;
 }
