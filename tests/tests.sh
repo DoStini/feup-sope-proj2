@@ -48,7 +48,6 @@ srv_args=""
 
 clean() {
   echo "Cleaning logs"
-  rm s c
   rm -rf /tmp/fifo_"${USER}"
   rm -f server_log.txt client_log.txt
   rm -f client_stderr.txt server_stderr.txt
