@@ -26,6 +26,11 @@ uint64_t get_random_ms(uint64_t lower, uint64_t upper) {
 
 int get_random_task() { return rand_r(&seedp) % 9 + 1; }
 
+void cleanup_thread() {
+    remove_private_fifo();
+    pthread_exit(NULL);
+}
+
 void* create_receive_task(void* thread_id) {
     int id = *(int*)thread_id;
     free(thread_id);
@@ -34,40 +39,35 @@ void* create_receive_task(void* thread_id) {
 
     if (create_private_fifo() != 0) {
         build_message(&msg, -1, -1, -1);
-        return NULL;
+        cleanup_thread();
     }
 
     build_message(&msg, id, -1, get_random_task());
 
     if (send_public_message(&msg) != 0) {
-        remove_private_fifo();
-        return NULL;
+        cleanup_thread();
     }
 
     write_log(IWANT, &msg);
 
     if (recv_private_message(&msg) != 0) {
         write_log(GAVUP, &msg);
-        remove_private_fifo();
-        return NULL;
+        cleanup_thread();
     }
 
     if (msg.res == -1) {
         write_log(CLOSD, &msg);
         set_server_open(false);
-        remove_private_fifo();
-        return NULL;
+        cleanup_thread();
     }
 
     write_log(GOTRS, &msg);
-    remove_private_fifo();
-
+    cleanup_thread();
     return NULL;
 }
 
 void cleanup(void) {
     close_fifo(get_public_fifo());
-    timer_cleanup();
 }
 
 int task_creator() {
