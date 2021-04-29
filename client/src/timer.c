@@ -27,6 +27,10 @@ int timer_start(uint64_t seconds) {
     return timer_settime(timer, 0, &spec, NULL);
 }
 
+int timer_cleanup() {
+    return timer_delete(timer);
+}
+
 bool is_timeout() {
     struct itimerspec timer_value;
     timer_gettime(timer, &timer_value);

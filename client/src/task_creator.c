@@ -65,7 +65,10 @@ void* create_receive_task(void* thread_id) {
     return NULL;
 }
 
-void cleanup(void) { close_fifo(get_public_fifo()); }
+void cleanup(void) {
+    close_fifo(get_public_fifo());
+    timer_cleanup();
+}
 
 int task_creator() {
     struct timespec tspec;
