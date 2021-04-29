@@ -1,10 +1,10 @@
 #ifndef CLIENT_INCLUDE_TIMER_H_
 #define CLIENT_INCLUDE_TIMER_H_
 
-#include <stdint.h>
 #include <stdbool.h>
-#include <time.h>
+#include <stdint.h>
 #include <sys/time.h>
+#include <time.h>
 
 /**
  * @brief Starts a no-signal timer that ends in a given number of seconds.
@@ -14,6 +14,8 @@
  * @return an error value.
  **/
 int timer_start(uint64_t seconds);
+
+int timer_cleanup();
 
 /**
  * @brief Checks if the timer has ended.

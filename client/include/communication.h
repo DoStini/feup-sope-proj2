@@ -4,17 +4,13 @@
 #include <pthread.h>
 #include <sys/types.h>
 
+#include "../../common/common.h"
+
 /**
  * @brief Message information (either sent or received)
  * 
  */
-typedef struct message {
-    int i;
-    pid_t pid;
-    pthread_t tid;
-    int t;
-    int res;
-} message_t;
+typedef Message message_t;
 
 /**
  * @brief Builds a message object
