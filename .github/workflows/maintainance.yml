@@ -1,0 +1,55 @@
+name: Maintainance
+
+on: [push, pull_request]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+      - run: make
+
+  cpplint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v1
+      - uses: actions/setup-python@v1
+      - run: pip install cpplint
+      - run: ./tests/cpplint.sh
+
+  valgrind:
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+      - uses: actions/checkout@v2
+      - run: sudo apt-get install valgrind
+      - run: make
+      - run: ./tests/valgrind.sh
+
+  test_one:
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+      - uses: actions/checkout@v2
+      - run: sudo apt-get install valgrind
+      - run: make
+      - run: cd tests && ./tests.sh 1
+
+  test_two:
+    runs-on: ubuntu-latest
+    needs: test_one
+    steps:
+      - uses: actions/checkout@v2
+      - run: sudo apt-get install valgrind
+      - run: make
+      - run: cd tests && ./tests.sh 2
+
+  test_three:
+    runs-on: ubuntu-latest
+    needs: test_two
+    steps:
+      - uses: actions/checkout@v2
+      - run: sudo apt-get install valgrind
+      - run: make
+      - run: cd tests && ./tests.sh 3
