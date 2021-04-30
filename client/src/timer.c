@@ -27,8 +27,8 @@ int timer_start(uint64_t seconds) {
     return timer_settime(timer, 0, &spec, NULL);
 }
 
-int timer_cleanup() {
-    return timer_delete(timer);
+void timer_cleanup() {
+    timer_delete(timer);
 }
 
 bool is_timeout() {
