@@ -15,7 +15,10 @@
  **/
 int timer_start(uint64_t seconds);
 
-int timer_cleanup();
+/**
+ * @brief Cleanups timer structure
+ */
+void timer_cleanup();
 
 /**
  * @brief Checks if the timer has ended.
