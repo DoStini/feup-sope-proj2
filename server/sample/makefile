@@ -21,4 +21,4 @@ move:
 # 	gcc -Wall -c -o lib.o lib.c
 
 clean:
-	rm -f $(FINAL)/s
+	rm -f $(FINAL)/smock
