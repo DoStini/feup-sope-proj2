@@ -26,13 +26,25 @@ uint64_t get_random_ms(uint64_t lower, uint64_t upper) {
 
 int get_random_task() { return rand_r(&seedp) % 9 + 1; }
 
-void cleanup_thread() {
+void *cleanup_thread() {
     pthread_exit(NULL);
+    return NULL;
 }
 
 void cleanup(void) {
     close_fifo(get_public_fifo());
     remove_public_fifo();
+}
+
+void *producer_handler(void *ptr) {
+    message_t msg = *((message_t *)ptr);
+    free(ptr);
+    write_log(RECVD, &msg);
+    return cleanup_thread();
+}
+
+void *consumer_handler() {
+    return cleanup_thread();
 }
 
 int task_handler() {
@@ -45,10 +57,24 @@ int task_handler() {
     if (fd < 0)
         return ERROR;
 
+    pthread_t consumer_thread;
+
+    if (pthread_create(&consumer_thread, NULL, consumer_handler, NULL)) {
+        return TASK_CREATOR_THREAD_ERROR;
+    }
+
     while (!is_timeout()) {
-        message_t msg;
-        recv_message(&msg);
-        write_log(RECVD, &msg);
+        pthread_t consumer;
+        message_t *msg = (message_t *)malloc(sizeof(sizeof(message_t)));
+        if (recv_message(msg) == 0) {
+            if (pthread_create(&consumer, NULL, producer_handler, (void *)msg)) {
+                free(msg);
+                return TASK_CREATOR_THREAD_ERROR;
+            }
+        } else {
+            usleep(5);
+            free(msg);
+        }
     }
 
     return 0;

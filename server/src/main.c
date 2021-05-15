@@ -21,8 +21,6 @@ int main(int argc, char* argv[], char* envp[]) {
         exit(BAD_ARGS);
     }
 
-    printf("%lu, %lu, %s\n", data.buffer_size, data.duration, data.fifoname);
-
     if (timer_start(data.duration)) {
         return ERROR;
     }

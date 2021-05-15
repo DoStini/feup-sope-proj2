@@ -1,6 +1,6 @@
 TOPTARGETS := all clean
 
-SUBDIRS := client server
+SUBDIRS := client server server/sample
 
 $(TOPTARGETS): $(SUBDIRS)
 $(SUBDIRS):
