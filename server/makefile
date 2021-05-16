@@ -21,7 +21,7 @@ $(OBJ)/%.o: $(SRC)/%.c
 	$(CC) -I$(SRC) $(flags)  -c $< -o $@ $(libs)
 
 bin: 
-	mkdir bin
+	mkdir -p bin
 
 mainbin:
 	mkdir -p $(FINAL)

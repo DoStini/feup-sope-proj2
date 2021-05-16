@@ -41,3 +41,13 @@ int recv_message(message_t* msg) {
     }
     return ERROR;
 }
+
+int send_private_message(message_t* msg, pid_t pid, pthread_t tid) {
+    int fd = open_write_private_fifo(pid, tid);
+    if (fd <= 0)
+        return ERROR;
+
+    write(fd, msg, sizeof(message_t));
+
+    return close_fifo(fd);
+}

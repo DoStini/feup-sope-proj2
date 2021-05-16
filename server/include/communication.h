@@ -37,6 +37,6 @@ int recv_message(message_t* msg);
  * @param[in] msg the message to send
  * @return int 0 when closed, other when open
  */
-int send_private_message(message_t* msg);
+int send_private_message(message_t* msg, pid_t pid, pthread_t tid);
 
 #endif  // CLIENT_INCLUDE_COMMUNICATION_H_
