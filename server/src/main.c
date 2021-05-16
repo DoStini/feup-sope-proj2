@@ -10,6 +10,7 @@
 #include "../include/logger.h"
 #include "../include/task_handler.h"
 #include "../include/timer.h"
+#include "../include/queue.h"
 
 int main(int argc, char* argv[], char* envp[]) {
     args_data_t data;
@@ -20,6 +21,11 @@ int main(int argc, char* argv[], char* envp[]) {
         fprintf(stderr, "%s\n", USAGE);
         exit(BAD_ARGS);
     }
+
+    queue_t* queue = queue_(data.buffer_size);
+    queue_print(queue);
+
+    return 0;
 
     if (timer_start(data.duration)) {
         return ERROR;
