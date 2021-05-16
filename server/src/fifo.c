@@ -28,6 +28,7 @@ int get_public_fifo() { return public_fifo; }
 int open_write_private_fifo(pid_t pid, pthread_t tid) {
     char fifo[MAX_FIFO_NAME] = "";
     snprintf(fifo, MAX_FIFO_NAME, "/tmp/%d.%lu", pid, tid);
+    fprintf(stderr, "%s\n", fifo);
     int fd = open(fifo, O_WRONLY | O_NONBLOCK);
 
     fd_set fds;
@@ -38,7 +39,7 @@ int open_write_private_fifo(pid_t pid, pthread_t tid) {
     FD_SET(fd, &fds);
 
     int err;
-    err = select(fd + 1, &fds, NULL, NULL, &timer);
+    err = select(fd + 1, NULL, &fds, NULL, &timer);
 
     if (err == -1) {
         close(fd);
