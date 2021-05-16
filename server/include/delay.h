@@ -1,4 +1,4 @@
-#ifndef _DELAY_H
-#define _DELAY_H 1
+#ifndef SERVER_INCLUDE_DELAY_H_
+#define SERVER_INCLUDE_DELAY_H_
 extern int delay;
-#endif // _DELAY_H
+#endif // SERVER_INCLUDE_DELAY_H_

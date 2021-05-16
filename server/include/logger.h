@@ -1,5 +1,5 @@
-#ifndef CLIENT_INCLUDE_LOGGER_H_
-#define CLIENT_INCLUDE_LOGGER_H_
+#ifndef SERVER_INCLUDE_LOGGER_H_
+#define SERVER_INCLUDE_LOGGER_H_
 
 #include <stdbool.h>
 
@@ -44,4 +44,4 @@ int open_log(void);
  **/
 int write_log(enum Event event, message_t* info);
 
-#endif  // CLIENT_INCLUDE_LOGGER_H_
+#endif  // SERVER_INCLUDE_LOGGER_H_

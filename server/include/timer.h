@@ -1,5 +1,5 @@
-#ifndef CLIENT_INCLUDE_TIMER_H_
-#define CLIENT_INCLUDE_TIMER_H_
+#ifndef SERVER_INCLUDE_TIMER_H_
+#define SERVER_INCLUDE_TIMER_H_
 
 #include <stdbool.h>
 #include <stdint.h>
@@ -45,4 +45,4 @@ int timer_get_remaining(struct timespec* time);
  **/
 int timer_get_remaining_timeval(struct timeval* time);
 
-#endif  // CLIENT_INCLUDE_TIMER_H_
+#endif  // SERVER_INCLUDE_TIMER_H_

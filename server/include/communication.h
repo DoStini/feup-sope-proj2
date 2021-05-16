@@ -1,5 +1,5 @@
-#ifndef CLIENT_INCLUDE_COMMUNICATION_H_
-#define CLIENT_INCLUDE_COMMUNICATION_H_
+#ifndef SERVER_INCLUDE_COMMUNICATION_H_
+#define SERVER_INCLUDE_COMMUNICATION_H_
 
 #include <pthread.h>
 #include <sys/types.h>
@@ -39,4 +39,4 @@ int recv_message(message_t* msg);
  */
 int send_private_message(message_t* msg, pid_t pid, pthread_t tid);
 
-#endif  // CLIENT_INCLUDE_COMMUNICATION_H_
+#endif  // SERVER_INCLUDE_COMMUNICATION_H_

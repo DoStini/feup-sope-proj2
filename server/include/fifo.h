@@ -1,5 +1,5 @@
-#ifndef CLIENT_INCLUDE_FIFO_H_
-#define CLIENT_INCLUDE_FIFO_H_
+#ifndef SERVER_INCLUDE_FIFO_H_
+#define SERVER_INCLUDE_FIFO_H_
 
 #include <pthread.h>
 #include <stdio.h>
@@ -52,4 +52,4 @@ int get_public_fifo();
  */
 int close_fifo(int fd);
 
-#endif  // CLIENT_INCLUDE_FIFO_H_
+#endif  // SERVER_INCLUDE_FIFO_H_

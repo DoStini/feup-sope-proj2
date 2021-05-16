@@ -88,9 +88,9 @@ int task_handler() {
 
     while (!is_timeout()) {
         pthread_t consumer;
-        message_t *msg = (message_t *)malloc(sizeof(sizeof(message_t)));
+        message_t *msg = malloc(sizeof(message_t));
         if (recv_message(msg) == 0) {
-            if (pthread_create(&consumer, NULL, producer_handler, (void *)msg)) {
+            if (pthread_create(&consumer, NULL, producer_handler, msg)) {
                 free(msg);
                 return TASK_CREATOR_THREAD_ERROR;
             }
