@@ -1,15 +1,15 @@
 FINAL := ../../bin
 
-all: s mainbin move
+all: smock mainbin move
 
-s: server.o lib.o delay.c delay.h
-	gcc -Wall -DDELAY=100 -o s delay.c lib.o server.o -pthread
+smock: server.o lib.o delay.c delay.h
+	gcc -Wall -DDELAY=100 -o smock delay.c lib.o server.o -pthread
 
 mainbin:
 	mkdir -p $(FINAL)
 
 move:
-	mv s $(FINAL)
+	mv smock $(FINAL)
 
 # c: client.c common.h
 # 	gcc -Wall -o c client.c -pthread
@@ -21,4 +21,4 @@ move:
 # 	gcc -Wall -c -o lib.o lib.c
 
 clean:
-	rm -f $(FINAL)/s
+	rm -f $(FINAL)/smock

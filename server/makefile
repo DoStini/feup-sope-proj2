@@ -14,14 +14,14 @@ libs = -pthread -lrt
 
 s: bin mainbin s_inner move
 
-s_inner: $(OBJECTS)
+s_inner: $(OBJECTS) lib/lib.o
 	$(CC) $(flags)  $^ -o s $(libs)
 
 $(OBJ)/%.o: $(SRC)/%.c
 	$(CC) -I$(SRC) $(flags)  -c $< -o $@ $(libs)
 
 bin: 
-	mkdir bin
+	mkdir -p bin
 
 mainbin:
 	mkdir -p $(FINAL)

@@ -25,24 +25,31 @@ int set_public_fifo(int fd) {
 
 int get_public_fifo() { return public_fifo; }
 
-int get_fifo_name(char* res) {
-    pid_t pid = getpid();
-    pthread_t tid = pthread_self();
+int open_write_private_fifo(pid_t pid, pthread_t tid) {
+    char fifo[MAX_FIFO_NAME] = "";
+    snprintf(fifo, MAX_FIFO_NAME, "/tmp/%d.%lu", pid, tid);
+    fprintf(stderr, "%s\n", fifo);
+    int fd = open(fifo, O_WRONLY | O_NONBLOCK);
 
-    return snprintf(res, MAX_FIFO_NAME, "/tmp/%d.%lu", pid, tid);
-}
+    fd_set fds;
+    struct timeval timer;
+    timer_get_remaining_timeval(&timer);
 
-int wait_public_fifo() {
-    int fd;
-    while ((fd = open(get_public_fifoname(), O_WRONLY | O_NONBLOCK)) < 0) {
-        usleep(BUSY_WAIT_US);
-        if (is_timeout()) {
-            return ERROR;
-        }
+    FD_ZERO(&fds);
+    FD_SET(fd, &fds);
+
+    int err;
+    err = select(fd + 1, NULL, &fds, NULL, &timer);
+
+    if (err == -1) {
+        close(fd);
+        return ERROR;
+        perror("select()");
+    } else if (err) {
+        return fd;
     }
-
-    set_public_fifo(fd);
-    return 0;
+    close(fd);
+    return ERROR;
 }
 
 int create_public_fifo() {

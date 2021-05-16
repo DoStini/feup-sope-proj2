@@ -1,5 +1,5 @@
-#ifndef CLIENT_INCLUDE_ARGS_PARSER_H_
-#define CLIENT_INCLUDE_ARGS_PARSER_H_
+#ifndef SERVER_INCLUDE_ARGS_PARSER_H_
+#define SERVER_INCLUDE_ARGS_PARSER_H_
 
 #include <stdint.h>
 #include <sys/types.h>
@@ -35,4 +35,4 @@ int parse_args(int argc, char* const argv[], args_data_t* const data);
  */
 char* get_public_fifoname(void);
 
-#endif  // CLIENT_INCLUDE_ARGS_PARSER_H_
+#endif  // SERVER_INCLUDE_ARGS_PARSER_H_

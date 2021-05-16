@@ -1,5 +1,5 @@
-#ifndef CLIENT_INCLUDE_FIFO_H_
-#define CLIENT_INCLUDE_FIFO_H_
+#ifndef SERVER_INCLUDE_FIFO_H_
+#define SERVER_INCLUDE_FIFO_H_
 
 #include <pthread.h>
 #include <stdio.h>
@@ -22,11 +22,20 @@ int create_public_fifo(void);
 int remove_public_fifo(void);
 
 /**
- * @brief Opens the private fifo for reading
+ * @brief Opens the private fifo for writing
+ * 
+ * @param [in] pid identifies the process id
+ * @param [in] tid identifies the thread id
+ * @return int 0 when closed, other when open (file descriptor)
+ */
+int open_write_private_fifo(pid_t pid, pthread_t tid);
+
+/**
+ * @brief Opens the public fifo for reading
  * 
  * @return int 0 when closed, other when open (file descriptor)
  */
-int open_read_public_fifo(void);
+int open_read_public_fifo();
 
 /**
  * @brief Gets the public fifo fd
@@ -43,4 +52,4 @@ int get_public_fifo();
  */
 int close_fifo(int fd);
 
-#endif  // CLIENT_INCLUDE_FIFO_H_
+#endif  // SERVER_INCLUDE_FIFO_H_

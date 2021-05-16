@@ -1,5 +1,5 @@
-#ifndef CLIENT_INCLUDE_TASK_CREATOR_H_
-#define CLIENT_INCLUDE_TASK_CREATOR_H_
+#ifndef SERVER_INCLUDE_TASK_HANDLER_H_
+#define SERVER_INCLUDE_TASK_HANDLER_H_
 
 #define TASK_CREATOR_ERROR -1
 #define TASK_CREATOR_THREAD_ERROR -2
@@ -22,4 +22,4 @@ int task_handler(void);
  */
 bool is_timeout();
 
-#endif  // CLIENT_INCLUDE_TASK_CREATOR_H_
+#endif  // SERVER_INCLUDE_TASK_HANDLER_H_
