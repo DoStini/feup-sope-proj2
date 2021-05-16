@@ -11,6 +11,7 @@
 #include "../include/task_handler.h"
 #include "../include/timer.h"
 #include "../include/queue.h"
+#include "../include/communication.h"
 
 int main(int argc, char* argv[], char* envp[]) {
     args_data_t data;
@@ -22,7 +23,27 @@ int main(int argc, char* argv[], char* envp[]) {
         exit(BAD_ARGS);
     }
 
-    queue_t* queue = queue_(data.buffer_size);
+    queue_t* queue = queue_(5);
+    queue_print(queue);
+
+    message_t* message = malloc(sizeof(message_t));
+    build_message(message, 0, -1, 2);
+
+    queue_push(queue, message);
+
+    queue_print(queue);
+
+    queue_push(queue, message);
+
+    queue_print(queue);
+
+    queue_push(queue, message);
+    queue_push(queue, message);
+    printf("%d\n", queue_push(queue, message));
+
+    queue_print(queue);
+
+    printf("%d\n", queue_push(queue, message));
     queue_print(queue);
 
     queue_destroy(queue);

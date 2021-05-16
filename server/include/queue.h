@@ -5,6 +5,9 @@
 
 #include "../../common/common.h"
 
+#define QUEUE_NO_SPACE 1
+#define QUEUE_EMPTY 2
+
 typedef struct queue queue_t;
 
 /**
@@ -23,7 +26,8 @@ queue_t* queue_(size_t size);
  **/
 void queue_destroy(queue_t* queue);
 
-void queue_print(queue_t* queue);
+int queue_push(queue_t* queue, Message* message);
 
+void queue_print(queue_t* queue);
 
 #endif  // SERVER_INCLUDE_QUEUE_H_
