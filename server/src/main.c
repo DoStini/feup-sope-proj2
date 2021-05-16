@@ -25,6 +25,8 @@ int main(int argc, char* argv[], char* envp[]) {
     queue_t* queue = queue_(data.buffer_size);
     queue_print(queue);
 
+    queue_destroy(queue);
+
     return 0;
 
     if (timer_start(data.duration)) {

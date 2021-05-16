@@ -31,6 +31,15 @@ queue_t* queue_(size_t size) {
     return new_queue;
 }
 
+void queue_destroy(queue_t* queue) {
+    for(size_t i = 0; i < queue->size; i++) {
+        free(queue->array[i].value);
+    }
+    
+    free(queue->array);
+    free(queue);
+}
+
 #include <stdio.h>
 
 void queue_print(queue_t* queue) {
