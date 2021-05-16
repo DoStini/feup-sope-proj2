@@ -16,10 +16,13 @@
 #include "../lib/lib.h"
 
 #define MSEC_TO_NSEC(x) ((x) * (1e6))
-#define MAX_WAIT_MSEC 50
-#define MIN_WAIT_MSEC 10
 
 static unsigned int seedp;
+
+static message_t queue[1000];
+static size_t curr_idx = 0;
+
+static pthread_mutex_t mutex;
 
 uint64_t get_random_ms(uint64_t lower, uint64_t upper) {
     return MSEC_TO_NSEC(rand_r(&seedp) % (upper - lower) + lower);
@@ -41,27 +44,27 @@ void *producer_handler(void *ptr) {
     message_t msg = *((message_t *)ptr);
     free(ptr);
 
-    pid_t pid = msg.pid;
-    pthread_t tid = msg.tid;
-
     write_log(RECVD, &msg);
     // Write here so that the main thread doesn't waste time
 
+    err_log("received task");
     int res = task(msg.tskload);
-    printf("res: %d\n", res);
     if (is_timeout()) {
-        // Place -1 in the queue to identify timeout
+        err_log("task timedout");
+        msg.tskres = -1;
         return cleanup_thread();
+    } else {
+        msg.tskres = res;
+        write_log(TSKEX, &msg);
     }
 
-    msg.tskres = res;
+    err_log("mutex queue lock");
+    pthread_mutex_lock(&mutex);
 
-    write_log(TSKEX, &msg);
+    queue[curr_idx++] = msg;
 
-    if (send_private_message(&msg, pid, tid))
-        write_log(FAILD, &msg);
-
-    write_log(TSKDN, &msg);
+    pthread_mutex_unlock(&mutex);
+    err_log("mutex queue unlock");
 
     return cleanup_thread();
 }
@@ -86,6 +89,11 @@ int task_handler() {
         return TASK_CREATOR_THREAD_ERROR;
     }
 
+    pthread_mutexattr_t mattr;
+
+    pthread_mutexattr_init(&mattr);
+    pthread_mutex_init(&mutex, &mattr);
+
     while (!is_timeout()) {
         pthread_t consumer;
         message_t *msg = malloc(sizeof(message_t));
@@ -98,6 +106,14 @@ int task_handler() {
             usleep(5);
             free(msg);
         }
+    }
+
+    pthread_mutex_destroy(&mutex);
+    pthread_mutexattr_destroy(&mattr);
+
+    for (size_t i = 0; i <= curr_idx; i++) {
+        message_t msg = queue[i];
+        printf("val: %d - %d\n", msg.tskload, msg.tskres);
     }
 
     return 0;

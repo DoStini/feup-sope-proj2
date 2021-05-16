@@ -44,4 +44,11 @@ int open_log(void);
  **/
 int write_log(enum Event event, message_t* info);
 
+/**
+ * Writes to stderr
+ *
+ * @param [in] msg String to write
+ */
+int err_log(const char* msg);
+
 #endif  // SERVER_INCLUDE_LOGGER_H_
