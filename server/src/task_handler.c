@@ -47,7 +47,7 @@ void *producer_handler(void *ptr) {
     write_log(RECVD, &msg);
     // Write here so that the main thread doesn't waste time
 
-    int res = 5;  // task(msg.tskload);
+    int res = task(msg.tskload);
     printf("res: %d\n", res);
     if (is_timeout()) {
         // Place -1 in the queue to identify timeout
