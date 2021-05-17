@@ -8,10 +8,12 @@
 #include <time.h>
 #include <unistd.h>
 
+#include "../include/args_parser.h"
 #include "../include/communication.h"
 #include "../include/error/exit_codes.h"
 #include "../include/fifo.h"
 #include "../include/logger.h"
+#include "../include/queue.h"
 #include "../include/timer.h"
 #include "../lib/lib.h"
 
@@ -19,8 +21,7 @@
 
 static unsigned int seedp;
 
-static message_t queue[1000];
-static size_t curr_idx = 0;
+static queue_t *data_queue;
 
 static pthread_mutex_t mutex;
 
@@ -37,7 +38,8 @@ void *cleanup_thread() {
 
 void cleanup(void) {
     close_fifo(get_public_fifo());
-    remove_public_fifo();
+    int err = remove_public_fifo();
+    fprintf(stderr, "UNLINK: %d\n", err);
 }
 
 void *producer_handler(void *ptr) {
@@ -52,7 +54,6 @@ void *producer_handler(void *ptr) {
     if (is_timeout()) {
         err_log("task timedout");
         msg.tskres = -1;
-        return cleanup_thread();
     } else {
         msg.tskres = res;
         write_log(TSKEX, &msg);
@@ -61,7 +62,10 @@ void *producer_handler(void *ptr) {
     err_log("mutex queue lock");
     pthread_mutex_lock(&mutex);
 
-    queue[curr_idx++] = msg;
+    if (!queue_empty(data_queue)) {
+        queue_push(data_queue, &msg);
+        queue_print(data_queue);
+    }
 
     pthread_mutex_unlock(&mutex);
     err_log("mutex queue unlock");
@@ -70,10 +74,28 @@ void *producer_handler(void *ptr) {
 }
 
 void *consumer_handler() {
+    // while (!is_timeout()) {
+    //     message_t msg;
+    //     printf("hello\n");
+
+    //     if (queue_empty(data_queue))
+    //         continue;
+    //     queue_front(data_queue, &msg);
+    //     queue_pop(data_queue);
+    //     write_log(IWANT, &msg);
+    //     if (send_private_message(&msg, msg.pid, msg.tid)) {
+    //         write_log(FAILD, &msg);
+    //     } else if (msg.tskres == -1) {
+    //         write_log(TLATE, &msg);
+    //     } else {
+    //         write_log(TSKDN, &msg);
+    //     }
+    // }
+
     return cleanup_thread();
 }
 
-int task_handler() {
+int task_handler(args_data_t *args) {
     if (create_public_fifo() != 0)
         return CANT_CREATE_FIFO;
     atexit(cleanup);
@@ -94,12 +116,15 @@ int task_handler() {
     pthread_mutexattr_init(&mattr);
     pthread_mutex_init(&mutex, &mattr);
 
+    data_queue = queue_(args->buffer_size);
+
     while (!is_timeout()) {
         pthread_t consumer;
         message_t *msg = malloc(sizeof(message_t));
         if (recv_message(msg) == 0) {
             if (pthread_create(&consumer, NULL, producer_handler, msg)) {
                 free(msg);
+                queue_destroy(data_queue);
                 return TASK_CREATOR_THREAD_ERROR;
             }
         } else {
@@ -111,10 +136,9 @@ int task_handler() {
     pthread_mutex_destroy(&mutex);
     pthread_mutexattr_destroy(&mattr);
 
-    for (size_t i = 0; i <= curr_idx; i++) {
-        message_t msg = queue[i];
-        printf("val: %d - %d\n", msg.tskload, msg.tskres);
-    }
+    pthread_join(consumer_thread, NULL);
+
+    queue_destroy(data_queue);
 
     return 0;
 }
