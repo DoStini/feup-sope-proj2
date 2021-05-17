@@ -60,6 +60,14 @@ int queue_push(queue_t* queue, Message* message) {
     return 0;
 }
 
+int queue_front(queue_t* queue, Message* message) {
+    if (queue->first == queue->size) return QUEUE_EMPTY;
+
+    message = queue->array[queue->first].value;
+
+    return 0;
+}
+
 #include <stdio.h>
 
 void queue_print(queue_t* queue) {

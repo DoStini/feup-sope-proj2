@@ -25,26 +25,33 @@ int main(int argc, char* argv[], char* envp[]) {
 
     queue_t* queue = queue_(5);
     queue_print(queue);
-
     message_t* message = malloc(sizeof(message_t));
+    printf("front return: %d\n", queue_front(queue, message));
+
     build_message(message, 0, -1, 2);
 
     queue_push(queue, message);
+    printf("front return: %d\n", queue_front(queue, message));
+    printf("message pointer: %p\n", message);
 
     queue_print(queue);
 
     queue_push(queue, message);
+    printf("front return: %d\n", queue_front(queue, message));
+    printf("message pointer: %p\n", message);
 
     queue_print(queue);
 
     queue_push(queue, message);
     queue_push(queue, message);
-    printf("%d\n", queue_push(queue, message));
+    printf("push return: %d\n", queue_push(queue, message));
 
     queue_print(queue);
 
-    printf("%d\n", queue_push(queue, message));
+    printf("push return: %d\n", queue_push(queue, message));
     queue_print(queue);
+    printf("front return: %d\n", queue_front(queue, message));
+    printf("message pointer: %p\n", message);
 
     queue_destroy(queue);
 

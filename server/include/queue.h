@@ -26,7 +26,25 @@ queue_t* queue_(size_t size);
  **/
 void queue_destroy(queue_t* queue);
 
+/**
+ * @brief Inserts a message at the end of the queue.
+ *
+ * @param[in, out] queue the pointer to the queue.
+ * @param[in] message the message to insert.
+ *
+ * @return an error value.
+ **/
 int queue_push(queue_t* queue, Message* message);
+
+/**
+ * @brief Gets the first element in the queue.
+ *
+ * @param[in] queue the pointer to the queue.
+ * @param[out] message the message returned.
+ *
+ * @return an error value.
+ **/
+int queue_front(queue_t* queue, Message* message);
 
 void queue_print(queue_t* queue);
 
