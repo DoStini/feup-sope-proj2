@@ -90,6 +90,14 @@ int queue_front(queue_t* queue, Message* message) {
     return 0;
 }
 
+bool queue_empty(queue_t* queue) {
+    return queue->first == queue->size;
+}
+
+bool queue_full(queue_t* queue) {
+    return queue->first_empty == queue->size;
+}
+
 // #include <stdio.h>
 
 // void queue_print(queue_t* queue) {

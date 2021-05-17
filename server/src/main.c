@@ -10,8 +10,6 @@
 #include "../include/logger.h"
 #include "../include/task_handler.h"
 #include "../include/timer.h"
-#include "../include/queue.h"
-#include "../include/communication.h"
 
 int main(int argc, char* argv[], char* envp[]) {
     args_data_t data;

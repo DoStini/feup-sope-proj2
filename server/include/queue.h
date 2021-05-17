@@ -2,6 +2,7 @@
 #define SERVER_INCLUDE_QUEUE_H_
 
 #include <stdlib.h>
+#include <stdbool.h>
 
 #include "../../common/common.h"
 
@@ -54,6 +55,24 @@ int queue_pop(queue_t* queue);
  * @return an error value.
  **/
 int queue_front(queue_t* queue, Message* message);
+
+/**
+ * @brief Checks if queue is empty
+ *
+ * @param[in] queue the pointer to the queue.
+ *
+ * @return true if emtpy;
+ **/
+bool queue_empty(queue_t* queue);
+
+/**
+ * @brief Checks if queue is full
+ *
+ * @param[in] queue the pointer to the queue.
+ *
+ * @return true if full;
+ **/
+bool queue_full(queue_t* queue);
 
 void queue_print(queue_t* queue);
 
