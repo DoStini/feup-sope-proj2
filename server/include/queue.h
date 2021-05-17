@@ -37,6 +37,15 @@ void queue_destroy(queue_t* queue);
 int queue_push(queue_t* queue, Message* message);
 
 /**
+ * @brief Removes the first element of the queue.
+ *
+ * @param[in, out] queue the pointer to the queue.
+ *
+ * @return an error value.
+ **/
+int queue_pop(queue_t* queue);
+
+/**
  * @brief Gets the first element in the queue.
  *
  * @param[in] queue the pointer to the queue.
