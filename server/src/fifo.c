@@ -11,6 +11,7 @@
 #include "../include/args_parser.h"
 #include "../include/communication.h"
 #include "../include/error/exit_codes.h"
+#include "../include/logger.h"
 #include "../include/task_handler.h"
 #include "../include/timer.h"
 
@@ -28,9 +29,10 @@ int get_public_fifo() { return public_fifo; }
 int open_write_private_fifo(pid_t pid, pthread_t tid) {
     char fifo[MAX_FIFO_NAME] = "";
     snprintf(fifo, MAX_FIFO_NAME, "/tmp/%d.%lu", pid, tid);
-    fprintf(stderr, "%s\n", fifo);
-    int fd = open(fifo, O_WRONLY | O_NONBLOCK);
-
+    fprintf(stderr, "[server] opened %s\n", fifo);
+    int fd = open(fifo, O_RDWR);
+    perror("private fifo");
+    fprintf(stderr, "open fd: %d\n", fd);
     fd_set fds;
     struct timeval timer;
     timer_get_remaining_timeval(&timer);
@@ -43,11 +45,12 @@ int open_write_private_fifo(pid_t pid, pthread_t tid) {
 
     if (err == -1) {
         close(fd);
-        return ERROR;
         perror("select()");
+        return ERROR;
     } else if (err) {
         return fd;
     }
+    err_log("failed");
     close(fd);
     return ERROR;
 }

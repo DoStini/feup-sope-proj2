@@ -1,6 +1,7 @@
 #include "../include/task_handler.h"
 
 #include <pthread.h>
+#include <semaphore.h>
 #include <signal.h>
 #include <stdio.h>
 #include <stdlib.h>
@@ -24,12 +25,36 @@ static unsigned int seedp;
 static queue_t* data_queue = NULL;
 
 static pthread_mutex_t mutex;
+static pthread_mutexattr_t mattr;
+
+static sem_t recv_sem;
+static sem_t send_sem;
 
 uint64_t get_random_ms(uint64_t lower, uint64_t upper) {
     return MSEC_TO_NSEC(rand_r(&seedp) % (upper - lower) + lower);
 }
 
 int get_random_task() { return rand_r(&seedp) % 9 + 1; }
+
+int init_sync(int sem_size) {
+    if (pthread_mutexattr_init(&mattr))
+        return ERROR;
+    if (pthread_mutex_init(&mutex, &mattr))
+        return ERROR;
+    if (sem_init(&recv_sem, 0, sem_size))
+        return ERROR;
+    if (sem_init(&send_sem, 0, sem_size))
+        return ERROR;
+    return 0;
+}
+
+int free_sync() {
+    pthread_mutex_destroy(&mutex);
+    pthread_mutexattr_destroy(&mattr);
+    sem_destroy(&recv_sem);
+    sem_destroy(&send_sem);
+    return 0;
+}
 
 void* cleanup_thread() {
     pthread_exit(NULL);
@@ -40,8 +65,8 @@ void cleanup(void) {
     close_fifo(get_public_fifo());
     int err = remove_public_fifo();
     fprintf(stderr, "UNLINK: %d\n", err);
-    
-    if(data_queue != NULL) queue_destroy(data_queue);
+    free_sync();
+    if (data_queue != NULL) queue_destroy(data_queue);
 }
 
 void* producer_handler(void* ptr) {
@@ -63,38 +88,45 @@ void* producer_handler(void* ptr) {
         write_log(TSKEX, &msg);
     }
 
-    err_log("mutex queue lock");
+    sem_wait(&recv_sem);
+
     pthread_mutex_lock(&mutex);
 
-    if (data_queue != NULL && !queue_empty(data_queue)) {
+    if (data_queue != NULL)
         queue_push(data_queue, &msg);
-        queue_print(data_queue);
-    }
 
     pthread_mutex_unlock(&mutex);
-    err_log("mutex queue unlock");
 
     return cleanup_thread();
 }
 
 void* consumer_handler() {
-    // while (!is_timeout()) {
-    //     message_t msg;
-    //     printf("hello\n");
+    while (1) {
+        if (is_timeout() && queue_empty(data_queue))
+            break;
 
-    //     if (queue_empty(data_queue))
-    //         continue;
-    //     queue_front(data_queue, &msg);
-    //     queue_pop(data_queue);
-    //     write_log(IWANT, &msg);
-    //     if (send_private_message(&msg, msg.pid, msg.tid)) {
-    //         write_log(FAILD, &msg);
-    //     } else if (msg.tskres == -1) {
-    //         write_log(TLATE, &msg);
-    //     } else {
-    //         write_log(TSKDN, &msg);
-    //     }
-    // }
+        message_t msg;
+
+        if (queue_empty(data_queue))
+            continue;
+
+        pthread_mutex_lock(&mutex);
+        queue_front(data_queue, &msg);
+        queue_pop(data_queue);
+        pthread_mutex_unlock(&mutex);
+        sem_post(&recv_sem);
+
+        write_log(IWANT, &msg);
+        if (send_private_message(&msg, msg.pid, msg.tid)) {
+            write_log(FAILD, &msg);
+        } else if (msg.tskres == -1) {
+            write_log(TLATE, &msg);
+        } else {
+            write_log(TSKDN, &msg);
+        }
+    }
+
+    err_log("terminate consumer");
 
     return cleanup_thread();
 }
@@ -113,10 +145,9 @@ int task_handler(args_data_t* args) {
         return TASK_CREATOR_THREAD_ERROR;
     }
 
-    pthread_mutexattr_t mattr;
-
-    pthread_mutexattr_init(&mattr);
-    pthread_mutex_init(&mutex, &mattr);
+    if (init_sync(args->buffer_size)) {
+        return ERROR;
+    }
 
     data_queue = queue_(args->buffer_size);
 
@@ -134,9 +165,6 @@ int task_handler(args_data_t* args) {
             free(msg);
         }
     }
-
-    pthread_mutex_destroy(&mutex);
-    pthread_mutexattr_destroy(&mattr);
 
     pthread_join(consumer_thread, NULL);
 
