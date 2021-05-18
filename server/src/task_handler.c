@@ -107,11 +107,11 @@ void* consumer_handler() {
 
         message_t msg;
 
-        if (queue_empty(data_queue))
-            continue;
-
         pthread_mutex_lock(&mutex);
-        queue_front(data_queue, &msg);
+        if (queue_front(data_queue, &msg) == QUEUE_EMPTY) {
+            pthread_mutex_unlock(&mutex);
+            continue;
+        }
         queue_pop(data_queue);
         pthread_mutex_unlock(&mutex);
         sem_post(&recv_sem);
