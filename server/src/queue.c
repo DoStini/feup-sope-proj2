@@ -40,6 +40,7 @@ queue_t* queue_(size_t size) {
 void queue_destroy(queue_t* queue) {
     free(queue->array);
     free(queue);
+    queue = NULL;
 }
 
 int queue_push(queue_t* queue, Message* message) {
