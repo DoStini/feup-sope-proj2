@@ -12,7 +12,7 @@ OBJECTS := $(patsubst $(SRC)/%.c, $(OBJ)/%.o, $(SOURCES))
 flags = -g -Wall 
 libs = -pthread -lrt
 
-c: bin mainbin c_inner move
+c: bin c_inner move
 
 c_inner: $(OBJECTS)
 	$(CC) $(flags)  $^ -o c $(libs)
