@@ -40,6 +40,7 @@ queue_t* queue_(size_t size) {
 void queue_destroy(queue_t* queue) {
     free(queue->array);
     free(queue);
+    queue = NULL;
 }
 
 int queue_push(queue_t* queue, Message* message) {
@@ -98,28 +99,28 @@ bool queue_full(queue_t* queue) {
     return queue->first_empty == queue->size;
 }
 
-// #include <stdio.h>
+#include <stdio.h>
 
-// void queue_print(queue_t* queue) {
-//     printf(
-//         "{\n\tsize->%zu,\n\tfirst->%zu,\n\tlast->%zu,\n\tfirst_empty->%zu,"
-//         "\n\tlast_empty->%zu,",
-//         queue->size, queue->first, queue->last, queue->first_empty,
-//         queue->last_empty);
+void queue_print(queue_t* queue) {
+    printf(
+        "{\n\tsize->%zu,\n\tfirst->%zu,\n\tlast->%zu,\n\tfirst_empty->%zu,"
+        "\n\tlast_empty->%zu,",
+        queue->size, queue->first, queue->last, queue->first_empty,
+        queue->last_empty);
 
-//     for (size_t i = 0; i < queue->size; i++) {
-//         printf("\n\t{\n\t\tvalue_p->%p,", &queue->array[i].value);
+    for (size_t i = 0; i < queue->size; i++) {
+        printf("\n\t{\n\t\tvalue_p->%p,", &queue->array[i].value);
 
-//         if (queue->array[i].value.pid != 0) {
-//             printf(
-//                 "\n\t\t{\n\t\t\tid->%d,\n\t\t\tres->%d,"
-//                 "\n\t\t\tt->%d\n\t\t},",
-//                 queue->array[i].value.rid, queue->array[i].value.tskres,
-//                 queue->array[i].value.tskload);
-//         }
+        if (queue->array[i].value.pid != 0) {
+            printf(
+                "\n\t\t{\n\t\t\tid->%d,\n\t\t\tres->%d,"
+                "\n\t\t\tt->%d\n\t\t},",
+                queue->array[i].value.rid, queue->array[i].value.tskres,
+                queue->array[i].value.tskload);
+        }
 
-//         printf("\n\t\tnext->%zu,\n\t},", queue->array[i].next);
-//     }
+        printf("\n\t\tnext->%zu,\n\t},", queue->array[i].next);
+    }
 
-//     printf("\n}\n");
-// }
+    printf("\n}\n");
+}

@@ -4,5 +4,6 @@ then
     exit 1
 fi
 
-cpplint --filter=-whitespace,-legal/copyright,-readability/check,-readability/casting  --recursive client
-# cpplint --filter=-whitespace,-legal/copyright,-readability/check,-readability/casting  --recursive server
+# cpplint --filter=-whitespace,-legal/copyright,-readability/check,-readability/casting  --recursive client
+cpplint --filter=-whitespace,-legal/copyright,-readability/check,-readability/casting  --recursive server/src
+cpplint --filter=-whitespace,-legal/copyright,-readability/check,-readability/casting  --recursive server/include

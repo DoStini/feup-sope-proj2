@@ -28,7 +28,7 @@ int main(int argc, char* argv[], char* envp[]) {
     atexit(timer_cleanup);
 
     open_log();
-    int err = task_handler();
+    int err = task_handler(&data);
 
     pthread_exit(&err);
 }

@@ -1,6 +1,6 @@
 FINAL := ../../bin
 
-all: c move
+all: c mainbin move
 
 # s: server.o lib.o delay.c delay.h
 # 	gcc -Wall -DDELAY=100 -o s delay.c lib.o server.o -pthread

@@ -1,6 +1,6 @@
 FINAL := ../../bin
 
-all: smock mainbin move
+all: smock move
 
 smock: server.o lib.o delay.c delay.h
 	gcc -Wall -DDELAY=100 -o smock delay.c lib.o server.o -pthread
