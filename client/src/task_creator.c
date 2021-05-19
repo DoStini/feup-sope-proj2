@@ -15,8 +15,8 @@
 #include "../include/timer.h"
 
 #define MSEC_TO_NSEC(x) ((x) * (1e6))
-#define MAX_WAIT_MSEC 50
-#define MIN_WAIT_MSEC 10
+#define MAX_WAIT_MSEC 5
+#define MIN_WAIT_MSEC 1
 
 static unsigned int seedp;
 

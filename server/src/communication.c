@@ -22,7 +22,9 @@ int recv_message(message_t* msg) {
     int fd = get_public_fifo();
     fd_set fds;
     struct timeval timer;
+
     timer_get_remaining_timeval(&timer);
+    timer.tv_sec++;
 
     FD_ZERO(&fds);
     FD_SET(fd, &fds);
@@ -47,7 +49,9 @@ int send_private_message(message_t* msg, pid_t pid, pthread_t tid) {
     if (fd <= 0)
         return ERROR;
 
-    write(fd, msg, sizeof(message_t));
+    int sent_size = write(fd, msg, sizeof(message_t));
 
-    return close_fifo(fd);
+    fprintf(stderr, "%d size sent: %d %lu\n", msg->rid, sent_size, sizeof(message_t));
+
+    return close_fifo(fd) || sent_size != sizeof(message_t);
 }

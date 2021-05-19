@@ -30,6 +30,8 @@ static pthread_mutexattr_t mattr;
 static sem_t recv_sem;
 static sem_t send_sem;
 
+static bool finished = false;
+
 uint64_t get_random_ms(uint64_t lower, uint64_t upper) {
     return MSEC_TO_NSEC(rand_r(&seedp) % (upper - lower) + lower);
 }
@@ -43,7 +45,7 @@ int init_sync(int sem_size) {
         return ERROR;
     if (sem_init(&recv_sem, 0, sem_size))
         return ERROR;
-    if (sem_init(&send_sem, 0, sem_size))
+    if (sem_init(&send_sem, 0, 0))
         return ERROR;
     return 0;
 }
@@ -73,17 +75,12 @@ void* producer_handler(void* ptr) {
     message_t msg = *((message_t*)ptr);
     free(ptr);
 
-    write_log(RECVD, &msg);
-    // Write here so that the main thread doesn't waste time
-
     err_log("received task");
-    int res = task(msg.tskload);
     if (is_timeout()) {
         err_log("task timedout");
         msg.tskres = -1;
-
-        return cleanup_thread();
     } else {
+        int res = task(msg.tskload);
         msg.tskres = res;
         write_log(TSKEX, &msg);
     }
@@ -95,6 +92,8 @@ void* producer_handler(void* ptr) {
     if (data_queue != NULL)
         queue_push(data_queue, &msg);
 
+    sem_post(&send_sem);
+
     pthread_mutex_unlock(&mutex);
 
     return cleanup_thread();
@@ -102,21 +101,20 @@ void* producer_handler(void* ptr) {
 
 void* consumer_handler() {
     while (1) {
-        if (is_timeout() && queue_empty(data_queue))
-            break;
-
         message_t msg;
 
+        sem_wait(&send_sem);
+
         pthread_mutex_lock(&mutex);
+
         if (queue_front(data_queue, &msg) == QUEUE_EMPTY) {
             pthread_mutex_unlock(&mutex);
-            continue;
+            break;
         }
         queue_pop(data_queue);
         pthread_mutex_unlock(&mutex);
         sem_post(&recv_sem);
 
-        write_log(IWANT, &msg);
         if (send_private_message(&msg, msg.pid, msg.tid)) {
             write_log(FAILD, &msg);
         } else if (msg.tskres == -1) {
@@ -151,20 +149,27 @@ int task_handler(args_data_t* args) {
 
     data_queue = queue_(args->buffer_size);
 
-    while (!is_timeout()) {
+    while (1) {
         pthread_t producer_thread;
         message_t* msg = malloc(sizeof(message_t));
         if (recv_message(msg) == 0) {
+            write_log(RECVD, msg);
             if (pthread_create(&producer_thread, NULL, producer_handler, msg)) {
                 free(msg);
                 queue_destroy(data_queue);
                 return TASK_CREATOR_THREAD_ERROR;
             }
         } else {
-            usleep(5);
             free(msg);
+            usleep(5);
+            if (is_timeout()) {
+                break;
+            }
         }
     }
+
+    finished = true;
+    sem_post(&send_sem);
 
     pthread_join(consumer_thread, NULL);
 
