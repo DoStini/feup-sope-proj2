@@ -21,7 +21,7 @@
 #include <asm-generic/errno.h>
 
 #define MSEC_TO_NSEC(x) ((x) * (1e6))
-#define MAX_TRIES 2
+#define MAX_TRIES 3
 
 static unsigned int seedp;
 
