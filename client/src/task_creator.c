@@ -15,8 +15,8 @@
 #include "../include/timer.h"
 
 #define MSEC_TO_NSEC(x) ((x) * (1e6))
-#define MAX_WAIT_MSEC 5
-#define MIN_WAIT_MSEC 1
+#define MAX_WAIT_MSEC 50
+#define MIN_WAIT_MSEC 10
 
 static unsigned int seedp;
 
@@ -96,7 +96,8 @@ int task_creator() {
 
         if (pthread_create(&thread, NULL, create_receive_task,
                            (void*)thread_id)) {
-            return TASK_CREATOR_THREAD_ERROR;
+            free(thread_id);
+	    continue;
         }
         pthread_detach(thread);
 

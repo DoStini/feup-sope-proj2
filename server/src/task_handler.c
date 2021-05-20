@@ -154,7 +154,6 @@ void* consumer_handler() {
 int task_handler(args_data_t* args) {
     if (create_public_fifo() != 0) return CANT_CREATE_FIFO;
     atexit(cleanup);
-
     int fd = open_read_public_fifo();
 
     if (fd < 0) return ERROR;
@@ -178,15 +177,21 @@ int task_handler(args_data_t* args) {
         if (recv_message(msg) == 0) {
             tries = 0;
             write_log(RECVD, msg);
-            int create_threads = 3;
-            while (pthread_create(&producer_thread, NULL, producer_handler, msg) == -1) {
+            int create_threads = 100;
+            while (pthread_create(&producer_thread, NULL, producer_handler, msg) != 0) {
                 create_threads--;
+		err_log("i failed once");
                 if (create_threads == 0) {
-                    write_log(FAILD, msg);
+		    err_log("i failed a ton?????");
+                    msg->pid = 0;
+		    msg->tid = 0;
+		    msg->tskload = 0;
+		    msg->tskres = 0;
+		    write_log(FAILD, msg);
                     free(msg);
                     break;
                 }
-                usleep(50000);
+                usleep(1000);
             }
 
             // if (pthread_create(&producer_thread, NULL, producer_handler, msg)) {
@@ -197,7 +202,8 @@ int task_handler(args_data_t* args) {
             free(msg);
             usleep(5);
             if (is_timeout()) {
-                if (tries < MAX_TRIES) {
+                err_log("i shouldn't be here");
+		if (tries < MAX_TRIES) {
                     sleep(1);
                     tries++;
                     continue;
