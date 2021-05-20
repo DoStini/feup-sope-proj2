@@ -81,7 +81,7 @@ int open_read_private_fifo() {
 
     if (err == -1) {
         close(fd);
-	remove_private_fifo();
+        remove_private_fifo();
         return ERROR;
         perror("select()");
     } else if (err) {

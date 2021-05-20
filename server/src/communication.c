@@ -51,8 +51,7 @@ int send_private_message(message_t* msg, pid_t pid, pthread_t tid) {
     snprintf(fifo, MAX_FIFO_NAME, "/tmp/%d.%lu", pid, tid);
     fprintf(stderr, "[server] opened %s\n", fifo);
     int fd = open(fifo, O_RDWR);
-    if (fd < 0)
-        return ERROR;
+    if (fd < 0) return ERROR;
     perror("private fifo");
     fprintf(stderr, "open fd: %d\n", fd);
     fd_set fds;
@@ -73,12 +72,12 @@ int send_private_message(message_t* msg, pid_t pid, pthread_t tid) {
     } else if (err) {
         int sent_size = write(fd, msg, sizeof(message_t));
 
-        fprintf(stderr, "%d size sent: %d %lu\n", msg->rid, sent_size, sizeof(message_t));
+        fprintf(stderr, "%d size sent: %d %lu\n", msg->rid, sent_size,
+                sizeof(message_t));
 
         int err = close_fifo(fd);
 
-        if (sent_size != sizeof(message_t) || err)
-            return ERROR;
+        if (sent_size != sizeof(message_t) || err) return ERROR;
         return 0;
     }
     fprintf(stderr, "[server]failed\n");

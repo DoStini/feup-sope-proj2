@@ -66,9 +66,7 @@ void* create_receive_task(void* thread_id) {
     return NULL;
 }
 
-void cleanup(void) {
-    close_fifo(get_public_fifo());
-}
+void cleanup(void) { close_fifo(get_public_fifo()); }
 
 int task_creator() {
     struct timespec tspec;
@@ -97,7 +95,7 @@ int task_creator() {
         if (pthread_create(&thread, NULL, create_receive_task,
                            (void*)thread_id)) {
             free(thread_id);
-	    continue;
+            continue;
         }
         pthread_detach(thread);
 

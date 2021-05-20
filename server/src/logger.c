@@ -49,6 +49,4 @@ int open_log() {
     return 0;
 }
 
-int err_log(const char* msg) {
-    return fprintf(stderr, "[server] %s\n", msg);
-}
+int err_log(const char* msg) { return fprintf(stderr, "[server] %s\n", msg); }

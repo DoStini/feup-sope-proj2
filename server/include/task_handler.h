@@ -10,11 +10,11 @@
 
 /**
  * @brief Handles the threads.
- * 
+ *
  * @param [in] data Argv parsed
  * @return an error value.
  **/
-int task_handler(args_data_t *args);
+int task_handler(args_data_t* args);
 /**
  * @brief Indicates if the client has passed the timeout
  *

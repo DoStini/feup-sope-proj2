@@ -42,14 +42,10 @@ uint64_t get_random_ms(uint64_t lower, uint64_t upper) {
 int get_random_task() { return rand_r(&seedp) % 9 + 1; }
 
 int init_sync(int sem_size) {
-    if (pthread_mutexattr_init(&mattr))
-        return ERROR;
-    if (pthread_mutex_init(&mutex, &mattr))
-        return ERROR;
-    if (sem_init(&recv_sem, 0, sem_size))
-        return ERROR;
-    if (sem_init(&send_sem, 0, 0))
-        return ERROR;
+    if (pthread_mutexattr_init(&mattr)) return ERROR;
+    if (pthread_mutex_init(&mutex, &mattr)) return ERROR;
+    if (sem_init(&recv_sem, 0, sem_size)) return ERROR;
+    if (sem_init(&send_sem, 0, 0)) return ERROR;
     return 0;
 }
 
@@ -92,8 +88,7 @@ void* producer_handler(void* ptr) {
 
     pthread_mutex_lock(&mutex);
 
-    if (data_queue != NULL)
-        queue_push(data_queue, &msg);
+    if (data_queue != NULL) queue_push(data_queue, &msg);
 
     sem_post(&send_sem);
 
@@ -178,33 +173,23 @@ int task_handler(args_data_t* args) {
             tries = 0;
             write_log(RECVD, msg);
             int create_threads = 100;
-            while (pthread_create(&producer_thread, NULL, producer_handler, msg) != 0) {
+            while (pthread_create(&producer_thread, NULL, producer_handler,
+                                  msg) != 0) {
                 create_threads--;
-		err_log("i failed once");
                 if (create_threads == 0) {
-		    err_log("i failed a ton?????");
-                    msg->pid = 0;
-		    msg->tid = 0;
-		    msg->tskload = 0;
-		    msg->tskres = 0;
-		    write_log(FAILD, msg);
+                    write_log(FAILD, msg);
                     free(msg);
                     break;
                 }
                 usleep(1000);
             }
 
-            // if (pthread_create(&producer_thread, NULL, producer_handler, msg)) {
-            //     free(msg);
-            //     break;
-            // }
         } else {
             free(msg);
             usleep(5);
             if (is_timeout()) {
-                err_log("i shouldn't be here");
-		if (tries < MAX_TRIES) {
-                    sleep(1);
+                if (tries < MAX_TRIES) {
+                    usleep(1000);
                     tries++;
                     continue;
                 } else {

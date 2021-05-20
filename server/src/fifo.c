@@ -68,14 +68,11 @@ int create_public_fifo() {
     return 0;
 }
 
-int remove_public_fifo() {
-    return unlink(get_public_fifoname());
-}
+int remove_public_fifo() { return unlink(get_public_fifoname()); }
 
 int open_read_public_fifo() {
     int fd = open(get_public_fifoname(), O_RDWR);
-    if (fd < 0)
-        return ERROR;
+    if (fd < 0) return ERROR;
     set_public_fifo(fd);
     return 0;
 }

@@ -10,7 +10,7 @@
 
 /**
  * @brief Command line arguments information
- * 
+ *
  */
 typedef struct args_data {
     uint64_t duration;
@@ -20,7 +20,7 @@ typedef struct args_data {
 
 /**
  * @brief Parses the command line arguments into the respective struct
- * 
+ *
  * @param argc the number of command line arguments
  * @param[in] argv the command line arguments array
  * @param[out] data the args struct to save the information on
@@ -30,7 +30,7 @@ int parse_args(int argc, char* const argv[], args_data_t* const data);
 
 /**
  * @brief Get the public fifo name
- * 
+ *
  * @return char* the public fifo name
  */
 char* get_public_fifoname(void);
