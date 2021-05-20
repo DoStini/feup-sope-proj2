@@ -137,7 +137,7 @@ void* consumer_handler() {
 
         sem_post(&recv_sem);
 
-        if (send_private_message(&msg, msg.pid, msg.tid)) {
+        if (send_private_message(&msg, msg.pid, msg.tid) == -1) {
             write_log(FAILD, &msg);
         } else if (msg.tskres == -1) {
             write_log(TLATE, &msg);

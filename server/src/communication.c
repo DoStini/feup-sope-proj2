@@ -1,6 +1,8 @@
 #include "../include/communication.h"
 
+#include <fcntl.h>
 #include <string.h>
+#include <sys/stat.h>
 #include <unistd.h>
 
 #include "../include/error/exit_codes.h"
@@ -45,13 +47,40 @@ int recv_message(message_t* msg) {
 }
 
 int send_private_message(message_t* msg, pid_t pid, pthread_t tid) {
-    int fd = open_write_private_fifo(pid, tid);
-    if (fd <= 0)
+    char fifo[MAX_FIFO_NAME] = "";
+    snprintf(fifo, MAX_FIFO_NAME, "/tmp/%d.%lu", pid, tid);
+    fprintf(stderr, "[server] opened %s\n", fifo);
+    int fd = open(fifo, O_RDWR);
+    if (fd < 0)
         return ERROR;
+    perror("private fifo");
+    fprintf(stderr, "open fd: %d\n", fd);
+    fd_set fds;
+    struct timeval timer;
+    timer_get_remaining_timeval(&timer);
 
-    int sent_size = write(fd, msg, sizeof(message_t));
+    FD_ZERO(&fds);
+    FD_SET(fd, &fds);
 
-    fprintf(stderr, "%d size sent: %d %lu\n", msg->rid, sent_size, sizeof(message_t));
+    int err;
+    err = select(fd + 1, NULL, &fds, NULL, &timer);
 
-    return close_fifo(fd) || sent_size != sizeof(message_t);
+    if (err == -1) {
+        close(fd);
+        perror("select()");
+        return ERROR;
+    } else if (err) {
+        int sent_size = write(fd, msg, sizeof(message_t));
+
+        fprintf(stderr, "%d size sent: %d %lu\n", msg->rid, sent_size, sizeof(message_t));
+
+        int err = close_fifo(fd);
+
+        if (sent_size != sizeof(message_t) || err)
+            return ERROR;
+        return 0;
+    }
+    fprintf(stderr, "[server]failed\n");
+    close(fd);
+    return ERROR;
 }
