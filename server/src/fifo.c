@@ -31,7 +31,11 @@ int open_write_private_fifo(pid_t pid, pthread_t tid) {
     snprintf(fifo, MAX_FIFO_NAME, "/tmp/%d.%lu", pid, tid);
     fprintf(stderr, "[server] opened %s\n", fifo);
     int fd = open(fifo, O_RDWR);
-    perror("private fifo");
+    return fd;
+    if (fd < 0) {
+        perror("private fifo");
+        return ERROR;
+    }
     fprintf(stderr, "open fd: %d\n", fd);
     fd_set fds;
     struct timeval timer;

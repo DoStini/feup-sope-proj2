@@ -156,7 +156,6 @@ int task_handler(args_data_t* args) {
             write_log(RECVD, msg);
             if (pthread_create(&producer_thread, NULL, producer_handler, msg)) {
                 free(msg);
-                queue_destroy(data_queue);
                 return TASK_CREATOR_THREAD_ERROR;
             }
         } else {
