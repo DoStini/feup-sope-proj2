@@ -172,7 +172,7 @@ int task_handler(args_data_t* args) {
         if (recv_message(msg) == 0) {
             tries = 0;
             write_log(RECVD, msg);
-            int create_threads = 100;
+            int create_threads = 1000;
             while (pthread_create(&producer_thread, NULL, producer_handler,
                                   msg) != 0) {
                 create_threads--;

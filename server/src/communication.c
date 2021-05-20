@@ -80,7 +80,6 @@ int send_private_message(message_t* msg, pid_t pid, pthread_t tid) {
         if (sent_size != sizeof(message_t) || err) return ERROR;
         return 0;
     }
-    fprintf(stderr, "[server]failed\n");
     close(fd);
     return ERROR;
 }

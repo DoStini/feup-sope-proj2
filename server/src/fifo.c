@@ -54,7 +54,6 @@ int open_write_private_fifo(pid_t pid, pthread_t tid) {
     } else if (err) {
         return fd;
     }
-    err_log("failed");
     close(fd);
     return ERROR;
 }

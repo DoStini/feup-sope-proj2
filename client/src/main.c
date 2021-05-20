@@ -26,8 +26,6 @@ int main(int argc, char* argv[], char* envp[]) {
         return ERROR;
     }
 
-    printf("Duration: %lu\nFifoname: %s\n", data.duration, data.fifoname);
-
     open_log();
     int err = task_creator();
 
