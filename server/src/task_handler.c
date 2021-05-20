@@ -1,5 +1,7 @@
 #include "../include/task_handler.h"
 
+#include <asm-generic/errno.h>
+#include <errno.h>
 #include <pthread.h>
 #include <semaphore.h>
 #include <signal.h>
@@ -8,7 +10,6 @@
 #include <string.h>
 #include <time.h>
 #include <unistd.h>
-#include <errno.h>
 
 #include "../include/args_parser.h"
 #include "../include/communication.h"
@@ -18,7 +19,6 @@
 #include "../include/queue.h"
 #include "../include/timer.h"
 #include "../lib/lib.h"
-#include <asm-generic/errno.h>
 
 #define MSEC_TO_NSEC(x) ((x) * (1e6))
 #define MAX_TRIES 3
@@ -114,8 +114,8 @@ void* consumer_handler() {
         errno = 0;
         sem_timedwait(&send_sem, &absolute_timeout);
 
-        if(errno == ETIMEDOUT && queue_empty(data_queue)) {
-            if(tries < MAX_TRIES) {
+        if (errno == ETIMEDOUT && queue_empty(data_queue)) {
+            if (tries < MAX_TRIES) {
                 sleep(1);
                 tries++;
                 continue;
@@ -127,7 +127,7 @@ void* consumer_handler() {
 
         pthread_mutex_lock(&mutex);
 
-        if(queue_front(data_queue, &msg) == QUEUE_EMPTY) {
+        if (queue_front(data_queue, &msg) == QUEUE_EMPTY) {
             pthread_mutex_unlock(&mutex);
             continue;
         }
@@ -178,16 +178,26 @@ int task_handler(args_data_t* args) {
         if (recv_message(msg) == 0) {
             tries = 0;
             write_log(RECVD, msg);
-            if (pthread_create(&producer_thread, NULL, producer_handler, msg)) {
-                free(msg);
-                break;
+            int create_threads = 3;
+            while (pthread_create(&producer_thread, NULL, producer_handler, msg) == -1) {
+                create_threads--;
+                if (create_threads == 0) {
+                    write_log(FAILD, msg);
+                    free(msg);
+                    break;
+                }
+                usleep(50000);
             }
-            pthread_detach(producer_thread);
+
+            // if (pthread_create(&producer_thread, NULL, producer_handler, msg)) {
+            //     free(msg);
+            //     break;
+            // }
         } else {
             free(msg);
             usleep(5);
             if (is_timeout()) {
-                if(tries < MAX_TRIES) {
+                if (tries < MAX_TRIES) {
                     sleep(1);
                     tries++;
                     continue;
