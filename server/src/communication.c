@@ -58,6 +58,7 @@ int send_private_message(message_t* msg, pid_t pid, pthread_t tid) {
     fd_set fds;
     struct timeval timer;
     timer_get_remaining_timeval(&timer);
+    timer.tv_sec++;
 
     FD_ZERO(&fds);
     FD_SET(fd, &fds);
