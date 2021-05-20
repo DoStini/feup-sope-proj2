@@ -8,6 +8,7 @@
 #include <string.h>
 #include <time.h>
 #include <unistd.h>
+#include <errno.h>
 
 #include "../include/args_parser.h"
 #include "../include/communication.h"
@@ -17,8 +18,10 @@
 #include "../include/queue.h"
 #include "../include/timer.h"
 #include "../lib/lib.h"
+#include <asm-generic/errno.h>
 
 #define MSEC_TO_NSEC(x) ((x) * (1e6))
+#define MAX_TRIES 2
 
 static unsigned int seedp;
 
@@ -100,19 +103,38 @@ void* producer_handler(void* ptr) {
 }
 
 void* consumer_handler() {
+    int tries = 0;
+
     while (1) {
         message_t msg;
 
-        sem_wait(&send_sem);
+        struct timespec absolute_timeout;
+        timer_get_absolute_timeout(&absolute_timeout);
+
+        errno = 0;
+        sem_timedwait(&send_sem, &absolute_timeout);
+
+        if(errno == ETIMEDOUT && queue_empty(data_queue)) {
+            if(tries < MAX_TRIES) {
+                sleep(1);
+                tries++;
+                continue;
+            } else {
+                break;
+            }
+        }
+        tries = 0;
 
         pthread_mutex_lock(&mutex);
 
-        if (queue_front(data_queue, &msg) == QUEUE_EMPTY) {
+        if(queue_front(data_queue, &msg) == QUEUE_EMPTY) {
             pthread_mutex_unlock(&mutex);
-            break;
+            continue;
         }
         queue_pop(data_queue);
+
         pthread_mutex_unlock(&mutex);
+
         sem_post(&recv_sem);
 
         if (send_private_message(&msg, msg.pid, msg.tid)) {
@@ -148,27 +170,35 @@ int task_handler(args_data_t* args) {
     }
 
     data_queue = queue_(args->buffer_size);
+    int tries = 0;
 
     while (1) {
         pthread_t producer_thread;
         message_t* msg = malloc(sizeof(message_t));
         if (recv_message(msg) == 0) {
+            tries = 0;
             write_log(RECVD, msg);
             if (pthread_create(&producer_thread, NULL, producer_handler, msg)) {
                 free(msg);
-                return TASK_CREATOR_THREAD_ERROR;
+                break;
             }
+            pthread_detach(producer_thread);
         } else {
             free(msg);
             usleep(5);
             if (is_timeout()) {
-                break;
+                if(tries < MAX_TRIES) {
+                    sleep(1);
+                    tries++;
+                    continue;
+                } else {
+                    break;
+                }
             }
         }
     }
 
     finished = true;
-    sem_post(&send_sem);
 
     pthread_join(consumer_thread, NULL);
 

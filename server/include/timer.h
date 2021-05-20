@@ -45,4 +45,6 @@ int timer_get_remaining(struct timespec* time);
  **/
 int timer_get_remaining_timeval(struct timeval* time);
 
+int timer_get_absolute_timeout(struct timespec* timeout);
+
 #endif  // SERVER_INCLUDE_TIMER_H_
