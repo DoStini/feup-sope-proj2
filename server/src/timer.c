@@ -42,16 +42,6 @@ bool is_timeout() {
            timer_value.it_value.tv_sec == 0;
 }
 
-int timer_get_remaining(struct timespec* time) {
-    struct itimerspec timer_value;
-    int err = timer_gettime(timer, &timer_value);
-    if (err) return err;
-
-    *time = timer_value.it_value;
-
-    return 0;
-}
-
 int timer_get_remaining_timeval(struct timeval* time) {
     struct itimerspec timer_value;
     int err = timer_gettime(timer, &timer_value);

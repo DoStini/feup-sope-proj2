@@ -48,8 +48,7 @@ void* cleanup_thread() {
 
 void cleanup(void) {
     close_fifo(get_public_fifo());
-    int err = remove_public_fifo();
-    fprintf(stderr, "UNLINK: %d\n", err);
+    remove_public_fifo();
     free_sync();
     timer_cleanup();
     if (data_queue != NULL) queue_destroy(data_queue);
