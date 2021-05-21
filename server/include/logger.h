@@ -1,9 +1,7 @@
 #ifndef SERVER_INCLUDE_LOGGER_H_
 #define SERVER_INCLUDE_LOGGER_H_
 
-#include <stdbool.h>
-
-#include "../include/communication.h"
+#include "include/communication.h"
 
 #define LOG_PATH "client.log"
 
@@ -23,12 +21,6 @@ enum Event {
     GAVUP,
     FAILD
 };
-
-typedef struct info {
-    int id;
-    int t;
-    int res;
-} info_t;
 
 /**
  * @brief Opens the log file, if one is given, and gets its file descriptor
