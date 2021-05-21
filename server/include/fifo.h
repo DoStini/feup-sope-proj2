@@ -22,15 +22,6 @@ int create_public_fifo(void);
 int remove_public_fifo(void);
 
 /**
- * @brief Opens the private fifo for writing
- *
- * @param [in] pid identifies the process id
- * @param [in] tid identifies the thread id
- * @return int 0 when closed, other when open (file descriptor)
- */
-int open_write_private_fifo(pid_t pid, pthread_t tid);
-
-/**
  * @brief Opens the public fifo for reading
  *
  * @return int 0 when closed, other when open (file descriptor)

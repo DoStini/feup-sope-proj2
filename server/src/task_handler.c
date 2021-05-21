@@ -20,10 +20,7 @@
 #include "../include/timer.h"
 #include "../lib/lib.h"
 
-#define MSEC_TO_NSEC(x) ((x) * (1e6))
 #define MAX_TRIES 3
-
-static unsigned int seedp;
 
 static queue_t* data_queue = NULL;
 
@@ -32,14 +29,6 @@ static pthread_mutexattr_t mattr;
 
 static sem_t recv_sem;
 static sem_t send_sem;
-
-static bool finished = false;
-
-uint64_t get_random_ms(uint64_t lower, uint64_t upper) {
-    return MSEC_TO_NSEC(rand_r(&seedp) % (upper - lower) + lower);
-}
-
-int get_random_task() { return rand_r(&seedp) % 9 + 1; }
 
 int init_sync(int sem_size) {
     if (pthread_mutexattr_init(&mattr)) return ERROR;
@@ -67,6 +56,7 @@ void cleanup(void) {
     int err = remove_public_fifo();
     fprintf(stderr, "UNLINK: %d\n", err);
     free_sync();
+    timer_cleanup();
     if (data_queue != NULL) queue_destroy(data_queue);
 }
 
@@ -198,8 +188,6 @@ int task_handler(args_data_t* args) {
             }
         }
     }
-
-    finished = true;
 
     pthread_join(consumer_thread, NULL);
 
