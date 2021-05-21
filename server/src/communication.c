@@ -1,11 +1,13 @@
 #include "include/communication.h"
 
 #include <fcntl.h>
-#include <string.h>
+#include <stdio.h>
+#include <sys/select.h>
 
+#include "include/timer.h"
 #include "include/error/exit_codes.h"
 #include "include/fifo.h"
-#include "include/timer.h"
+
 
 int recv_message(message_t* msg) {
     int fd = get_public_fifo();

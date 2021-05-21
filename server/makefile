@@ -19,7 +19,7 @@ s_inner: $(OBJECTS) lib/lib.o lib/delay.o
 	$(CC) $(flags)  $^ -o s $(libs) -I $(INCLUDES)
 
 $(OBJ)/%.o: $(SRC)/%.c
-	$(CC) -I$(SRC) $(flags)  -c $< -o $@ $(libs) -I $(INCLUDES) -I $(COMMON)
+	$(CC) -I$(SRC) $(flags)  -c $< -o $@ $(libs) -I$(INCLUDES) -I$(COMMON)
 
 bin: 
 	mkdir -p bin
