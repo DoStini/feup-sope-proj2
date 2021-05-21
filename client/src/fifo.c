@@ -80,12 +80,15 @@ int open_read_private_fifo() {
     err = select(fd + 1, &fds, NULL, NULL, &timer);
 
     if (err == -1) {
+        remove_private_fifo();
         close(fd);
         return ERROR;
         perror("select()");
     } else if (err) {
         return fd;
     }
+    
+    remove_private_fifo();
     close(fd);
     return ERROR;
 }

@@ -1,32 +1,26 @@
 #ifndef SERVER_INCLUDE_LOGGER_H_
 #define SERVER_INCLUDE_LOGGER_H_
 
-#include <stdbool.h>
-
-#include "../include/communication.h"
+#include "include/communication.h"
 
 #define LOG_PATH "client.log"
 
 /**
  * @brief Contains all possible responses from either client and server for
  * proper communication identification
- * 
+ *
  */
-enum Event { IWANT = 0,
-             RECVD,
-             TSKEX,
-             TSKDN,
-             GOTRS,
-             TLATE,
-             CLOSD,
-             GAVUP,
-             FAILD };
-
-typedef struct info {
-    int id;
-    int t;
-    int res;
-} info_t;
+enum Event {
+    IWANT = 0,
+    RECVD,
+    TSKEX,
+    TSKDN,
+    GOTRS,
+    TLATE,
+    CLOSD,
+    GAVUP,
+    FAILD
+};
 
 /**
  * @brief Opens the log file, if one is given, and gets its file descriptor

@@ -1,14 +1,8 @@
-#include "../include/logger.h"
+#include "include/logger.h"
 
 #include <errno.h>
-#include <fcntl.h>
-#include <pthread.h>
-#include <stdarg.h>
 #include <stdio.h>
-#include <stdlib.h>
 #include <string.h>
-#include <time.h>
-#include <unistd.h>
 
 typedef struct log_info {
     int file_descriptor;
@@ -49,6 +43,4 @@ int open_log() {
     return 0;
 }
 
-int err_log(const char* msg) {
-    return fprintf(stderr, "[server] %s\n", msg);
-}
+int err_log(const char* msg) { return fprintf(stderr, "[server] %s\n", msg); }

@@ -1,35 +1,45 @@
-#include "../include/task_handler.h"
+#include "include/task_handler.h"
 
+#include <errno.h>
 #include <pthread.h>
-#include <signal.h>
+#include <semaphore.h>
 #include <stdio.h>
 #include <stdlib.h>
-#include <string.h>
-#include <time.h>
-#include <unistd.h>
 
-#include "../include/args_parser.h"
-#include "../include/communication.h"
-#include "../include/error/exit_codes.h"
-#include "../include/fifo.h"
-#include "../include/logger.h"
-#include "../include/queue.h"
-#include "../include/timer.h"
-#include "../lib/lib.h"
+#include "include/args_parser.h"
+#include "include/communication.h"
+#include "include/error/exit_codes.h"
+#include "include/fifo.h"
+#include "include/logger.h"
+#include "include/queue.h"
+#include "include/timer.h"
+#include "lib/lib.h"
 
-#define MSEC_TO_NSEC(x) ((x) * (1e6))
-
-static unsigned int seedp;
+#define MAX_TRIES 3
 
 static queue_t* data_queue = NULL;
 
 static pthread_mutex_t mutex;
+static pthread_mutexattr_t mattr;
 
-uint64_t get_random_ms(uint64_t lower, uint64_t upper) {
-    return MSEC_TO_NSEC(rand_r(&seedp) % (upper - lower) + lower);
+static sem_t recv_sem;
+static sem_t send_sem;
+
+int init_sync(int sem_size) {
+    if (pthread_mutexattr_init(&mattr)) return ERROR;
+    if (pthread_mutex_init(&mutex, &mattr)) return ERROR;
+    if (sem_init(&recv_sem, 0, sem_size)) return ERROR;
+    if (sem_init(&send_sem, 0, 0)) return ERROR;
+    return 0;
 }
 
-int get_random_task() { return rand_r(&seedp) % 9 + 1; }
+int free_sync() {
+    pthread_mutex_destroy(&mutex);
+    pthread_mutexattr_destroy(&mattr);
+    sem_destroy(&recv_sem);
+    sem_destroy(&send_sem);
+    return 0;
+}
 
 void* cleanup_thread() {
     pthread_exit(NULL);
@@ -38,63 +48,84 @@ void* cleanup_thread() {
 
 void cleanup(void) {
     close_fifo(get_public_fifo());
-    int err = remove_public_fifo();
-    fprintf(stderr, "UNLINK: %d\n", err);
-    
-    if(data_queue != NULL) queue_destroy(data_queue);
+    remove_public_fifo();
+    free_sync();
+    timer_cleanup();
+    if (data_queue != NULL) queue_destroy(data_queue);
 }
 
 void* producer_handler(void* ptr) {
     message_t msg = *((message_t*)ptr);
     free(ptr);
 
-    write_log(RECVD, &msg);
-    // Write here so that the main thread doesn't waste time
-
     err_log("received task");
-    int res = task(msg.tskload);
     if (is_timeout()) {
         err_log("task timedout");
         msg.tskres = -1;
-
-        return cleanup_thread();
     } else {
+        int res = task(msg.tskload);
         msg.tskres = res;
         write_log(TSKEX, &msg);
     }
 
-    err_log("mutex queue lock");
+    sem_wait(&recv_sem);
+
     pthread_mutex_lock(&mutex);
 
-    if (data_queue != NULL && !queue_empty(data_queue)) {
-        queue_push(data_queue, &msg);
-        queue_print(data_queue);
-    }
+    if (data_queue != NULL) queue_push(data_queue, &msg);
+
+    sem_post(&send_sem);
 
     pthread_mutex_unlock(&mutex);
-    err_log("mutex queue unlock");
 
     return cleanup_thread();
 }
 
 void* consumer_handler() {
-    // while (!is_timeout()) {
-    //     message_t msg;
-    //     printf("hello\n");
+    int tries = 0;
 
-    //     if (queue_empty(data_queue))
-    //         continue;
-    //     queue_front(data_queue, &msg);
-    //     queue_pop(data_queue);
-    //     write_log(IWANT, &msg);
-    //     if (send_private_message(&msg, msg.pid, msg.tid)) {
-    //         write_log(FAILD, &msg);
-    //     } else if (msg.tskres == -1) {
-    //         write_log(TLATE, &msg);
-    //     } else {
-    //         write_log(TSKDN, &msg);
-    //     }
-    // }
+    while (1) {
+        message_t msg;
+
+        struct timespec absolute_timeout;
+        timer_get_absolute_timeout(&absolute_timeout);
+
+        errno = 0;
+        sem_timedwait(&send_sem, &absolute_timeout);
+
+        if (errno == ETIMEDOUT && queue_empty(data_queue)) {
+            if (tries < MAX_TRIES) {
+                sleep(1);
+                tries++;
+                continue;
+            } else {
+                break;
+            }
+        }
+        tries = 0;
+
+        pthread_mutex_lock(&mutex);
+
+        if (queue_front(data_queue, &msg) == QUEUE_EMPTY) {
+            pthread_mutex_unlock(&mutex);
+            continue;
+        }
+        queue_pop(data_queue);
+
+        pthread_mutex_unlock(&mutex);
+
+        sem_post(&recv_sem);
+
+        if (send_private_message(&msg, msg.pid, msg.tid) == -1) {
+            write_log(FAILD, &msg);
+        } else if (msg.tskres == -1) {
+            write_log(TLATE, &msg);
+        } else {
+            write_log(TSKDN, &msg);
+        }
+    }
+
+    err_log("terminate consumer");
 
     return cleanup_thread();
 }
@@ -102,7 +133,6 @@ void* consumer_handler() {
 int task_handler(args_data_t* args) {
     if (create_public_fifo() != 0) return CANT_CREATE_FIFO;
     atexit(cleanup);
-
     int fd = open_read_public_fifo();
 
     if (fd < 0) return ERROR;
@@ -113,30 +143,45 @@ int task_handler(args_data_t* args) {
         return TASK_CREATOR_THREAD_ERROR;
     }
 
-    pthread_mutexattr_t mattr;
-
-    pthread_mutexattr_init(&mattr);
-    pthread_mutex_init(&mutex, &mattr);
+    if (init_sync(args->buffer_size)) {
+        return ERROR;
+    }
 
     data_queue = queue_(args->buffer_size);
+    int tries = 0;
 
-    while (!is_timeout()) {
+    while (1) {
         pthread_t producer_thread;
         message_t* msg = malloc(sizeof(message_t));
         if (recv_message(msg) == 0) {
-            if (pthread_create(&producer_thread, NULL, producer_handler, msg)) {
-                free(msg);
-                queue_destroy(data_queue);
-                return TASK_CREATOR_THREAD_ERROR;
+            tries = 0;
+            write_log(RECVD, msg);
+            int create_threads = 1000;
+            while (pthread_create(&producer_thread, NULL, producer_handler,
+                                  msg) != 0) {
+                create_threads--;
+                if (create_threads == 0) {
+                    write_log(FAILD, msg);
+                    free(msg);
+                    break;
+                }
+                usleep(1000);
             }
+
         } else {
-            usleep(5);
             free(msg);
+            usleep(5);
+            if (is_timeout()) {
+                if (tries < MAX_TRIES) {
+                    usleep(1000);
+                    tries++;
+                    continue;
+                } else {
+                    break;
+                }
+            }
         }
     }
-
-    pthread_mutex_destroy(&mutex);
-    pthread_mutexattr_destroy(&mattr);
 
     pthread_join(consumer_thread, NULL);
 

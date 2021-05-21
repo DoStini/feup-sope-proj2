@@ -1,4 +1,6 @@
-#include "../include/queue.h"
+#include "include/queue.h"
+
+#include <stdlib.h>
 
 typedef struct queue_node {
     Message value;
@@ -53,7 +55,7 @@ int queue_push(queue_t* queue, Message* message) {
     queue->array[first_empty].next = queue->size;
 
     if (queue->first == queue->size) {
-        queue->first = 0;
+        queue->first = first_empty;
     } else {
         queue->array[queue->last].next = first_empty;
     }
@@ -73,7 +75,7 @@ int queue_pop(queue_t* queue) {
     queue->array[first].next = queue->size;
 
     if (queue->first_empty == queue->size) {
-        queue->first_empty = 0;
+        queue->first_empty = first;
     } else {
         queue->array[queue->last_empty].next = first;
     }
@@ -91,13 +93,9 @@ int queue_front(queue_t* queue, Message* message) {
     return 0;
 }
 
-bool queue_empty(queue_t* queue) {
-    return queue->first == queue->size;
-}
+bool queue_empty(queue_t* queue) { return queue->first == queue->size; }
 
-bool queue_full(queue_t* queue) {
-    return queue->first_empty == queue->size;
-}
+bool queue_full(queue_t* queue) { return queue->first_empty == queue->size; }
 
 #include <stdio.h>
 

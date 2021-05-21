@@ -4,7 +4,7 @@
 #include <stdbool.h>
 #include <stdint.h>
 #include <sys/time.h>
-#include <time.h>
+
 
 /**
  * @brief Starts a no-signal timer that ends in a given number of seconds.
@@ -28,15 +28,6 @@ void timer_cleanup();
 bool is_timeout(void);
 
 /**
- * @brief Gets the remaing time on the set timer as a timespec structure.
- *
- * @param[out] time the remaining time in a timespec.
- *
- * @return an error value, if timer is not set for example.
- **/
-int timer_get_remaining(struct timespec* time);
-
-/**
  * @brief Gets the remaing time on the set timer as a timeval structure.
  *
  * @param[out] time the remaining time in a timeval.
@@ -44,5 +35,14 @@ int timer_get_remaining(struct timespec* time);
  * @return an error value, if timer is not set for example.
  **/
 int timer_get_remaining_timeval(struct timeval* time);
+
+/**
+ * @brief Gets the time (UNIX) when the timeout will expire.
+ *
+ * @param[out] time the timeout.
+ *
+ * @return an error value, if timer is not set for example.
+ **/
+int timer_get_absolute_timeout(struct timespec* timeout);
 
 #endif  // SERVER_INCLUDE_TIMER_H_

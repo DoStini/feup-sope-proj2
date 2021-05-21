@@ -12,6 +12,15 @@
         "aux.h": "c",
         "stdarg.h": "c",
         "exit_codes.h": "c",
-        "fifo.h": "c"
+        "fifo.h": "c",
+        "communication.h": "c",
+        "logger.h": "c",
+        "task_handler.h": "c",
+        "timer.h": "c",
+        "time.h": "c",
+        "signal.h": "c",
+        "types.h": "c",
+        "features.h": "c",
+        "errno.h": "c"
     }
 }

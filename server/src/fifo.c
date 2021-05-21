@@ -1,18 +1,13 @@
-#include "../include/fifo.h"
+#include "include/fifo.h"
 
 #include <errno.h>
 #include <fcntl.h>
-#include <pthread.h>
 #include <sys/stat.h>
-#include <sys/types.h>
-#include <time.h>
+#include <stdio.h>
 #include <unistd.h>
 
-#include "../include/args_parser.h"
-#include "../include/communication.h"
-#include "../include/error/exit_codes.h"
-#include "../include/task_handler.h"
-#include "../include/timer.h"
+#include "include/args_parser.h"
+#include "include/error/exit_codes.h"
 
 #define BUSY_WAIT_US 10
 
@@ -25,33 +20,6 @@ int set_public_fifo(int fd) {
 
 int get_public_fifo() { return public_fifo; }
 
-int open_write_private_fifo(pid_t pid, pthread_t tid) {
-    char fifo[MAX_FIFO_NAME] = "";
-    snprintf(fifo, MAX_FIFO_NAME, "/tmp/%d.%lu", pid, tid);
-    fprintf(stderr, "%s\n", fifo);
-    int fd = open(fifo, O_WRONLY | O_NONBLOCK);
-
-    fd_set fds;
-    struct timeval timer;
-    timer_get_remaining_timeval(&timer);
-
-    FD_ZERO(&fds);
-    FD_SET(fd, &fds);
-
-    int err;
-    err = select(fd + 1, NULL, &fds, NULL, &timer);
-
-    if (err == -1) {
-        close(fd);
-        return ERROR;
-        perror("select()");
-    } else if (err) {
-        return fd;
-    }
-    close(fd);
-    return ERROR;
-}
-
 int create_public_fifo() {
     if (mkfifo(get_public_fifoname(), 0777) && errno != EEXIST) {
         perror("create fifo");
@@ -61,14 +29,11 @@ int create_public_fifo() {
     return 0;
 }
 
-int remove_public_fifo() {
-    return unlink(get_public_fifoname());
-}
+int remove_public_fifo() { return unlink(get_public_fifoname()); }
 
 int open_read_public_fifo() {
     int fd = open(get_public_fifoname(), O_RDWR);
-    if (fd < 0)
-        return ERROR;
+    if (fd < 0) return ERROR;
     set_public_fifo(fd);
     return 0;
 }

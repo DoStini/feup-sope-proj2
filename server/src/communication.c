@@ -1,28 +1,20 @@
-#include "../include/communication.h"
+#include "include/communication.h"
 
-#include <string.h>
-#include <unistd.h>
+#include <fcntl.h>
+#include <stdio.h>
+#include <sys/select.h>
 
-#include "../include/error/exit_codes.h"
-#include "../include/fifo.h"
-#include "../include/timer.h"
-
-int build_message(message_t* msg, int id, int res, int t) {
-    memset(msg, 0, sizeof(message_t));
-
-    msg->rid = id;
-    msg->pid = getpid();
-    msg->tskres = res;
-    msg->tskload = t;
-    msg->tid = pthread_self();
-    return 0;
-}
+#include "include/timer.h"
+#include "include/error/exit_codes.h"
+#include "include/fifo.h"
 
 int recv_message(message_t* msg) {
     int fd = get_public_fifo();
     fd_set fds;
     struct timeval timer;
+
     timer_get_remaining_timeval(&timer);
+    timer.tv_sec++;
 
     FD_ZERO(&fds);
     FD_SET(fd, &fds);
@@ -32,22 +24,50 @@ int recv_message(message_t* msg) {
 
     if (err == -1) {
         close(fd);
+
         return ERROR;
-        perror("select()");
     } else if (err) {
         size_t data_size = read(fd, msg, sizeof(message_t));
 
         return sizeof(message_t) == data_size ? 0 : ERROR;
     }
+
     return ERROR;
 }
 
 int send_private_message(message_t* msg, pid_t pid, pthread_t tid) {
-    int fd = open_write_private_fifo(pid, tid);
-    if (fd <= 0)
-        return ERROR;
+    char fifo[MAX_FIFO_NAME] = "";
+    snprintf(fifo, MAX_FIFO_NAME, "/tmp/%d.%lu", pid, tid);
 
-    write(fd, msg, sizeof(message_t));
+    int fd = open(fifo, O_RDWR);
+    if (fd < 0) return ERROR;
+    fprintf(stderr, "[server] opened %s\n", fifo);
 
-    return close_fifo(fd);
+    fd_set fds;
+    struct timeval timer;
+
+    timer_get_remaining_timeval(&timer);
+    timer.tv_sec++;
+
+    FD_ZERO(&fds);
+    FD_SET(fd, &fds);
+
+    int err;
+    err = select(fd + 1, NULL, &fds, NULL, &timer);
+
+    if (err != 0) {
+        int sent_size = write(fd, msg, sizeof(message_t));
+
+        // fprintf(stderr, "[server] %d size sent: %d %lu\n", msg->rid,
+        // sent_size,
+        //        sizeof(message_t));
+
+        int err = close_fifo(fd);
+
+        if (sent_size != sizeof(message_t) || err) return ERROR;
+        return 0;
+    }
+
+    close(fd);
+    return ERROR;
 }
