@@ -1,6 +1,5 @@
 #include "../include/task_handler.h"
 
-#include <asm-generic/errno.h>
 #include <errno.h>
 #include <pthread.h>
 #include <semaphore.h>

@@ -1,4 +1,4 @@
-#include "../include/queue.h"
+#include "include/queue.h"
 
 typedef struct queue_node {
     Message value;

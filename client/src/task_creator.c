@@ -93,7 +93,7 @@ int task_creator() {
         *thread_id = id++;
 
         if (pthread_create(&thread, NULL, create_receive_task,
-                           (void*)thread_id)) {
+                           thread_id)) {
             free(thread_id);
             continue;
         }

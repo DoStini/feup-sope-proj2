@@ -1,13 +1,13 @@
-#include "../include/communication.h"
+#include "include/communication.h"
 
 #include <fcntl.h>
 #include <string.h>
 #include <sys/stat.h>
 #include <unistd.h>
 
-#include "../include/error/exit_codes.h"
-#include "../include/fifo.h"
-#include "../include/timer.h"
+#include "include/error/exit_codes.h"
+#include "include/fifo.h"
+#include "include/timer.h"
 
 int build_message(message_t* msg, int id, int res, int t) {
     memset(msg, 0, sizeof(message_t));

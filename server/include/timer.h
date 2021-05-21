@@ -4,7 +4,7 @@
 #include <stdbool.h>
 #include <stdint.h>
 #include <sys/time.h>
-#include <time.h>
+
 
 /**
  * @brief Starts a no-signal timer that ends in a given number of seconds.

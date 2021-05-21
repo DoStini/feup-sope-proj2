@@ -4,12 +4,12 @@
 #include <time.h>
 #include <unistd.h>
 
-#include "../include/args_parser.h"
-#include "../include/error/exit_codes.h"
-#include "../include/fifo.h"
-#include "../include/logger.h"
-#include "../include/task_handler.h"
-#include "../include/timer.h"
+#include "include/args_parser.h"
+#include "include/error/exit_codes.h"
+#include "include/fifo.h"
+#include "include/logger.h"
+#include "include/task_handler.h"
+#include "include/timer.h"
 
 int main(int argc, char* argv[], char* envp[]) {
     args_data_t data;

@@ -1,4 +1,4 @@
-#include "../include/logger.h"
+#include "include/logger.h"
 
 #include <errno.h>
 #include <fcntl.h>

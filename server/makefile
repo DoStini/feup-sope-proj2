@@ -2,6 +2,7 @@ CC = gcc
 
 prog = s
 SRC := src
+INCLUDES := .
 COMMON := ../common
 OBJ := bin
 FINAL := ../bin
@@ -14,11 +15,11 @@ libs = -pthread -lrt
 
 s: bin s_inner move
 
-s_inner: $(OBJECTS) lib/lib.o
-	$(CC) $(flags)  $^ -o s $(libs)
+s_inner: $(OBJECTS) lib/lib.o lib/delay.o
+	$(CC) $(flags)  $^ -o s $(libs) -I $(INCLUDES)
 
 $(OBJ)/%.o: $(SRC)/%.c
-	$(CC) -I$(SRC) $(flags)  -c $< -o $@ $(libs)
+	$(CC) -I$(SRC) $(flags)  -c $< -o $@ $(libs) -I $(INCLUDES)
 
 bin: 
 	mkdir -p bin

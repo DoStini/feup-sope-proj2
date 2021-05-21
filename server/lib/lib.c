@@ -1,10 +1,10 @@
-#include "./lib.h"
+#include "lib.h"
 
 #include <pthread.h>
 #include <stdio.h>
 #include <unistd.h>
 
-#include "../include/delay.h"
+#include "./delay.h"
 
 int c = 0;  // JMC
 pthread_mutex_t lock = PTHREAD_MUTEX_INITIALIZER;

@@ -1,4 +1,4 @@
-#include "../include/timer.h"
+#include "include/timer.h"
 
 #include <time.h>
 #include <signal.h>
