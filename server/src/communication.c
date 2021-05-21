@@ -8,7 +8,6 @@
 #include "include/error/exit_codes.h"
 #include "include/fifo.h"
 
-
 int recv_message(message_t* msg) {
     int fd = get_public_fifo();
     fd_set fds;

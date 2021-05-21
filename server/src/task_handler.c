@@ -1,23 +1,19 @@
-#include "../include/task_handler.h"
+#include "include/task_handler.h"
 
 #include <errno.h>
 #include <pthread.h>
 #include <semaphore.h>
-#include <signal.h>
 #include <stdio.h>
 #include <stdlib.h>
-#include <string.h>
-#include <time.h>
-#include <unistd.h>
 
-#include "../include/args_parser.h"
-#include "../include/communication.h"
-#include "../include/error/exit_codes.h"
-#include "../include/fifo.h"
-#include "../include/logger.h"
-#include "../include/queue.h"
-#include "../include/timer.h"
-#include "../lib/lib.h"
+#include "include/args_parser.h"
+#include "include/communication.h"
+#include "include/error/exit_codes.h"
+#include "include/fifo.h"
+#include "include/logger.h"
+#include "include/queue.h"
+#include "include/timer.h"
+#include "lib/lib.h"
 
 #define MAX_TRIES 3
 

@@ -1,5 +1,7 @@
 #include "include/queue.h"
 
+#include <stdlib.h>
+
 typedef struct queue_node {
     Message value;
     size_t next;

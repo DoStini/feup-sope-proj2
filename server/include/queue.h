@@ -1,10 +1,9 @@
 #ifndef SERVER_INCLUDE_QUEUE_H_
 #define SERVER_INCLUDE_QUEUE_H_
 
-#include <stdlib.h>
 #include <stdbool.h>
 
-#include "../../common/common.h"
+#include "common/common.h"
 
 #define QUEUE_NO_SPACE 1
 #define QUEUE_EMPTY 2
