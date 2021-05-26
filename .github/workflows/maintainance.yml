@@ -27,29 +27,29 @@ jobs:
       - run: make
       - run: ./tests/valgrind.sh
 
-  test_one:
-    runs-on: ubuntu-latest
-    needs: build
-    steps:
-      - uses: actions/checkout@v2
-      - run: sudo apt-get install valgrind
-      - run: make
-      - run: cd tests && ./tests.sh 1
+  # test_one:
+  #   runs-on: ubuntu-latest
+  #   needs: build
+  #   steps:
+  #     - uses: actions/checkout@v2
+  #     - run: sudo apt-get install valgrind
+  #     - run: make
+  #     - run: cd tests && ./tests.sh 1
 
-  test_two:
-    runs-on: ubuntu-latest
-    needs: test_one
-    steps:
-      - uses: actions/checkout@v2
-      - run: sudo apt-get install valgrind
-      - run: make
-      - run: cd tests && ./tests.sh 2
+  # test_two:
+  #   runs-on: ubuntu-latest
+  #   needs: test_one
+  #   steps:
+  #     - uses: actions/checkout@v2
+  #     - run: sudo apt-get install valgrind
+  #     - run: make
+  #     - run: cd tests && ./tests.sh 2
 
-  test_three:
-    runs-on: ubuntu-latest
-    needs: test_two
-    steps:
-      - uses: actions/checkout@v2
-      - run: sudo apt-get install valgrind
-      - run: make
-      - run: cd tests && ./tests.sh 3
+  # test_three:
+  #   runs-on: ubuntu-latest
+  #   needs: test_two
+  #   steps:
+  #     - uses: actions/checkout@v2
+  #     - run: sudo apt-get install valgrind
+  #     - run: make
+  #     - run: cd tests && ./tests.sh 3
