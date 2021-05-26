@@ -26,6 +26,8 @@ int main(int argc, char* argv[], char* envp[]) {
         return ERROR;
     }
 
+    atexit(timer_cleanup);
+
     open_log();
     int err = task_creator();
 
